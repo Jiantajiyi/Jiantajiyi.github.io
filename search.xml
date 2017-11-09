@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[test2]]></title>
-    <url>%2F2017%2F11%2F09%2Fdd%2F</url>
-    <content type="text"><![CDATA[分为]]></content>
+    <title><![CDATA[学习markdown]]></title>
+    <url>%2F2017%2F11%2F09%2Ftest%2F</url>
+    <content type="text"><![CDATA[学习中 网站大概建好了 接下来学习下markdown语法 一级标题二级标题三级标题]]></content>
       <categories>
         <category>测试</category>
       </categories>
+      <tags>
+        <tag>学习markdown</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[My first blog]]></title>
