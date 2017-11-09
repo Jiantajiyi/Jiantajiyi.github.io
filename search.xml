@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[学习markdown]]></title>
+    <title><![CDATA[破解百度云小白教程]]></title>
     <url>%2F2017%2F11%2F09%2Ftest%2F</url>
-    <content type="text"><![CDATA[学习中 网站大概建好了 接下来学习下markdown语法 一级标题二级标题三级标题]]></content>
+    <content type="text"><![CDATA[不是不做，时候未到。 前言 本人喜欢看电影，而且是喜欢下载到设备上离线观看，但是迅雷现在越来越XX，不想花钱开会员，也不想去搞迅雷，万能的网友和坛友，有了这个方法，来和大家分享，此教程适用于安卓手机端，无需root。 你都看见标题了吧，小白教程，所以此教程只要耐心看肯定能学会。 大佬请绕步，本人也是小白一个. 第一步 下载软件 下载并安装两个软件。 1.山寨云 2.ADM 对，名字就这么霸气 山寨云 顾名思义，就是百度云的山寨版，软件功能很强大哦！ ADM 我觉得是专为百度云而生的，因为大多数人只用他下载百度云文件。 第二步 配置软件配置ADM 这里又要下载一个配置文件了，点此下载 下载完成之后解压该文件。 接下来打开软件，依次点击 设置——数据——读取设置 然后找到你刚才解压的文件夹，如果你找到了的话会是这样的 注意：一直点击返回上一目录，会返回到系统的根目录，这时你只需点击sdcard就可以进入到你的数据储存目录。（安卓7.X是这样的，以前的版本也差不多） 然后点击 512XX 这个，再次点击确定会提示读取成功。 到此配置完成。 tips：原理简单来说就是多线程下载。 配置山寨云安装了山寨云当然就是登陆了，登陆这里就不多说了。找到你要下载的文件，你会看到然后点击生成直链，你会看到用xx下载或发送，你会看到选择 ADM Editor，你会看到然后开始下载 大功告成]]></content>
       <categories>
-        <category>测试</category>
+        <category>教程</category>
       </categories>
       <tags>
-        <tag>学习markdown</tag>
+        <tag>教程</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[My first blog]]></title>
     <url>%2F2017%2F11%2F08%2Fmy-first-blog%2F</url>
-    <content type="text"><![CDATA[不是不做，时候未到。This is my first blog,testing,learning.还是先学习吧。]]></content>
+    <content type="text"><![CDATA[不是不做，时候未到。This is my first blog.还是先学习吧。]]></content>
       <categories>
         <category>文档</category>
       </categories>
