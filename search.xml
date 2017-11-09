@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[test2]]></title>
+    <url>%2F2017%2F11%2F09%2Fdd%2F</url>
+    <content type="text"><![CDATA[分为]]></content>
+      <categories>
+        <category>测试</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[My first blog]]></title>
+    <url>%2F2017%2F11%2F08%2Fmy-first-blog%2F</url>
+    <content type="text"><![CDATA[不是不做，时候未到。This is my first blog,testing,learning.还是先学习吧。]]></content>
+      <categories>
+        <category>文档</category>
+      </categories>
+      <tags>
+        <tag>Testing</tag>
+      </tags>
+  </entry>
+</search>
