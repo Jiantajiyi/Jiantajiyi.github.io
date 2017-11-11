@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Unity 入门]]></title>
     <url>%2F2017%2F11%2F11%2F%E5%85%A5%E9%97%A8%2F</url>
-    <content type="text"><![CDATA[不是不做，时候未到。 今天开始学习Unity 3D 新建C#并命名为Hello Worldvoid OnGUI() { GUI.skin.label.fontSize = 100; GUI.Label (new Rect (10, 10, Screen.width, Screen.height), &quot;Hello World&quot;); } 菜单栏选中Componet-Scripts-Hello World,运行之后会看到 保存工程 保存为可执行exe程序 执行exe慢慢来吧。]]></content>
+    <content type="text"><![CDATA[不是不做，时候未到。 今天开始学习Unity 3D1.新建C#并命名为Hello World12345void OnGUI()&#123;GUI.skin.label.fontSize = 100;GUI.Label (new Rect (10, 10, Screen.width, Screen.height), &quot;Hello World&quot;);&#125; 2.菜单栏选中Componet-Scripts-Hello World,运行之后会看到3.保存工程4.保存为可执行exe程序.5.执行exe 慢慢来吧。]]></content>
       <categories>
         <category>learn</category>
       </categories>
