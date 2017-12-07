@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[微信透明头像]]></title>
+    <url>%2F2017%2F12%2F07%2F%E5%BE%AE%E4%BF%A1%E9%80%8F%E6%98%8E%E5%A4%B4%E5%83%8F%2F</url>
+    <content type="text"><![CDATA[不是不做，时候未到。 先来一张效果图 教程开始素材的准备和PhotoShop软件这里我以滑稽表情为例 ###用PS打开滑稽表情 ###按住Shift+Ctrl+N新建图层 ###抠图 ###抠图完成后按Ctrl+X 然后删除这个图层 ###按Ctrl+V粘贴到第二部新建的图层中 ###然后选中这个图层 按Ctrl+T进行缩放 缩放成如图所示的大小 ###保存为png格式 ###复制到手机上（复制原文件） 在手机微信上更换图像这里需要注意的是 要把图像缩放到合适的大小手动滑稽~…~]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[为MIUI添加人脸解锁]]></title>
     <url>%2F2017%2F12%2F02%2F%E4%B8%BAMIUI%E6%B7%BB%E5%8A%A0%E4%BA%BA%E8%84%B8%E8%A7%A3%E9%94%81%2F</url>
     <content type="text"><![CDATA[不是不做，时候未到。 玩腻了指纹解锁，试试看人脸识别吧，FaceID For MIUI9_MI5解Bootloader锁解Bootloader锁教程:点这里 刷第三方Recovery小米5专用RecoveryBY~XM大佬的rec本人一直用的这个rec 支持OTA增量更新 进入rec法一：开机按电源键+音量键上 直到mi标出现放开电源键法二：系统更新界面-右上角三个小圆点-重启到恢复模式（Recovery） 刷入卡刷包请注意此卡刷包只适用于官方稳定版或开发版FaceID For MIUI9_Mi5.zip密码：6666 重启大功告成不刷第三方rec的方法还是解Bootloader锁解Bootloader锁教程:点这里 下载资源下载软件里边有所有的资源小米五人脸解锁提取+工具.zip密码：6666 安装两个APPRE文件管理器，syslock（用来解system锁） 获取root权限并赋予权限1.开发版直接在安全中心开启root权限2.给这两个APP赋予root权限3.使用syslock解锁system（需要重启） 至此获取了完整的root权限 替换文件1.用《需要替换的app》中的两个apk文件替换 /system/priv-app/settings 和 /system/priv-app/MiuiKeygard 中的两个 App.2.用《需要替换的文件》中的五个文件替换 system/lib64 目录下的五个 so 文件（直接复制进去） Reboot 大功告成！小米五，红米note4.MIX.5s.5sp.部分6.部分红米.5x暂时都可以使用，理论支持miui9所有稳定版，开发板，体验版。]]></content>
