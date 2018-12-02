@@ -87,10 +87,18 @@
 <meta property="og:site_name" content="践踏记忆">
 <meta property="og:description" content="不是不做，时候未到。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-02T12:40:59.024Z">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/spt/01.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/spt/02.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/spt/03.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/spt/04.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/spt/05.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/spt/06.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/spt/07.png">
+<meta property="og:updated_time" content="2018-12-02T12:58:46.722Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spanning Tree">
 <meta name="twitter:description" content="不是不做，时候未到。">
+<meta name="twitter:image" content="http://jiantajiyi.github.io/images/spt/01.png">
 
 
 
@@ -358,13 +366,13 @@
       
         <script src="\assets\js\APlayer.min.js"> </script><p><center>不是不做，时候未到。<center><br><a id="more"></a></center></center></p>
 <h1 id="Spanning-Tree-生成树"><a href="#Spanning-Tree-生成树" class="headerlink" title="Spanning Tree 生成树"></a>Spanning Tree 生成树</h1><h2 id="目的："><a href="#目的：" class="headerlink" title="目的："></a>目的：</h2><p>交换机之间存在冗余（备份）路径，以及交换机的泛洪机制，导致交换机之间产生 二层交换环路。</p>
-<h2 id="造成影响："><a href="#造成影响：" class="headerlink" title="造成影响："></a>造成影响：</h2><p>1.广播风暴（数据在两个或多个交换机之间大量重复传递）<br>2.MAC地址表不稳定 （交换机会将某个主机的mac地址重复删除和学习）<br>3.数据帧的重复拷贝（由于ARP会泛红和数据的重复传递，导致A主机发送的ARP会被交换机重复发送到B主机）</p>
+<h2 id="造成影响："><a href="#造成影响：" class="headerlink" title="造成影响："></a>造成影响：</h2><p><img src="/images/spt/01.png" alt=""><br>1.广播风暴（数据在两个或多个交换机之间大量重复传递）<br>2.MAC地址表不稳定 （交换机会将某个主机的mac地址重复删除和学习）<br>3.数据帧的重复拷贝（由于ARP会泛红和数据的重复传递，导致A主机发送的ARP会被交换机重复发送到B主机）</p>
 <h2 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h2><p>逻辑性阻塞某个接口. 在交换机之间，通过发送比较信息，选择在环路之间应该被阻塞的接口.</p>
 <h2 id="生成树类型："><a href="#生成树类型：" class="headerlink" title="生成树类型："></a>生成树类型：</h2><ul>
 <li>公有生成树：<br>STP（又称为802.1D  标准生成树）<br>RSTP（802.1W 快速生成树）<br>MST（802.1S 多生成树）</li>
 <li>私有生成树：<br>PVST（基于VLAN的标准生成树，每一VLAN都有自己的一套生成树）<br>PVRST+（基于VLAN的快速生成树）</li>
 </ul>
-<h2 id="发送比较信息"><a href="#发送比较信息" class="headerlink" title="发送比较信息"></a>发送比较信息</h2><p>BPDU—网桥协议数据单元<br>配置BPDU：config-BPDU<br>拓扑变更BPDU：TCN-BPDU</p>
+<h2 id="发送比较信息"><a href="#发送比较信息" class="headerlink" title="发送比较信息"></a>发送比较信息</h2><p>BPDU—网桥协议数据单元<br>配置BPDU：config-BPDU<br>拓扑变更BPDU：TCN-BPDU<br><img src="/images/spt/02.png" alt=""></p>
 <ul>
 <li><strong>Protocol ID</strong>：<br>协议号，代表我是一个BPDU报文</li>
 <li><strong>Version</strong>：<br>表示是哪一种BPDU（802.1D或者802.1W等）</li>
@@ -403,7 +411,7 @@
 <li>指定端口：用于发送或转发BPDU信息，存在于每条链路中，一条只能存在一个指定 端口，根网桥的所有接口全为指定端口</li>
 </ul>
 <p><strong>指定端口选举</strong><br>1.接口所属交换机上根端口到达根网桥的COP值<br>2.本交换机BID<br>3.本地的PID<br><strong>阻塞端口</strong><br>逻辑上打破接口.</p>
-<h2 id="选举详细过程"><a href="#选举详细过程" class="headerlink" title="选举详细过程"></a>选举详细过程</h2><p><strong>根网桥选举</strong> 这里假设sw1 BID优先级最高（bid优先级以此类推），故sw1为根网桥<br><strong>根端口选举</strong></p>
+<h2 id="选举详细过程"><a href="#选举详细过程" class="headerlink" title="选举详细过程"></a>选举详细过程</h2><p><img src="/images/spt/03.png" alt=""><br><strong>根网桥选举</strong> 这里假设sw1 BID优先级最高（bid优先级以此类推），故sw1为根网桥<br><strong>根端口选举</strong></p>
 <ul>
 <li>SW1：无根端口</li>
 <li>SW2：<br>1.最小cop（接口1和2）相同<br>2.发送方都为根网桥，bid相同<br>3.根网桥接口5的pid小，故选出根端口为接口1</li>
@@ -412,7 +420,7 @@
 <li>SW5：<br>1.最小cop（接口1和2）相同<br>2.发送方sw3的bid小于sw4的bid，故选出根端口为接口1</li>
 <li>SW6：<br>1.最小cop（接口1和2）相同<br>2.发送方sw3的bid小于sw4的bid，故选出根端口为接口1</li>
 </ul>
-<p><strong>根端口选举结果如图</strong></p>
+<p><strong>根端口选举结果如图</strong><br><img src="/images/spt/04.png" alt=""></p>
 <p><strong>指定端口选举</strong></p>
 <ul>
 <li>SW1：所有接口都为指定端口</li>
@@ -420,10 +428,11 @@
 <li>SW3：sw5和sw6有唯一的根端口，故接口7和8一定为指定端口，接口2，3，4一定为阻塞端口<br>1.接口5和6与sw4相比cop相同<br>2.本交换机BID优于sw4，故接口5和6为指定端口</li>
 <li>SW4：接口2，3，4一定为阻塞端口<br>1.接口7与sw5相比，cop小于sw5，故接口7为指定端口<br>接口8与sw6相比，cop小于sw6，故接口8为指定端口</li>
 <li>SW5：接口2为阻塞端口</li>
-<li>SW6：接口2为阻塞端口</li>
+<li>SW6：接口2为阻塞端口<br><img src="/images/spt/05.png" alt=""></li>
 </ul>
-<h2 id="指定端口选举第三条的特殊情况"><a href="#指定端口选举第三条的特殊情况" class="headerlink" title="指定端口选举第三条的特殊情况"></a>指定端口选举第三条的特殊情况</h2><p>假设sw1和sw2的cop相同，sw2的bid优，但sw2的接口1和2不能同时成为指定端口，否则会出环，所以比第三条接口pid，由于sw2的接口1的pid小于接口2的pid，故接口1成为指定端口<br>生成树拓扑结构变化<br>由发生改变的交换机的根端口向根网桥发送拓扑变更BPDU，根网桥收到后以自己为根重新收敛，之后在向之前发送拓扑变更BPDU的根端口发送拓扑变更BPDU确认</p>
-<h2 id="生成树的控制"><a href="#生成树的控制" class="headerlink" title="生成树的控制"></a>生成树的控制</h2><h3 id="根网桥的控制"><a href="#根网桥的控制" class="headerlink" title="根网桥的控制"></a>根网桥的控制</h3><p><strong>设置BID优先级</strong>，默认为32768，修改sw2的bid为32768-4096=28672<br><code>sw2(config)#spanning-tree vlan 1 priority 28672</code><br><code>This bridge is the root</code><br><strong>设置主根和备份根</strong>，设置sw1为主根，sw2为备份根<br><code>sw1(config)#spanning-tree vlan 1 root primary</code><br><code>sw2(config)#spanning-tree vlan 1 root secondary</code><br>主根的优先级变为32768-2*4096=24576<br><code>Bridge ID  Priority    24577  (priority 24576 sys-id-ext 1)</code><br>备份根的优先级变为32768-4096=28672<br><code>Bridge ID  Priority    28673  (priority 28672 sys-id-ext 1)</code></p>
+<h2 id="指定端口选举第三条的特殊情况"><a href="#指定端口选举第三条的特殊情况" class="headerlink" title="指定端口选举第三条的特殊情况"></a>指定端口选举第三条的特殊情况</h2><p><img src="/images/spt/06.png" alt=""><br>假设sw1和sw2的cop相同，sw2的bid优，但sw2的接口1和2不能同时成为指定端口，否则会出环，所以比第三条接口pid，由于sw2的接口1的pid小于接口2的pid，故接口1成为指定端口<br>生成树拓扑结构变化<br>由发生改变的交换机的根端口向根网桥发送拓扑变更BPDU，根网桥收到后以自己为根重新收敛，之后在向之前发送拓扑变更BPDU的根端口发送拓扑变更BPDU确认</p>
+<h2 id="生成树的控制"><a href="#生成树的控制" class="headerlink" title="生成树的控制"></a>生成树的控制</h2><p><img src="/images/spt/07.png" alt=""></p>
+<h3 id="根网桥的控制"><a href="#根网桥的控制" class="headerlink" title="根网桥的控制"></a>根网桥的控制</h3><p><strong>设置BID优先级</strong>，默认为32768，修改sw2的bid为32768-4096=28672<br><code>sw2(config)#spanning-tree vlan 1 priority 28672</code><br><code>This bridge is the root</code><br><strong>设置主根和备份根</strong>，设置sw1为主根，sw2为备份根<br><code>sw1(config)#spanning-tree vlan 1 root primary</code><br><code>sw2(config)#spanning-tree vlan 1 root secondary</code><br>主根的优先级变为32768-2*4096=24576<br><code>Bridge ID  Priority    24577  (priority 24576 sys-id-ext 1)</code><br>备份根的优先级变为32768-4096=28672<br><code>Bridge ID  Priority    28673  (priority 28672 sys-id-ext 1)</code></p>
 <h3 id="控制根端口的位置"><a href="#控制根端口的位置" class="headerlink" title="控制根端口的位置"></a>控制根端口的位置</h3><p><strong>修改链路cost值</strong>：修改sw2的cost为120<br><code>sw2(config-if)#spanning-tree vlan 1 cost 120</code><br>修改前<br><code>Et0/0               Root FWD 100       128.1    Shr</code><br><code>Et0/1               Altn BLK 100       128.2    Shr</code><br>修改后<br><code>Et0/0               Altn BLK 120       128.1    Shr</code><br><code>Et0/1               Root LIS 100       128.2    Shr</code><br><strong>修改发送方BID</strong>：与上述修改根网桥之修改BID优先级方法一致<br><strong>修改发送方PID</strong>：修改sw1的e0/2接口pid为192<br><code>sw1(config-if)#spanning-tree vlan 1 port-priority 192</code><br>修改之后sw1<br><code>Et0/2               Desg FWD 100       192.3    Shr</code><br>修改之前sw3<br><code>Et0/2               Root FWD 100       128.3    Shr</code><br><code>Et0/3               Altn BLK 100       128.4    Shr</code><br>修改之后sw3<br><code>Et0/2               Altn BLK 100       128.3    Shr</code><br><code>Et0/3               Root LIS 100       128.4    Shr</code></p>
 <h2 id="802-1D生成树优缺点"><a href="#802-1D生成树优缺点" class="headerlink" title="802.1D生成树优缺点"></a>802.1D生成树优缺点</h2><p>优点：树少、简单、<br>缺点：生成树收敛速度慢（默认共计收敛时间50s），基于计时器收敛、不能进行负 载分担</p>
 <h2 id="PVST优缺点"><a href="#PVST优缺点" class="headerlink" title="PVST优缺点"></a>PVST优缺点</h2><p>优点：简单、支持负载分担<br>缺点：生成树收敛速度慢，生成树数量较多.</p>
