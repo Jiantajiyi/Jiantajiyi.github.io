@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://jiantajiyi.github.io/images/spt/05.png">
 <meta property="og:image" content="http://jiantajiyi.github.io/images/spt/06.png">
 <meta property="og:image" content="http://jiantajiyi.github.io/images/spt/07.png">
-<meta property="og:updated_time" content="2018-12-02T12:58:46.722Z">
+<meta property="og:updated_time" content="2018-12-03T11:45:42.470Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spanning Tree">
 <meta name="twitter:description" content="不是不做，时候未到。">
@@ -366,7 +366,7 @@
       
         <script src="\assets\js\APlayer.min.js"> </script><p><center>不是不做，时候未到。<center><br><a id="more"></a></center></center></p>
 <h1 id="Spanning-Tree-生成树"><a href="#Spanning-Tree-生成树" class="headerlink" title="Spanning Tree 生成树"></a>Spanning Tree 生成树</h1><h2 id="目的："><a href="#目的：" class="headerlink" title="目的："></a>目的：</h2><p>交换机之间存在冗余（备份）路径，以及交换机的泛洪机制，导致交换机之间产生 二层交换环路。</p>
-<h2 id="造成影响："><a href="#造成影响：" class="headerlink" title="造成影响："></a>造成影响：</h2><p><img src="/images/spt/01.png" alt=""><br>1.广播风暴（数据在两个或多个交换机之间大量重复传递）<br>2.MAC地址表不稳定 （交换机会将某个主机的mac地址重复删除和学习）<br>3.数据帧的重复拷贝（由于ARP会泛红和数据的重复传递，导致A主机发送的ARP会被交换机重复发送到B主机）</p>
+<h2 id="造成影响："><a href="#造成影响：" class="headerlink" title="造成影响："></a>造成影响：</h2><p><img src="/images/spt/01.png" alt=""><br>1.广播风暴（数据在两个或多个交换机之间大量重复传递）<br>2.MAC地址表不稳定 （交换机会将某个主机的mac地址重复删除和学习）<br>3.数据帧的重复拷贝（由于ARP会泛洪和数据的重复传递，导致A主机发送的ARP会被交换机重复发送到B主机）</p>
 <h2 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h2><p>逻辑性阻塞某个接口. 在交换机之间，通过发送比较信息，选择在环路之间应该被阻塞的接口.</p>
 <h2 id="生成树类型："><a href="#生成树类型：" class="headerlink" title="生成树类型："></a>生成树类型：</h2><ul>
 <li>公有生成树：<br>STP（又称为802.1D  标准生成树）<br>RSTP（802.1W 快速生成树）<br>MST（802.1S 多生成树）</li>
@@ -582,7 +582,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
