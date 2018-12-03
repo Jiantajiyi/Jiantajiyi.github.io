@@ -89,7 +89,8 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://jiantajiyi.github.io/images/spt/07.png">
 <meta property="og:image" content="http://jiantajiyi.github.io/images/spt/08.png">
-<meta property="og:updated_time" content="2018-12-03T13:23:26.914Z">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/spt/08.png">
+<meta property="og:updated_time" content="2018-12-03T13:24:55.886Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spanning Tree 增强">
 <meta name="twitter:description" content="不是不做，时候未到。">
@@ -438,7 +439,7 @@ Et1/0               Root FWD 3100      128.33   Shr
 <li>启用backbonefast特性，若收到次级BPDU，通过根端口向根网桥发送 RIQ查询（询问优质根是否正常），若正常由根网桥返回RIQ应答，描 述根正常，则blocking接口进入listening状态，经过30s进入forwarding.</li>
 <li>部署位置：所有交换机</li>
 <li>节约时间：20s</li>
-<li>启用backbonefast特性<br>重新打开sw3的e0/2接口，则e0/2重新成为根端口，e1/0为阻塞端口<br><strong>若down掉sw1连接sw2的骨干链路</strong>（关闭sw2的e0/0），则sw3的e1/0接口成为指定端口，sw2的e1/0成为根端口，这个过程中sw3的e1/0接口成为指定端口需要经过50s</li>
+<li>启用backbonefast特性<br><img src="/images/spt/08.png" alt=""><br>重新打开sw3的e0/2接口，则e0/2重新成为根端口，e1/0为阻塞端口<br><strong>若down掉sw1连接sw2的骨干链路</strong>（关闭sw2的e0/0），则sw3的e1/0接口成为指定端口，sw2的e1/0成为根端口，这个过程中sw3的e1/0接口成为指定端口需要经过50s</li>
 </ul>
 <pre><code>sw3(config-if)#
 *Nov 24 23:35:02.798: STP: VLAN0001 heard root 28673-0203.e900.0200 on Et1/0
