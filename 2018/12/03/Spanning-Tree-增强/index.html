@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://jiantajiyi.github.io/images/spt/07.png">
 <meta property="og:image" content="http://jiantajiyi.github.io/images/spt/08.png">
 <meta property="og:image" content="http://jiantajiyi.github.io/images/spt/08.png">
-<meta property="og:updated_time" content="2018-12-03T13:24:55.886Z">
+<meta property="og:updated_time" content="2018-12-04T11:44:01.501Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spanning Tree 增强">
 <meta name="twitter:description" content="不是不做，时候未到。">
@@ -456,7 +456,7 @@ sw3(config-if)#
 *Nov 24 23:35:33.974: STP: VLAN0001 Et1/0 -&gt; forwarding
 *Nov 24 23:35:33.974: stp_state_change_completed: Et1/0. new state = FWD
 </code></pre><p>详解：<br>骨干链路断开后，sw2不能收到sw1的BPDU，所以sw2就以为自己是根网桥，则sw2会向sw3发送BPDU（此BPDU与之前向sw3发送的不一样，之前发送的rid是sw1，bid是sw2自己，现在发送的rid和bid都是sw2自己），此时sw3通过sw1收到的BPDU，rid要优于sw2发送的（称sw2的为次级BPDU），故sw3会忽略sw2发送的BPDU，但sw3的阻塞端口e1/0会一直监听sw2发来的BPDU，之前一直收到的是来自于根网桥的BPDU，现在不能收到来自于根网桥的BPDU了，超时时间20s，则sw3的e1/0端口会进入listening状态，告诉sw2根网桥还活着（向sw2发送优质BPDU），直到进入forwarding，整个过程需要50s</p>
-<p>backbonefast建议在所有交换机都做<br>骨干链路断开之后，sw2会向sw3发送次级BPDU，sw3会忽略，做了backbonefast后，收到次级BPDU后，sw3会主动向根网桥发送<strong>根链路查询请求报文（RLQ request）</strong> ，根网桥会回复<strong>根链路查询响应报文（RLQ response）</strong>，sw3知道sw2收不到根网桥发送的BPDU，以为自己是根网桥了，所以sw2的e1/0接口直接进入listening状态，告诉sw2根网桥还活着（向sw2发送优质BPDU），直到进入forwarding，整个过程需要30s，节约了20s。<br>重新打开sw2的e0/0端口<br>配置<br><code>sw1(config)#spanning-tree backbonefast</code><br><code>sw2(config)#spanning-tree backbonefast</code><br><code>sw3(config)#spanning-tree backbonefast</code><br>关闭sw2的e0/0端口<br>结果</p>
+<p>backbonefast建议在所有交换机都做<br>骨干链路断开之后，sw2会向sw3发送次级BPDU，sw3会忽略，做了backbonefast后，收到次级BPDU后，sw3会主动向根网桥发送<strong>根链路查询请求报文（RLQ request）</strong> ，根网桥会回复<strong>根链路查询响应报文（RLQ response）</strong>，sw3知道sw2收不到根网桥发送的BPDU，以为自己是根网桥了，所以sw3的e1/0接口直接进入listening状态，告诉sw2根网桥还活着（向sw2发送优质BPDU），直到进入forwarding，整个过程需要30s，节约了20s。<br>重新打开sw2的e0/0端口<br>配置<br><code>sw1(config)#spanning-tree backbonefast</code><br><code>sw2(config)#spanning-tree backbonefast</code><br><code>sw3(config)#spanning-tree backbonefast</code><br>关闭sw2的e0/0端口<br>结果</p>
 <pre><code>sw3(config)#
 *Nov 25 00:07:22.998: STP: VLAN0001 heard root 28673-0203.e900.0200 on Et1/0
 *Nov 25 00:07:22.998: STP: VLAN0001 Et1/0 -&gt; listening
