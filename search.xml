@@ -3,7 +3,13 @@
   <entry>
     <title><![CDATA[如何在虚拟机下安装Linux操作系统]]></title>
     <url>%2F2019%2F03%2F06%2F%E5%A6%82%E4%BD%95%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E5%AE%89%E8%A3%85Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <content type="text"><![CDATA[以下是安装红帽Linux的详细步骤 在VMware虚拟机下安装Red Hat Enterprise Linux 7 第一步：新建虚拟机一.安装Vmware此处省略 二.新建Linux虚拟机 准备Red Hat Enterprise Linux 7的镜像，可去红帽官网下载下载Linux 打开VMware，点击左上角新建虚拟机 选择自定义 选择Workstation 14.x 选择稍后安装操作系统 选择Linux，选择Red Hat Enterprise Linux 7 选择安装的位置，这里我选择的是D:\Vmware\redhat7，建议不要选择C盘 处理器数量1，内核数量1 建议内存2G以上，如果自己笔记本内存较小的话，可以选择1GB足以。 这里我选择的是NAT，也可以选择仅主机模式 选择推荐即可 选择SCSI 选择创建新虚拟磁盘 磁盘容量20GB足以，也可以更大，选择将虚拟磁盘拆分成多个文件 下一步即可 点击完成 至此，虚拟机已创建好，双击 CD/DVD（SATA） 选择使用ISO镜像文件，选择下载好的镜像文件即可，点击确定，至此创建Linux虚拟机的工作已全部完成，接下来是安装Linux的步骤 第二步：安装Linux 点击开启此虚拟机]]></content>
+      <categories>
+        <category>RHCSA</category>
+      </categories>
+      <tags>
+        <tag>RHCSA</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[IPSEC-VPN]]></title>

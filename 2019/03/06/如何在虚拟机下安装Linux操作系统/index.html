@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="RHCSA," />
 
 
 
@@ -79,14 +79,36 @@
 
 
 
+<meta name="description" content="以下是安装红帽Linux的详细步骤">
+<meta name="keywords" content="RHCSA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何在虚拟机下安装Linux操作系统">
 <meta property="og:url" content="http://Jiantajiyi.github.io/2019/03/06/如何在虚拟机下安装Linux操作系统/index.html">
 <meta property="og:site_name" content="践踏记忆">
+<meta property="og:description" content="以下是安装红帽Linux的详细步骤">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-06T14:29:50.763Z">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/Install_Linux/01.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/Install_Linux/02.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/Install_Linux/03.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/Install_Linux/04.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/Install_Linux/05.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/Install_Linux/06.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/Install_Linux/07.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/Install_Linux/08.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/Install_Linux/09.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/Install_Linux/10.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/Install_Linux/11.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/Install_Linux/12.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/Install_Linux/13.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/Install_Linux/14.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/Install_Linux/15.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/Install_Linux/16.png">
+<meta property="og:image" content="http://jiantajiyi.github.io/images/Install_Linux/17.png">
+<meta property="og:updated_time" content="2019-03-06T16:00:59.976Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何在虚拟机下安装Linux操作系统">
+<meta name="twitter:description" content="以下是安装红帽Linux的详细步骤">
+<meta name="twitter:image" content="http://jiantajiyi.github.io/images/Install_Linux/01.png">
 
 
 
@@ -303,6 +325,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RHCSA/" itemprop="url" rel="index">
+                    <span itemprop="name">RHCSA</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -330,7 +374,33 @@
       
 
       
-        <script src="\assets\js\APlayer.min.js"> </script>
+        <script src="\assets\js\APlayer.min.js"> </script><p><center>以下是安装红帽Linux的详细步骤<center><br><a id="more"></a></center></center></p>
+<p> <strong><em>在VMware虚拟机下安装Red Hat Enterprise Linux 7</em></strong></p>
+<h1 id="第一步：新建虚拟机"><a href="#第一步：新建虚拟机" class="headerlink" title="第一步：新建虚拟机"></a>第一步：新建虚拟机</h1><h2 id="一-安装Vmware"><a href="#一-安装Vmware" class="headerlink" title="一.安装Vmware"></a>一.安装Vmware</h2><p>此处省略</p>
+<h2 id="二-新建Linux虚拟机"><a href="#二-新建Linux虚拟机" class="headerlink" title="二.新建Linux虚拟机"></a>二.新建Linux虚拟机</h2><ol>
+<li>准备Red Hat Enterprise Linux 7的镜像，可去红帽官网下载<br><a href="https://access.redhat.com/products/red-hat-enterprise-linux#getstarted" title="下载Linux" target="_blank" rel="external">下载Linux</a></li>
+<li>打开VMware，点击左上角<strong>新建虚拟机</strong><br><img src="/images/Install_Linux/01.png" alt=""></li>
+<li>选择<strong>自定义</strong><br><img src="/images/Install_Linux/02.png" alt=""></li>
+<li>选择<strong>Workstation 14.x </strong><br><img src="/images/Install_Linux/03.png" alt=""></li>
+<li>选择<strong>稍后安装操作系统</strong><br><img src="/images/Install_Linux/04.png" alt=""></li>
+<li>选择<strong>Linux</strong>，选择<strong>Red Hat Enterprise Linux 7</strong><br><img src="/images/Install_Linux/05.png" alt=""></li>
+<li>选择安装的位置，这里我选择的是<strong>D:\Vmware\redhat7</strong>，建议不要选择C盘<br><img src="/images/Install_Linux/06.png" alt=""></li>
+<li>处理器数量<strong>1</strong>，内核数量<strong>1</strong><br><img src="/images/Install_Linux/07.png" alt=""></li>
+<li>建议内存<strong>2G以上</strong>，如果自己笔记本内存较小的话，可以选择1GB足以。<br><img src="/images/Install_Linux/08.png" alt=""></li>
+<li>这里我选择的是<strong>NAT</strong>，也可以选择仅主机模式<br><img src="/images/Install_Linux/09.png" alt=""></li>
+<li>选择<strong>推荐即可</strong><br><img src="/images/Install_Linux/10.png" alt=""></li>
+<li>选择<strong>SCSI</strong><br><img src="/images/Install_Linux/11.png" alt=""></li>
+<li>选择<strong>创建新虚拟磁盘</strong><br><img src="/images/Install_Linux/12.png" alt=""></li>
+<li>磁盘容量<strong>20GB</strong>足以，也可以更大，选择<strong>将虚拟磁盘拆分成多个文件</strong><br><img src="/images/Install_Linux/13.png" alt=""></li>
+<li><strong>下一步</strong>即可<br><img src="/images/Install_Linux/14.png" alt=""></li>
+<li>点击<strong>完成</strong><br><img src="/images/Install_Linux/15.png" alt=""></li>
+<li>至此，虚拟机已创建好，双击　<strong>CD/DVD（SATA）</strong><br><img src="/images/Install_Linux/16.png" alt=""></li>
+<li>选择<strong>使用ISO镜像文件</strong>，选择下载好的镜像文件即可，点击<strong>确定</strong>，至此<strong>创建Linux虚拟机的工作已全部完成</strong>，接下来是安装Linux的步骤<br><img src="/images/Install_Linux/17.png" alt=""></li>
+</ol>
+<h1 id="第二步：安装Linux"><a href="#第二步：安装Linux" class="headerlink" title="第二步：安装Linux"></a>第二步：安装Linux</h1><ol>
+<li>点击开启此虚拟机</li>
+</ol>
+
       
     </div>
     
@@ -362,6 +432,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RHCSA/" rel="tag"># RHCSA</a>
+          
+        </div>
       
 
       
@@ -436,8 +512,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -467,7 +552,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -478,7 +563,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -523,6 +608,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一步：新建虚拟机"><span class="nav-number">1.</span> <span class="nav-text">第一步：新建虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-安装Vmware"><span class="nav-number">1.1.</span> <span class="nav-text">一.安装Vmware</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-新建Linux虚拟机"><span class="nav-number">1.2.</span> <span class="nav-text">二.新建Linux虚拟机</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二步：安装Linux"><span class="nav-number">2.</span> <span class="nav-text">第二步：安装Linux</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
