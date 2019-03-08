@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[破解redhat_Linux_7的密码]]></title>
+    <url>%2F2019%2F03%2F08%2F%E7%A0%B4%E8%A7%A3redhat-Linux-7%E7%9A%84%E5%AF%86%E7%A0%81%2F</url>
+    <content type="text"><![CDATA[以下是破解Linux 7 密码的详细步骤 破解Red Hat Enterprise Linux 7的密码第一步：进入启动菜单 开机后选中第一项，然后按下键盘e键 会进入到如下界面 第二步：编辑启动菜单 进入此界面后，使用键盘的上下左右键使光标移动到linux16行尾添加rd.break （注意UTF-8后的空格），然后按下Ctrl+x执行 会进入到如下界面 第三步：更改密码 输入mount -o remout,rw /sysroot,然后回车 输入chroot /sysroot,然后回车 输入passwd root,然后回车 输入两次新密码 输入touch /.autorelabel 输入两次exit，之后会自动重启，即可进入开机界面，破解完成]]></content>
+      <categories>
+        <category>RHCSA</category>
+      </categories>
+      <tags>
+        <tag>RHCSA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[如何在虚拟机下安装Linux操作系统]]></title>
     <url>%2F2019%2F03%2F06%2F%E5%A6%82%E4%BD%95%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E5%AE%89%E8%A3%85Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%2F</url>
     <content type="text"><![CDATA[以下是安装红帽Linux的详细步骤 在VMware虚拟机下安装Red Hat Enterprise Linux 7 前提条件 1.Intel处理器的电脑需在BIOS中开启处理器虚拟化技术 2.最好关闭不必要的安全软件，尤其是360（黑匣子事件） 3.准备好所需的VMware软件和Linux的安装镜像 第一步：新建虚拟机一.安装Vmware此处省略 二.新建Linux虚拟机 准备Red Hat Enterprise Linux 7的镜像，可去红帽官网下载下载Linux 打开VMware，点击左上角新建虚拟机 选择自定义 选择Workstation 14.x 选择稍后安装操作系统 选择Linux，选择Red Hat Enterprise Linux 7 选择安装的位置，这里我选择的是D:\Vmware\redhat7，建议不要选择C盘 处理器数量1，内核数量1 建议内存2G以上，如果自己笔记本内存较小的话，可以选择1GB足以。 这里我们选择NAT，也可以选择其他模式 选择推荐即可 选择SCSI 选择创建新虚拟磁盘 磁盘容量20GB足以，也可以更大，选择将虚拟磁盘拆分成多个文件 下一步即可 点击完成 至此，虚拟机已创建好，双击 CD/DVD（SATA） 选择使用ISO镜像文件，选择下载好的镜像文件即可，点击确定，至此创建Linux虚拟机的工作已全部完成，接下来是安装Linux的步骤 第二步：安装Linux 点击开启此虚拟机 鼠标点击到安装界面中（Ctrl+Alt可以将鼠标切换回系统），白字代表选中项，这里我们选择直接安装，也就是第一项 这里语言选择英文，有助于学习英语和避免后续中文乱码。 设置时间 Asia，Shanghai，设置时间之后点击Done 选择SOFTWARE SELECTION，进行安装图形化界面 左侧选择Server with GUI，右边选择KDE，点击Done 选择INSTALLATION DESTINATION，配置安装位置 选择20G的虚拟磁盘，选择I will configure partitioning，手动配置分区，点击Done 这里我们选择Standard Partition 添加第一个boot分区，如图示，如果不能输入，请打开小键盘，这里我们给了2000M，点击Add mount point 以此添加图中的三个分区，swap交换分区大小最好是安装时给予内存的一半以上，完成点击Done 点击Accept Changes 配置完了，选择Begin Installation 接下来就是漫长的等待过程，此时我们可以配置root的密码 密码最好8位以上，点击Done即可 配置普通用户的账号密码 安装完成后，点击Reboot 同意许可，输入1,2,c,c,即可，每输入一次，按一次回车，等待重启即可进入界面]]></content>
