@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[破解redhat_Linux_7的密码]]></title>
     <url>%2Fpost%2F84febc34.html</url>
-    <content type="text"><![CDATA[以下是破解Linux 7 密码的详细步骤 破解Red Hat Enterprise Linux 7的密码第一步：进入启动菜单 开机后选中第一项，然后按下键盘e键 会进入到如下界面 第二步：编辑启动菜单 进入此界面后，使用键盘的上下左右键使光标移动到linux16行尾添加rd.break （注意UTF-8后的空格），然后按下Ctrl+x执行 会进入到如下界面 第三步：更改密码 输入mount -o remout,rw /sysroot,然后回车 输入chroot /sysroot,然后回车 输入passwd root,然后回车 输入两次新密码 输入touch /.autorelabel 输入两次exit，之后会自动重启，即可进入开机界面，破解完成]]></content>
+    <content type="text"><![CDATA[以下是破解Linux 7 密码的详细步骤 破解Red Hat Enterprise Linux 7的密码第一步：进入启动菜单 开机后选中第一项，然后按下键盘e键 会进入到如下界面 第二步：编辑启动菜单 进入此界面后，使用键盘的上下左右键使光标移动到linux16行尾添加rd.break （注意UTF-8后的空格），然后按下Ctrl+x执行 会进入到如下界面 第三步：更改密码 输入mount -o remount,rw /sysroot,然后回车 输入chroot /sysroot,然后回车 输入passwd root,然后回车 输入两次新密码 输入touch /.autorelabel 输入两次exit，之后会自动重启，即可进入开机界面，破解完成]]></content>
       <categories>
         <category>RHCSA</category>
       </categories>
