@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="践踏记忆">
 <meta property="og:description" content="搭建基于ip地址对web服务器的访问">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-26T01:41:58.276Z">
+<meta property="og:updated_time" content="2019-04-26T15:04:34.578Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于ip地址对web服务器的访问">
 <meta name="twitter:description" content="搭建基于ip地址对web服务器的访问">
@@ -319,7 +319,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-26T09:41:58+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-26T23:04:34+08:00">
                 2019-04-26
               </time>
             
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  345
+                  380
                 </span>
               
 
@@ -421,7 +421,7 @@
 <h1 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h1><p>一个ip对应一个网。例如实现以下操作：<br>建立一个192.168.19.102的网站 ，文件放在/www/100,内容显示this is 192.168.19.102.<br>建立一个192.168.19.103的网站 ，文件放在/www/200,内容显示this is 192.168.19.103.</p>
 <h1 id="配置网络"><a href="#配置网络" class="headerlink" title="配置网络"></a>配置网络</h1><p>首先给虚拟机配置三块网卡并设置好IP地址<br><code>[root@server_1 ~]# nmcli connection modify eno16777736 +ipv4.addresses 192.168.19.102/24 ipv4.gateway 192.168.19.1 ipv4.dns 8.8.8.8 ipv4.method manual connection.autoconnect yes</code><br><code>[root@server_1 ~]# nmcli connection modify eno16777736 +ipv4.addresses 192.168.19.103/24 ipv4.gateway 192.168.19.1 ipv4.dns 8.8.8.8 ipv4.method manual connection.autoconnect yes</code><br><code>[root@server_1 ~]# nmcli connection up eno16777736</code><br>也可以去图形界面配置IP地址，这里我的三块网卡IP地址分别为<br>192.168.19.101<br>192.168.19.102<br>192.168.19.103</p>
 <h1 id="编辑配置文件"><a href="#编辑配置文件" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h1><p><code>[root@server_1 ~]# mkdir -p /www/{100,200}</code><br><code>[root@server_1 ~]# echo this is 192.168.19.102 &gt; /www/100/index.html</code><br><code>[root@server_1 ~]# echo this is 192.168.19.103 &gt; /www/200/index.html</code><br><code>[root@server_1 ~]# vim /etc/httpd/conf.d/vhost.conf</code><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /www&gt;</span><br><span class="line">AllowOverride none</span><br><span class="line">Require all granted</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line">&lt;VirtualHost <span class="number">192.168</span><span class="number">.19</span><span class="number">.102</span>&gt;</span><br><span class="line">DocumentRoot /www/<span class="number">100</span></span><br><span class="line">ServerName <span class="number">192.168</span><span class="number">.19</span><span class="number">.102</span></span><br><span class="line">ServerAdmin root@localhost</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line"></span><br><span class="line">&lt;VirtualHost <span class="number">192.168</span><span class="number">.19</span><span class="number">.103</span>&gt;</span><br><span class="line">DocumentRoot /www/<span class="number">200</span></span><br><span class="line">ServerName <span class="number">192.168</span><span class="number">.19</span><span class="number">.103</span></span><br><span class="line">ServerAdmin root@localhost</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure></p>
-<p><code>[root@server_1 ~]# systemctl restart httpd</code></p>
+<h1 id="配置selinux"><a href="#配置selinux" class="headerlink" title="配置selinux"></a>配置selinux</h1><p>添加selinux上下文<br><code>[root@server_1 ~]# semanage fcontext -a -t httpd_sys_content_t /www&quot;(/.*)?&quot;</code><br>重新加载selinux上下文<br><code>[root@server_1 ~]# restorecon -vvFR /www</code><br>重启httpd服务<br><code>[root@server_1 ~]# systemctl restart httpd</code> </p>
 <h1 id="客户端测试"><a href="#客户端测试" class="headerlink" title="客户端测试"></a>客户端测试</h1><p><code>[root@server_2 ~]# curl 192.168.19.102</code><br><code>this is 192.168.19.102</code><br><code>[root@server_2 ~]# curl 192.168.19.103</code><br><code>this is 192.168.19.103</code></p>
 
       
@@ -645,7 +645,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#要求"><span class="nav-number">1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置网络"><span class="nav-number">2.</span> <span class="nav-text">配置网络</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编辑配置文件"><span class="nav-number">3.</span> <span class="nav-text">编辑配置文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#客户端测试"><span class="nav-number">4.</span> <span class="nav-text">客户端测试</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#要求"><span class="nav-number">1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置网络"><span class="nav-number">2.</span> <span class="nav-text">配置网络</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编辑配置文件"><span class="nav-number">3.</span> <span class="nav-text">编辑配置文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置selinux"><span class="nav-number">4.</span> <span class="nav-text">配置selinux</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#客户端测试"><span class="nav-number">5.</span> <span class="nav-text">客户端测试</span></a></li></ol></div>
             
 
           </div>
