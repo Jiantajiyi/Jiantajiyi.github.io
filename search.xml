@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[基于域名对web服务器的访问]]></title>
-    <url>%2Fpost%2Fbe5db992.html</url>
+    <title><![CDATA[搭建基于https协议的静态网站]]></title>
+    <url>%2Fpost%2F5298bbcd.html</url>
     <content type="text"><![CDATA[这里写介绍 这里写文章]]></content>
       <categories>
         <category>这里写分类</category>
@@ -12,14 +12,25 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[基于端口对web服务器的访问]]></title>
-    <url>%2Fpost%2F3c7c4242.html</url>
-    <content type="text"><![CDATA[这里写介绍 这里写文章]]></content>
+    <title><![CDATA[基于域名对web服务器的访问]]></title>
+    <url>%2Fpost%2Fbe5db992.html</url>
+    <content type="text"><![CDATA[搭建基于域名对web服务器的访问 修改配置文件[root@server_1 ~]# vim /etc/httpd/conf.d/vhost.conf修改如下内容123456&lt;VirtualHost 192.168.19.103&gt;DocumentRoot /www/aliasServerName www.alias.comServerAlias www.alias1.comServerAdmin root@localhost&lt;/VirtualHost&gt; [root@server_1 ~]# mkdir /www/alias[root@server_1 ~]# echo this is alias test &gt; /www/alias/index.html修改服务器hosts文件[root@server_1 ~]# vim /etc/hosts12192.168.19.103 www.alias.com192.168.19.103 www.alias1.com 修改客户端hosts文件[root@server_2 ~]# vim /etc/hosts12192.168.19.103 www.alias.com192.168.19.103 www.alias1.com 配置selinux[root@test_1 ~]# restorecon -vvFR /www/ 配置防火墙不用配置防火墙重启httpd服务[root@server_1 ~]# systemctl restart httpd 客户端测试[root@server_2 ~]# curl www.alias.comthis is alias test[root@server_2 ~]# curl www.alias1.comthis is alias test]]></content>
       <categories>
-        <category>这里写分类</category>
+        <category>RHCE</category>
       </categories>
       <tags>
-        <tag>这里写标签</tag>
+        <tag>RHCE</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[基于端口对web服务器的访问]]></title>
+    <url>%2Fpost%2F3c7c4242.html</url>
+    <content type="text"><![CDATA[搭建基于端口的web服务器的访问 修改配置文件[root@server_1 ~]# vim /etc/httpd/conf.d/vhost.conf增加如下内容123456LISTEN 10000&lt;VirtualHost 192.168.19.103:10000&gt;DocumentRoot /www/200ServerName 192.168.19.103ServerAdmin root@localhost&lt;/VirtualHost&gt; [root@server_1 ~]# echo this is port 10000 test &gt; /www/200/index.html 配置selinux[root@server_1 ~]# semanage port -a -t http_port_t -p tcp 10000 配置防火墙[root@server_1 ~]# firewall-cmd --add-port=10000/tcp --per[root@server_1 ~]# systemctl restart firewalld[root@server_1 ~]# systemctl restart httpd 客户端测试[root@server_2 ~]# curl 192.168.19.103:10000this is port 10000 test]]></content>
+      <categories>
+        <category>RHCE</category>
+      </categories>
+      <tags>
+        <tag>RHCE</tag>
       </tags>
   </entry>
   <entry>

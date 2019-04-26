@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="这里写标签," />
+  <meta name="keywords" content="RHCE," />
 
 
 
@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="这里写介绍">
-<meta name="keywords" content="这里写标签">
+<meta name="description" content="搭建基于端口的web服务器的访问">
+<meta name="keywords" content="RHCE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于端口对web服务器的访问">
 <meta property="og:url" content="http://Jiantajiyi.github.io/post/3c7c4242.html">
 <meta property="og:site_name" content="践踏记忆">
-<meta property="og:description" content="这里写介绍">
+<meta property="og:description" content="搭建基于端口的web服务器的访问">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-26T01:40:11.952Z">
+<meta property="og:updated_time" content="2019-04-26T16:21:54.267Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于端口对web服务器的访问">
-<meta name="twitter:description" content="这里写介绍">
+<meta name="twitter:description" content="搭建基于端口的web服务器的访问">
 
 
 
@@ -319,8 +319,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-26T09:40:11+08:00">
-                2019-04-26
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-27T00:21:54+08:00">
+                2019-04-27
               </time>
             
           </span>
@@ -338,8 +338,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/这里写分类/" itemprop="url" rel="index">
-                    <span itemprop="name">这里写分类</span>
+                  <a href="/categories/RHCE/" itemprop="url" rel="index">
+                    <span itemprop="name">RHCE</span>
                   </a>
                 </span>
 
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  10
+                  123
                 </span>
               
 
@@ -417,8 +417,12 @@
       
 
       
-        <script src="\assets\js\APlayer.min.js"> </script><p><center>这里写介绍<center><br><a id="more"></a></center></center></p>
-<p>这里写文章</p>
+        <script src="\assets\js\APlayer.min.js"> </script><p><center>搭建基于端口的web服务器的访问<center><br><a id="more"></a></center></center></p>
+<h1 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h1><p><code>[root@server_1 ~]# vim /etc/httpd/conf.d/vhost.conf</code><br>增加如下内容<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">LISTEN <span class="number">10000</span></span><br><span class="line">&lt;VirtualHost <span class="number">192.168</span><span class="number">.19</span><span class="number">.103</span>:<span class="number">10000</span>&gt;</span><br><span class="line">DocumentRoot /www/<span class="number">200</span></span><br><span class="line">ServerName <span class="number">192.168</span><span class="number">.19</span><span class="number">.103</span></span><br><span class="line">ServerAdmin root@localhost</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure></p>
+<p><code>[root@server_1 ~]# echo this is port 10000 test &gt; /www/200/index.html</code></p>
+<h1 id="配置selinux"><a href="#配置selinux" class="headerlink" title="配置selinux"></a>配置selinux</h1><p><code>[root@server_1 ~]# semanage port -a -t http_port_t -p tcp 10000</code></p>
+<h1 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h1><p><code>[root@server_1 ~]# firewall-cmd --add-port=10000/tcp --per</code><br><code>[root@server_1 ~]# systemctl restart firewalld</code><br><code>[root@server_1 ~]# systemctl restart httpd</code></p>
+<h1 id="客户端测试"><a href="#客户端测试" class="headerlink" title="客户端测试"></a>客户端测试</h1><p><code>[root@server_2 ~]# curl 192.168.19.103:10000</code><br><strong>this is port 10000 test</strong></p>
 
       
     </div>
@@ -454,7 +458,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/这里写标签/" rel="tag"># 这里写标签</a>
+            <a href="/tags/RHCE/" rel="tag"># RHCE</a>
           
         </div>
       
@@ -535,8 +539,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -555,7 +568,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -623,6 +636,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#修改配置文件"><span class="nav-number">1.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置selinux"><span class="nav-number">2.</span> <span class="nav-text">配置selinux</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置防火墙"><span class="nav-number">3.</span> <span class="nav-text">配置防火墙</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#客户端测试"><span class="nav-number">4.</span> <span class="nav-text">客户端测试</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -659,7 +688,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">12.1k</span>
+    <span title="Site words total count">12.3k</span>
   
 </div>
 
@@ -679,7 +708,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共12.1k字</span>
+  <span class="post-count">博客全站共12.3k字</span>
 </div>
         
 
