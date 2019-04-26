@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="践踏记忆">
 <meta property="og:description" content="redhat linux7 yum源配置">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-26T00:47:59.056Z">
+<meta property="og:updated_time" content="2019-04-26T15:34:07.143Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="yum源配置">
 <meta name="twitter:description" content="redhat linux7 yum源配置">
@@ -319,7 +319,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-26T08:47:59+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-26T23:34:07+08:00">
                 2019-04-26
               </time>
             
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  163
+                  193
                 </span>
               
 
@@ -418,7 +418,8 @@
 
       
         <script src="\assets\js\APlayer.min.js"> </script><p><center>redhat linux7 yum源配置<center><br><a id="more"></a></center></center></p>
-<h1 id="挂在镜像到-mnt"><a href="#挂在镜像到-mnt" class="headerlink" title="挂在镜像到/mnt"></a>挂在镜像到/mnt</h1><p><code>[root@server_1 ~]# mount /dev/sr0 /mnt/</code></p>
+<h1 id="挂在镜像到-mnt"><a href="#挂在镜像到-mnt" class="headerlink" title="挂在镜像到/mnt"></a>挂在镜像到/mnt</h1><p>临时挂载<br><code>[root@server_1 ~]# mount /dev/sr0 /mnt/</code><br>永久挂载,建议永久挂载<br><code>[root@server_1 ~]# vim /etc/fstab</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/dev/sr0                                  /mnt                  iso9660   defaults        <span class="number">0</span> <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<p><code>[root@server_1 ~]# mount -a</code></p>
 <h1 id="定义配置文件"><a href="#定义配置文件" class="headerlink" title="定义配置文件"></a>定义配置文件</h1><p><code>[root@server_1 ~]# vim /etc/yum.repos.d/name.repo</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[name]</span><br><span class="line">name=base</span><br><span class="line">baseurl=file:<span class="comment">///mnt/</span></span><br><span class="line">enable=<span class="number">1</span></span><br><span class="line">gpgcheck=<span class="number">0</span></span><br></pre></td></tr></table></figure></p>
 <h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">[root@server_1 ~]<span class="meta"># yum install tree\* -y</span></span><br><span class="line">Loaded plugins: langpacks, product-id, search-disabled-repos, subscription-</span><br><span class="line">              : manager</span><br><span class="line">This system is <span class="keyword">not</span> registered to Red Hat Subscription Management. You can use subscription-manager to <span class="keyword">register</span>.</span><br><span class="line">Resolving Dependencies</span><br><span class="line">--&gt; Running transaction check</span><br><span class="line">---&gt; Package tree.x86_64 <span class="number">0</span>:<span class="number">1.6</span><span class="number">.0</span><span class="number">-10.</span>el7 will be installed</span><br><span class="line">--&gt; Finished Dependency Resolution</span><br><span class="line"></span><br><span class="line">Dependencies Resolved</span><br><span class="line"></span><br><span class="line">=================================================================================</span><br><span class="line"> Package         Arch              Version                 Repository       Size</span><br><span class="line">=================================================================================</span><br><span class="line">Installing:</span><br><span class="line"> tree            x86_64            <span class="number">1.6</span><span class="number">.0</span><span class="number">-10.</span>el7            name             <span class="number">46</span> k</span><br><span class="line"></span><br><span class="line">Transaction Summary</span><br><span class="line">=================================================================================</span><br><span class="line">Install  <span class="number">1</span> Package</span><br><span class="line"></span><br><span class="line">Total download size: <span class="number">46</span> k</span><br><span class="line">Installed size: <span class="number">87</span> k</span><br><span class="line">Downloading packages:</span><br><span class="line">Running transaction check</span><br><span class="line">Running transaction test</span><br><span class="line">Transaction test succeeded</span><br><span class="line">Running transaction</span><br><span class="line">  Installing : tree<span class="number">-1.6</span><span class="number">.0</span><span class="number">-10.</span>el7.x86_64                                      <span class="number">1</span>/<span class="number">1</span></span><br><span class="line">  Verifying  : tree<span class="number">-1.6</span><span class="number">.0</span><span class="number">-10.</span>el7.x86_64                                      <span class="number">1</span>/<span class="number">1</span></span><br><span class="line"></span><br><span class="line">Installed:</span><br><span class="line">  tree.x86_64 <span class="number">0</span>:<span class="number">1.6</span><span class="number">.0</span><span class="number">-10.</span>el7</span><br><span class="line"></span><br><span class="line">Complete!</span><br></pre></td></tr></table></figure>
       
@@ -685,7 +686,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">12k</span>
+    <span title="Site words total count">12.1k</span>
   
 </div>
 
@@ -705,7 +706,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共12k字</span>
+  <span class="post-count">博客全站共12.1k字</span>
 </div>
         
 
