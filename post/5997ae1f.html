@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="这里写标签," />
+  <meta name="keywords" content="RHCE," />
 
 
 
@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="这里写介绍">
-<meta name="keywords" content="这里写标签">
+<meta name="description" content="Samba服务的搭建">
+<meta name="keywords" content="RHCE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Samba服务的搭建">
 <meta property="og:url" content="http://Jiantajiyi.github.io/post/5997ae1f.html">
 <meta property="og:site_name" content="践踏记忆">
-<meta property="og:description" content="这里写介绍">
+<meta property="og:description" content="Samba服务的搭建">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-27T05:10:16.312Z">
+<meta property="og:updated_time" content="2019-04-27T06:31:50.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Samba服务的搭建">
-<meta name="twitter:description" content="这里写介绍">
+<meta name="twitter:description" content="Samba服务的搭建">
 
 
 
@@ -319,7 +319,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-27T13:10:16+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-27T14:31:50+08:00">
                 2019-04-27
               </time>
             
@@ -338,8 +338,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/这里写分类/" itemprop="url" rel="index">
-                    <span itemprop="name">这里写分类</span>
+                  <a href="/categories/RHCE/" itemprop="url" rel="index">
+                    <span itemprop="name">RHCE</span>
                   </a>
                 </span>
 
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  10
+                  373
                 </span>
               
 
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -417,8 +417,19 @@
       
 
       
-        <script src="\assets\js\APlayer.min.js"> </script><p><center>这里写介绍<center><br><a id="more"></a></center></center></p>
-<p>这里写文章</p>
+        <script src="\assets\js\APlayer.min.js"> </script><p><center>Samba服务的搭建<center><br><a id="more"></a></center></center></p>
+<h1 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h1><p>共享/sambashare<br>属于marketing组的用户rob有访问权限<br>不属于marketing组的用户brian没有访问权限<br><code>[root@server_1 ~]# groupadd -r marketing</code><br><code>[root@server_1 ~]# useradd -s /sbin/nologin -G marketing rob</code><br><code>[root@server_1 ~]# useradd -s /sbin/nologin brian</code><br><code>[root@server_1 ~]# mkdir /sambashare</code><br><code>[root@server_1 ~]# chgrp marketing /sambashare</code><br><code>[root@server_1 ~]# chmod 2775 /sambashare</code></p>
+<h1 id="安装软件包"><a href="#安装软件包" class="headerlink" title="安装软件包"></a>安装软件包</h1><p><code>[root@server_1 ~]# yum install samba\* -y</code></p>
+<h1 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h1><p><code>[root@server_1 ~]# vim /etc/samba/smb.conf</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[sambashare]</span><br><span class="line">        path = /sambashare</span><br><span class="line">        writeable = no</span><br><span class="line">        write <span class="built_in">list</span> = @marketing</span><br></pre></td></tr></table></figure></p>
+<p><code>[root@server_1 ~]# smbpasswd -a biran</code><br><code>[root@server_1 ~]# smbpasswd -a rob</code></p>
+<h1 id="配置selinux"><a href="#配置selinux" class="headerlink" title="配置selinux"></a>配置selinux</h1><p><code>[root@server_1 ~]# semanage fcontent -a -t samba_share_t /sambashare&quot;(/.*)?&quot;</code><br><code>[root@server_1 ~]# restorecon -vvFR /sambashare</code></p>
+<h1 id="设置防火墙"><a href="#设置防火墙" class="headerlink" title="设置防火墙"></a>设置防火墙</h1><p><code>[root@server_1 ~]# systemctl restart smb nmb</code><br><code>[root@server_1 ~]# systemctl enable smb nmb</code><br><code>[root@server_1 ~]# firewall-cmd --add-service=samba --per</code><br><code>[root@server_1 ~]# systemctl restart firewalld</code></p>
+<h1 id="客户端测试"><a href="#客户端测试" class="headerlink" title="客户端测试"></a>客户端测试</h1><p><code>[root@server_2 ~]# yum install cifs-utils.x86_64 -y</code><br><code>[root@server_2 ~]# mkdir /sambashare_rob /sambashare_brian</code><br>临时挂载<br><code>[root@server_2 ~]# mount -o username=rob,password=redaht //192.168.19.101/sambashare /sambashare_rob</code><br><code>[root@server_2 ~]# mount -o username=brian,password=redhat //192.168.19.101/sambashare /sambashare_brian</code><br>永久挂载<br><code>[root@server_2 ~]# vim /etc/fstab</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//192.168.19.101/sambashare             /sambashare_rob             cifs    defaults,multiuser,username=rob,password=redhat,sec=ntlmssp,_netdev 0 0</span></span><br></pre></td></tr></table></figure></p>
+<p>[root@server_2 ~]# touch /sambashare_rob/test<br>[root@server_2 ~]# touch /sambashare_brian/test<br><strong>touch: cannot touch ‘/sambashare_brian/test’: Permission denied</strong></p>
+<h1 id="要求2"><a href="#要求2" class="headerlink" title="要求2"></a>要求2</h1><p>要求test用户可以挂载<br><code>[root@server_1 ~]# useradd -s /sbin/nologin test</code><br><code>[root@server_1 ~]# echo redhat | passwd --stdin test</code><br><code>[root@server_1 ~]# chmod o+w /sambashare</code></p>
+<h1 id="修改配置文件-1"><a href="#修改配置文件-1" class="headerlink" title="修改配置文件"></a>修改配置文件</h1><p><code>[root@server_1 ~]# vim /etc/samba/smb.conf</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">write <span class="built_in">list</span> = test</span><br></pre></td></tr></table></figure></p>
+<p><code>[root@server_1 ~]# smbpasswd -a test</code><br><code>[root@server_1 ~]# systemctl restart smb nmb</code></p>
+<h1 id="客户端测试-1"><a href="#客户端测试-1" class="headerlink" title="客户端测试"></a>客户端测试</h1><p><code>[root@server_2 /]# useradd test</code><br><code>[root@server_2 /]# echo redhat | passwd --stdin test</code><br><code>[root@server_2 /]# mkdir /test</code><br><code>[root@server_2 /]# mount -o username=test,password=redhat //192.168.19.11/sambashare /test</code><br><code>[root@server_2 /]# su - test</code><br><code>[root@server_2 /]# cd /test</code><br><code>[root@server_2 /]# touch xx</code><br><strong>touch: cannot touch ‘/test/xx’: Permission denied</strong><br><code>[root@server_2 /]# cifscreds 192.168.19.101</code><br><code>[root@server_2 /]# touch xx</code></p>
 
       
     </div>
@@ -454,7 +465,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/这里写标签/" rel="tag"># 这里写标签</a>
+            <a href="/tags/RHCE/" rel="tag"># RHCE</a>
           
         </div>
       
@@ -535,8 +546,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -566,7 +586,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -577,7 +597,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -623,6 +643,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#要求"><span class="nav-number">1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装软件包"><span class="nav-number">2.</span> <span class="nav-text">安装软件包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改配置文件"><span class="nav-number">3.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置selinux"><span class="nav-number">4.</span> <span class="nav-text">配置selinux</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置防火墙"><span class="nav-number">5.</span> <span class="nav-text">设置防火墙</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#客户端测试"><span class="nav-number">6.</span> <span class="nav-text">客户端测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#要求2"><span class="nav-number">7.</span> <span class="nav-text">要求2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改配置文件-1"><span class="nav-number">8.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#客户端测试-1"><span class="nav-number">9.</span> <span class="nav-text">客户端测试</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -659,7 +695,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">13.1k</span>
+    <span title="Site words total count">13.4k</span>
   
 </div>
 
@@ -679,7 +715,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共13.1k字</span>
+  <span class="post-count">博客全站共13.4k字</span>
 </div>
         
 
