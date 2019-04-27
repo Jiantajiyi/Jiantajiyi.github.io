@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[ISCSI服务的搭建]]></title>
+    <url>%2Fpost%2F3125c0a4.html</url>
+    <content type="text"><![CDATA[这里写介绍 这里写文章]]></content>
+      <categories>
+        <category>这里写分类</category>
+      </categories>
+      <tags>
+        <tag>这里写标签</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Samba服务的搭建]]></title>
+    <url>%2Fpost%2F5997ae1f.html</url>
+    <content type="text"><![CDATA[这里写介绍 这里写文章]]></content>
+      <categories>
+        <category>这里写分类</category>
+      </categories>
+      <tags>
+        <tag>这里写标签</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[NFS服务的搭建]]></title>
+    <url>%2Fpost%2F6b73b6a5.html</url>
+    <content type="text"><![CDATA[NFS服务的搭建 要求共享/public和/protected两个目录要求public目录任何人都可以访问且只有ro权限要求protected目录只有192.168.19.0网段可以访问且拥有rw权限[root@server_1 /]# mkdir /public/ /protected/[root@server_1 /]# echo this is nfs test &gt; /public/test测试结果应该为 客户端挂载到的public目录只可以查看test文件而不能touch文件客户端挂载到的protected目录可以touch文件 安装软件包[root@server_1 /]# yum install nfs\* -y 编辑配置文件[root@server_1 /]# vim /etc/exports12/public *(ro) //允许所有用户只有只读权限/protected 192.168.19.0/24(rw,no_root_squash,sync) [root@server_1 /]# exprotfs -r //每次修改配置文件或添加共享文件都要执行[root@test_1 ~]# showmount -e localhost//查看配置123Export list for localhost:/public */protected 192.168.19.0/24 配置selinux[root@server_1 /]# semanage fcontext -a -t public_content_t /public&quot;(/.*)?&quot;[root@server_1 /]# semanage fcontext -a -t public_content_t /protected&quot;(/.*)?&quot;[root@server_1 /]# restorecon -vvFR /public /protected 设置防火墙[root@server_1 /]# systemctl restart nfs[root@server_1 /]# firewall-cmd --add-service=nfs --per[root@test_1 ~]# systemctl enable nfs-server.service 客户端测试[root@server_2 ~]# mkdir /public_nfs/ /protected_nfs/[root@server_2 ~]# mount 192.168.19.101:/public /public_nfs/[root@server_2 ~]# mount 192.168.19.101:/protected /protected_nfs/[root@server_2 ~]# cat /public_nfs/testthis is nfs test[root@server_2 ~]# touch /public_nfs/xxtouch: cannot touch ‘/public_nfs/xx’: Read-only file system[root@server_2 ~]# touch /protected_nfs/xx测试结果与预期相同]]></content>
+      <categories>
+        <category>RHCE</category>
+      </categories>
+      <tags>
+        <tag>RHCE</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[搭建基于https协议的静态网站]]></title>
     <url>%2Fpost%2F5298bbcd.html</url>
     <content type="text"><![CDATA[搭建基于https协议的静态网站 安装ssl[root@server_1 ~]# yum install mod_ssl -y 创建key[root@server_1 ~]# cd /etc/pki/tls/certs/[root@server_1 certs]# make test.crt12345678910111213141516171819202122232425umask 77 ; \/usr/bin/openssl genrsa -aes128 2048 &gt; test.keyGenerating RSA private key, 2048 bit long modulus............+++.......................................................................................+++e is 65537 (0x10001)Enter pass phrase: //输入密码Verifying - Enter pass phrase: //确认密码umask 77 ; \/usr/bin/openssl req -utf8 -new -key test.key -x509 -days 365 -out test.crt -set_serial 0Enter pass phrase for test.key: //与上述密码相同You are about to be asked to enter information that will be incorporatedinto your certificate request.What you are about to enter is what is called a Distinguished Name or a DN.There are quite a few fields but you can leave some blankFor some fields there will be a default value,If you enter '.', the field will be left blank.-----Country Name (2 letter code) [XX]:CN //国家代码State or Province Name (full name) []:shanxi //省份Locality Name (eg, city) [Default City]:xian //城市Organization Name (eg, company) [Default Company Ltd]:openlab //公司名Organizational Unit Name (eg, section) []:tech //部门Common Name (eg, your name or your server's hostname) []:www.test.com //域名Email Address []:openlab@163.com //邮箱 编辑配置文件[root@server_1 ~]# vim /etc/httpd/conf.d/vhost.conf修改如下内容12345678910&lt;VirtualHost 192.168.19.102&gt;SSLEngine onSSLProtocol all -SSLv2SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5SSLCertificateFile /etc/pki/tls/certs/test.crtSSLCertificateKeyFile /etc/pki/tls/certs/test.keyDocumentRoot /www/100ServerName 192.168.19.102ServerAdmin root@localhost&lt;/VirtualHost&gt; [root@test_1 certs]# echo this is https test &gt; /www/100/index.html 配置防火墙[root@server_1 certs]# firewall-cmd --add-port=443/tcp --per[root@server_1 certs]# systemctl restart firewalld[root@server_1 certs]# systemctl restart httpdEnter SSL pass phrase for 192.168.19.102:443 (RSA) : **这里重启httpd时需要输入之前配置好的RSA密钥 客户端测试Firefox访问 https://192.168.19.102会提示此链接不安全，继续访问的话可以看到内容this is https test]]></content>
