@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="这里写标签," />
+  <meta name="keywords" content="RHCE," />
 
 
 
@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="这里写介绍">
-<meta name="keywords" content="这里写标签">
+<meta name="description" content="搭建基于https协议的静态网站">
+<meta name="keywords" content="RHCE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搭建基于https协议的静态网站">
 <meta property="og:url" content="http://Jiantajiyi.github.io/post/5298bbcd.html">
 <meta property="og:site_name" content="践踏记忆">
-<meta property="og:description" content="这里写介绍">
+<meta property="og:description" content="搭建基于https协议的静态网站">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-26T16:53:46.974Z">
+<meta property="og:updated_time" content="2019-04-27T03:58:51.329Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建基于https协议的静态网站">
-<meta name="twitter:description" content="这里写介绍">
+<meta name="twitter:description" content="搭建基于https协议的静态网站">
 
 
 
@@ -319,7 +319,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-27T00:53:46+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-27T11:58:51+08:00">
                 2019-04-27
               </time>
             
@@ -338,8 +338,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/这里写分类/" itemprop="url" rel="index">
-                    <span itemprop="name">这里写分类</span>
+                  <a href="/categories/RHCE/" itemprop="url" rel="index">
+                    <span itemprop="name">RHCE</span>
                   </a>
                 </span>
 
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  10
+                  401
                 </span>
               
 
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -417,8 +417,13 @@
       
 
       
-        <script src="\assets\js\APlayer.min.js"> </script><p><center>这里写介绍<center><br><a id="more"></a></center></center></p>
-<p>这里写文章</p>
+        <script src="\assets\js\APlayer.min.js"> </script><p><center>搭建基于https协议的静态网站<center><br><a id="more"></a></center></center></p>
+<h1 id="安装ssl"><a href="#安装ssl" class="headerlink" title="安装ssl"></a>安装ssl</h1><p><code>[root@server_1 ~]# yum install mod_ssl -y</code></p>
+<h1 id="创建key"><a href="#创建key" class="headerlink" title="创建key"></a>创建key</h1><p><code>[root@server_1 ~]# cd /etc/pki/tls/certs/</code><br><code>[root@server_1 certs]# make test.crt</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">umask <span class="number">77</span> ; \</span><br><span class="line">/usr/bin/openssl genrsa -aes128 <span class="number">2048</span> &gt; test.key</span><br><span class="line">Generating RSA <span class="keyword">private</span> key, <span class="number">2048</span> bit <span class="keyword">long</span> modulus</span><br><span class="line">............+++</span><br><span class="line">.......................................................................................+++</span><br><span class="line">e is <span class="number">65537</span> (<span class="number">0x10001</span>)</span><br><span class="line">Enter pass phrase:					<span class="comment">//输入密码</span></span><br><span class="line">Verifying - Enter pass phrase:		<span class="comment">//确认密码</span></span><br><span class="line">umask <span class="number">77</span> ; \</span><br><span class="line">/usr/bin/openssl req -utf8 -<span class="keyword">new</span> -key test.key -x509 -days <span class="number">365</span> -out test.crt -set_serial <span class="number">0</span></span><br><span class="line">Enter pass phrase <span class="keyword">for</span> test.key:		<span class="comment">//与上述密码相同</span></span><br><span class="line">You are about to be asked to enter information that will be incorporated</span><br><span class="line">into your certificate request.</span><br><span class="line">What you are about to enter is what is called a Distinguished Name <span class="keyword">or</span> a DN.</span><br><span class="line">There are quite a few fields but you can leave some blank</span><br><span class="line">For some fields there will be a <span class="keyword">default</span> value,</span><br><span class="line">If you enter <span class="string">'.'</span>, the field will be left blank.</span><br><span class="line">-----</span><br><span class="line">Country Name (<span class="number">2</span> letter code) [XX]:CN                           	<span class="comment">//国家代码</span></span><br><span class="line">State <span class="keyword">or</span> Province Name (full name) []:shanxi					<span class="comment">//省份</span></span><br><span class="line">Locality Name (eg, city) [Default City]:xian					<span class="comment">//城市</span></span><br><span class="line">Organization Name (eg, company) [Default Company Ltd]:openlab	<span class="comment">//公司名</span></span><br><span class="line">Organizational Unit Name (eg, section) []:tech					<span class="comment">//部门</span></span><br><span class="line">Common Name (eg, your name <span class="keyword">or</span> your server's hostname) []:www.test.com  <span class="comment">//域名</span></span><br><span class="line">Email Address []:openlab@<span class="number">163.</span>com 								<span class="comment">//邮箱</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="编辑配置文件"><a href="#编辑配置文件" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h1><p><code>[root@server_1 ~]# vim /etc/httpd/conf.d/vhost.conf</code><br>修改如下内容<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost <span class="number">192.168</span><span class="number">.19</span><span class="number">.102</span>&gt;</span><br><span class="line">SSLEngine on</span><br><span class="line">SSLProtocol all -SSLv2</span><br><span class="line">SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5</span><br><span class="line">SSLCertificateFile /etc/pki/tls/certs/test.crt</span><br><span class="line">SSLCertificateKeyFile   /etc/pki/tls/certs/test.key</span><br><span class="line">DocumentRoot /www/<span class="number">100</span></span><br><span class="line">ServerName <span class="number">192.168</span><span class="number">.19</span><span class="number">.102</span></span><br><span class="line">ServerAdmin root@localhost</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure></p>
+<p><code>[root@test_1 certs]# echo this is https test &gt; /www/100/index.html</code></p>
+<h1 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h1><p><code>[root@server_1 certs]# firewall-cmd --add-port=443/tcp --per</code><br><code>[root@server_1 certs]# systemctl restart firewalld</code><br><code>[root@server_1 certs]# systemctl restart httpd.service</code><br><strong>Enter SSL pass phrase for 192.168.19.102:443 (RSA) : <em>**</em></strong>\**<br> 这里重启httpd时需要输入之前配置好的RSA密钥</p>
+<h1 id="客户端测试"><a href="#客户端测试" class="headerlink" title="客户端测试"></a>客户端测试</h1><p>Firefox访问 <a href="https://192.168.19.102" target="_blank" rel="external">https://192.168.19.102</a><br>会提示此链接不安全，继续访问的话可以看到内容<br>this is https test</p>
 
       
     </div>
@@ -454,7 +459,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/这里写标签/" rel="tag"># 这里写标签</a>
+            <a href="/tags/RHCE/" rel="tag"># RHCE</a>
           
         </div>
       
@@ -531,8 +536,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -562,7 +576,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -573,7 +587,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -619,6 +633,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装ssl"><span class="nav-number">1.</span> <span class="nav-text">安装ssl</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建key"><span class="nav-number">2.</span> <span class="nav-text">创建key</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编辑配置文件"><span class="nav-number">3.</span> <span class="nav-text">编辑配置文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置防火墙"><span class="nav-number">4.</span> <span class="nav-text">配置防火墙</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#客户端测试"><span class="nav-number">5.</span> <span class="nav-text">客户端测试</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -655,7 +685,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">12.3k</span>
+    <span title="Site words total count">12.7k</span>
   
 </div>
 
@@ -675,7 +705,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共12.3k字</span>
+  <span class="post-count">博客全站共12.7k字</span>
 </div>
         
 
