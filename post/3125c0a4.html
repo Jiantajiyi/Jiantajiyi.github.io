@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="践踏记忆">
 <meta property="og:description" content="ISCSI服务的搭建">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-27T06:29:32.295Z">
+<meta property="og:updated_time" content="2019-04-28T14:33:33.635Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ISCSI服务的搭建">
 <meta name="twitter:description" content="ISCSI服务的搭建">
@@ -319,8 +319,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-27T14:29:32+08:00">
-                2019-04-27
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-28T22:33:33+08:00">
+                2019-04-28
               </time>
             
           </span>
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  6
+                  907
                 </span>
               
 
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  5
                 </span>
               
             </div>
@@ -418,6 +418,48 @@
 
       
         <script src="\assets\js\APlayer.min.js"> </script><p><center>ISCSI服务的搭建<center><br><a id="more"></a></center></center></p>
+<h1 id="准备一个可用的分区"><a href="#准备一个可用的分区" class="headerlink" title="准备一个可用的分区"></a>准备一个可用的分区</h1><p><code>[root@server_1 ~]# lsblk</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">sda      <span class="number">8</span>:<span class="number">0</span>    <span class="number">0</span>   <span class="number">20</span>G  <span class="number">0</span> disk</span><br><span class="line">├─sda1   <span class="number">8</span>:<span class="number">1</span>    <span class="number">0</span>  <span class="number">200</span>M  <span class="number">0</span> part /boot</span><br><span class="line">├─sda2   <span class="number">8</span>:<span class="number">2</span>    <span class="number">0</span>   <span class="number">10</span>G  <span class="number">0</span> part /</span><br><span class="line">├─sda3   <span class="number">8</span>:<span class="number">3</span>    <span class="number">0</span>    <span class="number">2</span>G  <span class="number">0</span> part [SWAP]</span><br><span class="line">├─sda4   <span class="number">8</span>:<span class="number">4</span>    <span class="number">0</span>  <span class="number">512B</span>  <span class="number">0</span> part</span><br><span class="line">└─sda5   <span class="number">8</span>:<span class="number">5</span>    <span class="number">0</span>    <span class="number">1</span>G  <span class="number">0</span> part</span><br><span class="line">sr0     <span class="number">11</span>:<span class="number">0</span>    <span class="number">1</span>  <span class="number">3.8</span>G  <span class="number">0</span> rom  /mnt</span><br></pre></td></tr></table></figure></p>
+<p>这里我准备了sda5用作iSCSI的挂载</p>
+<h1 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h1><p><code>[root@server_1 ~]# yum install targetcli -y</code></p>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p><code>[root@server_1 ~]# targetcli</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/&gt; ls</span><br><span class="line">o- / .................................................. [...]</span><br><span class="line">  o- backstores ....................................... [...]</span><br><span class="line">  | o- block ........................... [Storage Objects: <span class="number">0</span>]</span><br><span class="line">  | o- fileio .......................... [Storage Objects: <span class="number">0</span>]</span><br><span class="line">  | o- pscsi ........................... [Storage Objects: <span class="number">0</span>]</span><br><span class="line">  | o- ramdisk ......................... [Storage Objects: <span class="number">0</span>]</span><br><span class="line">  o- iscsi ..................................... [Targets: <span class="number">0</span>]</span><br><span class="line">  o- loopback .................................. [Targets: <span class="number">0</span>]</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>创建块设备block<br><code>/&gt; cd /backstores/block</code><br><code>/backstores/block&gt; create block1 /dev/sda5</code><br><strong>Created block storage object block1 using /dev/sda5.</strong></li>
+<li><p>创建iqn<br><code>/backstores/block&gt; cd /iscsi</code><br><code>/iscsi&gt; create iqn.2019-04.example.com:server</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Created target iqn<span class="number">.2019</span><span class="number">-04.</span>example.com:server.</span><br><span class="line">Created TPG <span class="number">1.</span></span><br><span class="line">Global pref auto_add_default_portal=<span class="literal">true</span></span><br><span class="line">Created <span class="keyword">default</span> portal listening on all IPs (<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>), port <span class="number">3260.</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置访问控制列表<br><code>/iscsi&gt; cd iqn.2019-04.example.com:server/tpg1/acls</code><br><code>/iscsi/iqn.20...ver/tpg1/acls&gt; create iqn.2019-04.example.com:desktop</code><br><strong>Created Node ACL for iqn.2019-04.example.com:desktop</strong></p>
+</li>
+<li>添加luns<br><code>/iscsi/iqn.20...ver/tpg1/acls&gt; cd ..</code><br><code>/iscsi/iqn.20...m:server/tpg1&gt; cd luns</code><br><code>/iscsi/iqn.20...ver/tpg1/luns&gt; create /backstores/block/block1</code><br><strong>Created LUN 0.</strong><br><strong>Created LUN 0-&gt;0 mapping in node ACL iqn.2019-04.example.com:desktop</strong></li>
+<li>创建portal接口<br><code>/iscsi/iqn.20...ver/tpg1/luns&gt; cd ..</code><br><code>/iscsi/iqn.20...m:server/tpg1&gt; cd portals/</code><br><code>/iscsi/iqn.20.../tpg1/portals&gt; delete 0.0.0.0 3260</code><br><strong>Deleted network portal 0.0.0.0:3260</strong><br><code>/iscsi/iqn.20.../tpg1/portals&gt; create 192.168.19.101 3260</code><br><strong>Using default IP port 3260</strong><br><strong>Created network portal 192.168.19.101:3260.</strong></li>
+<li><p>查看配置<br><code>/iscsi/iqn.20.../tpg1/portals&gt; cd</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">o- / ..................................................[...</span><br><span class="line">  o- backstores .......................................[...</span><br><span class="line">  | o- block ...........................[Storage Objects: <span class="number">1</span></span><br><span class="line">  | | o- block1 ...[/dev/sda5 (<span class="number">1.0</span>GiB) write-thru activated</span><br><span class="line">  | o- fileio ..........................[Storage Objects: <span class="number">0</span></span><br><span class="line">  | o- pscsi ...........................[Storage Objects: <span class="number">0</span></span><br><span class="line">  | o- ramdisk .........................[Storage Objects: <span class="number">0</span></span><br><span class="line">  o- iscsi .....................................[Targets: <span class="number">1</span></span><br><span class="line">  | o- iqn<span class="number">.2019</span><span class="number">-04.</span>example.com:server .............[TPGs: <span class="number">1</span></span><br><span class="line">  |   o- tpg1 ........................[no-gen-acls, no-auth</span><br><span class="line">  |     o- acls ...................................[ACLs: <span class="number">1</span></span><br><span class="line">  |     | o- iqn<span class="number">.2019</span><span class="number">-04.</span>example.com:desktop [Mapped LUNs: <span class="number">1</span>  |     |   o- mapped_lun0 .........[lun0 block/block1 (rw)</span><br><span class="line">  |     o- luns ...................................[LUNs: <span class="number">1</span></span><br><span class="line">  |     | o- lun0 ................[block/block1 (/dev/sda5)</span><br><span class="line">  |     o- portals .............................[Portals: <span class="number">1</span></span><br><span class="line">  |       o- <span class="number">192.168</span><span class="number">.19</span><span class="number">.101</span>:<span class="number">3260</span> .......................[OK</span><br><span class="line">  o- loopback ..................................[Targets: <span class="number">0</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>退出保存<br><code>/iscsi/iqn.20.../tpg1/portals&gt; exit</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Global pref auto_save_on_exit=<span class="literal">true</span></span><br><span class="line">Last <span class="number">10</span> configs saved in /etc/target/backup.</span><br><span class="line">Configuration saved to /etc/target/saveconfig.json</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h1><p><code>[root@server_1 ~]# firewall-cmd --add-port=3260/tcp --per</code><br><strong>success</strong><br><code>[root@server_1 ~]# systemctl restart firewalld</code><br><code>[root@server_1 ~]# systemctl restart target</code><br><code>[root@server_1 ~]# systemctl enable target</code><br><strong>Created symlink from /etc/systemd/system/multi-user.target.wants/target.service to /usr/lib/systemd/system/target.service.</strong></p>
+<h1 id="客户端测试"><a href="#客户端测试" class="headerlink" title="客户端测试"></a>客户端测试</h1><ol>
+<li><p>安装软件<br><code>[root@server_2 ~]# yum install iscsi-initiator-utils.i686 -y</code><br><code>[root@server_2 ~]# vim /etc/iscsi/initiatorname.iscsi</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">InitiatorName=iqn<span class="number">.2019</span><span class="number">-04.</span>example.com:desktop</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启服务<br><code>[root@server_2 ~]# systemctl daemon-reload</code><br><code>[root@server_2 ~]# systemctl restart iscsi</code></p>
+</li>
+<li>发现节点<br><code>[root@server_2 ~]# iscsiadm -m discovery -t st -p 192.168.19.101</code><br><strong>192.168.19.11:3260,1 iqn.2019-04.example.com:server</strong></li>
+<li><p>登入节点<br><code>[root@server_2 ~]# iscsiadm -m node -T iqn.2019-04.example.com:server -p 192.168.19.101:3260 -l</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Logging in to [iface: <span class="keyword">default</span>, target: iqn<span class="number">.2019</span><span class="number">-04.</span>example.com:server, portal: <span class="number">192.168</span><span class="number">.19</span><span class="number">.11</span>,<span class="number">3260</span>] (multiple)</span><br><span class="line">Login to [iface: <span class="keyword">default</span>, target: iqn<span class="number">.2019</span><span class="number">-04.</span>example.com:server, portal: <span class="number">192.168</span><span class="number">.19</span><span class="number">.11</span>,<span class="number">3260</span>] successful.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看挂载的节点分区并格式化分区<br><code>[root@server_2 ~]# fdisk /dev/sdb</code><br><code>[root@server_2 ~]# mkfs.ext4 /dev/sdb1</code><br><code>[root@server_2 ~]# fdisk -l</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Disk /dev/sdb: <span class="number">1073</span> MB, <span class="number">1073741824</span> bytes, <span class="number">2097152</span> sectors</span><br><span class="line">Units = sectors of <span class="number">1</span> * <span class="number">512</span> = <span class="number">512</span> bytes</span><br><span class="line">Sector size (logical/physical): <span class="number">512</span> bytes / <span class="number">512</span> bytes</span><br><span class="line">I/O size (minimum/optimal): <span class="number">512</span> bytes / <span class="number">4194304</span> bytes</span><br><span class="line">Disk label type: dos</span><br><span class="line">Disk identifier: <span class="number">0x86f45fd8</span></span><br><span class="line"></span><br><span class="line">   Device Boot      Start         End      Blocks   Id  System</span><br><span class="line">/dev/sdb1            <span class="number">8192</span>     <span class="number">2097151</span>     <span class="number">1044480</span>   <span class="number">83</span>  Linux</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看和区分<br><code>[root@server_2 ~]# ll /dev/disk/by-path/</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">total <span class="number">0</span></span><br><span class="line">lrwxrwxrwx. <span class="number">1</span> root root  <span class="number">9</span> Apr <span class="number">28</span> <span class="number">22</span>:<span class="number">00</span> ip<span class="number">-192.168</span><span class="number">.19</span><span class="number">.101</span>:<span class="number">3260</span>-iscsi-iqn<span class="number">.2019</span><span class="number">-04.</span>example.com:server-lun<span class="number">-0</span> -&gt; ../../sdb</span><br><span class="line">lrwxrwxrwx. <span class="number">1</span> root root <span class="number">10</span> Apr <span class="number">28</span> <span class="number">22</span>:<span class="number">03</span> ip<span class="number">-192.168</span><span class="number">.19</span><span class="number">.101</span>:<span class="number">3260</span>-iscsi-iqn<span class="number">.2019</span><span class="number">-04.</span>example.com:server-lun<span class="number">-0</span>-part1 -&gt; ../../sdb1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>挂载对应的分区<br><code>[root@server_2 ~]# mkdir /iqn</code><br><code>[root@server_2 ~]# blkid /dev/sdb1</code><br><strong>/dev/sdb1: UUID=”feb53194-cefe-42d7-b721-1b95d3d04158” TYPE=”ext4”</strong><br><code>[root@server_2 ~]# vim /etc/fstab</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UUID=feb53194-cefe<span class="number">-42</span>d7-b721<span class="number">-1b</span>95d3d04158 /iqn    ext4   defaults,_netdev   <span class="number">0</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><code>[root@server_2 ~]# mount -a</code><br><code>[root@server_2 ~]# df -Th | grep sdb1</code><br><strong>/dev/sdb1      ext4      988M  2.6M  919M   1% /iqn</strong><br><em>登出节点</em><br><code>[root@test_2 ~]# umount /iqn</code><br><code>[root@test_2 ~]# iscsiadm -m node -T iqn.2019-04.example.com:server -p 192.168.19.101 -u</code></p>
 
       
     </div>
@@ -530,8 +572,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -618,6 +669,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备一个可用的分区"><span class="nav-number">1.</span> <span class="nav-text">准备一个可用的分区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装软件"><span class="nav-number">2.</span> <span class="nav-text">安装软件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置"><span class="nav-number">3.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置防火墙"><span class="nav-number">4.</span> <span class="nav-text">配置防火墙</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#客户端测试"><span class="nav-number">5.</span> <span class="nav-text">客户端测试</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -654,7 +721,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">13.5k</span>
+    <span title="Site words total count">14.4k</span>
   
 </div>
 
@@ -674,7 +741,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共13.5k字</span>
+  <span class="post-count">博客全站共14.4k字</span>
 </div>
         
 
