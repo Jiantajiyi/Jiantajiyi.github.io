@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="教程," />
+  <meta name="keywords" content="RHCE," />
 
 
 
@@ -86,21 +86,18 @@
 
 
 
-<meta name="description" content="不是不做，时候未到。">
-<meta name="keywords" content="教程">
+<meta name="description" content="使用nmcli设置网卡，链路聚合，网桥">
+<meta name="keywords" content="RHCE">
 <meta property="og:type" content="article">
-<meta property="og:title" content="为MIUI添加人脸解锁">
-<meta property="og:url" content="http://Jiantajiyi.github.io/post/5ea5d52e.html">
+<meta property="og:title" content="使用nmcli设置网络">
+<meta property="og:url" content="http://Jiantajiyi.github.io/post/d2e19130.html">
 <meta property="og:site_name" content="践踏记忆">
-<meta property="og:description" content="不是不做，时候未到。">
+<meta property="og:description" content="使用nmcli设置网卡，链路聚合，网桥">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://jiantajiyi.github.io/images/face_01.png">
-<meta property="og:image" content="http://jiantajiyi.github.io/images/face_02.png">
-<meta property="og:updated_time" content="2019-03-08T09:52:35.034Z">
+<meta property="og:updated_time" content="2019-05-08T15:58:29.257Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="为MIUI添加人脸解锁">
-<meta name="twitter:description" content="不是不做，时候未到。">
-<meta name="twitter:image" content="http://jiantajiyi.github.io/images/face_01.png">
+<meta name="twitter:title" content="使用nmcli设置网络">
+<meta name="twitter:description" content="使用nmcli设置网卡，链路聚合，网桥">
 
 
 
@@ -130,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://Jiantajiyi.github.io/post/5ea5d52e.html"/>
+  <link rel="canonical" href="http://Jiantajiyi.github.io/post/d2e19130.html"/>
 
 
 
 
 
-  <title>为MIUI添加人脸解锁 | 践踏记忆</title>
+  <title>使用nmcli设置网络 | 践踏记忆</title>
   
 
 
@@ -277,7 +274,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://Jiantajiyi.github.io/post/5ea5d52e.html">
+    <link itemprop="mainEntityOfPage" href="http://Jiantajiyi.github.io/post/d2e19130.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LiRuolin">
@@ -294,7 +291,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">为MIUI添加人脸解锁</h1>
+          <h1 class="post-title" itemprop="name headline">使用nmcli设置网络</h1>
         
 
         <div class="post-meta">
@@ -306,8 +303,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-02T21:23:04+08:00">
-                2017-12-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-08T22:34:23+08:00">
+                2019-05-08
               </time>
             
 
@@ -322,8 +319,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-08T17:52:35+08:00">
-                2019-03-08
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-08T23:58:29+08:00">
+                2019-05-08
               </time>
             
           </span>
@@ -341,8 +338,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/教程/" itemprop="url" rel="index">
-                    <span itemprop="name">教程</span>
+                  <a href="/categories/RHCE/" itemprop="url" rel="index">
+                    <span itemprop="name">RHCE</span>
                   </a>
                 </span>
 
@@ -358,7 +355,7 @@
 
           
           
-             <span id="/post/5ea5d52e.html" class="leancloud_visitors" data-flag-title="为MIUI添加人脸解锁">
+             <span id="/post/d2e19130.html" class="leancloud_visitors" data-flag-title="使用nmcli设置网络">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -383,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  386
+                  1.4k
                 </span>
               
 
@@ -399,7 +396,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  8
                 </span>
               
             </div>
@@ -420,18 +417,24 @@
       
 
       
-        <script src="\assets\js\APlayer.min.js"> </script><p><center>不是不做，时候未到。<center><br><a id="more"></a></center></center></p>
-<h1 id="玩腻了指纹解锁，试试看人脸识别吧，FaceID-For-MIUI9-MI5"><a href="#玩腻了指纹解锁，试试看人脸识别吧，FaceID-For-MIUI9-MI5" class="headerlink" title="玩腻了指纹解锁，试试看人脸识别吧，FaceID For MIUI9_MI5"></a>玩腻了指纹解锁，试试看人脸识别吧，FaceID For MIUI9_MI5</h1><h2 id="解Bootloader锁"><a href="#解Bootloader锁" class="headerlink" title="解Bootloader锁"></a>解Bootloader锁</h2><p>解Bootloader锁教程:<a href="http://www.miui.com/thread-3367802-1-1.html" target="_blank" rel="external">点这里</a></p>
-<h2 id="刷第三方Recovery"><a href="#刷第三方Recovery" class="headerlink" title="刷第三方Recovery"></a>刷第三方Recovery</h2><p>小米5专用Recovery<br><a href="http://www.miui.com/thread-4395191-1-1.html" target="_blank" rel="external">BY~XM大佬的rec</a><br>本人一直用的这个rec 支持OTA增量更新</p>
-<h2 id="进入rec"><a href="#进入rec" class="headerlink" title="进入rec"></a>进入rec</h2><p>法一：开机按电源键+音量键上 直到mi标出现放开电源键<br>法二：系统更新界面-右上角三个小圆点-重启到恢复模式（Recovery）</p>
-<h2 id="刷入卡刷包"><a href="#刷入卡刷包" class="headerlink" title="刷入卡刷包"></a>刷入卡刷包</h2><p>请注意此卡刷包只适用于官方稳定版或开发版<br><a href="https://pan.baidu.com/s/1bpcyjkN" target="_blank" rel="external">FaceID For MIUI9_Mi5.zip</a><br>密码：6666</p>
-<h2 id="重启大功告成"><a href="#重启大功告成" class="headerlink" title="重启大功告成"></a>重启大功告成</h2><h1 id="不刷第三方rec的方法"><a href="#不刷第三方rec的方法" class="headerlink" title="不刷第三方rec的方法"></a>不刷第三方rec的方法</h1><h2 id="还是解Bootloader锁"><a href="#还是解Bootloader锁" class="headerlink" title="还是解Bootloader锁"></a>还是解Bootloader锁</h2><p>解Bootloader锁教程:<a href="http://www.miui.com/thread-3367802-1-1.html" target="_blank" rel="external">点这里</a></p>
-<h2 id="下载资源"><a href="#下载资源" class="headerlink" title="下载资源"></a>下载资源</h2><p>下载软件里边有所有的资源<a href="https://pan.baidu.com/s/1c2FBSJI" target="_blank" rel="external">小米五人脸解锁提取+工具.zip</a><br>密码：6666</p>
-<h2 id="安装两个APP"><a href="#安装两个APP" class="headerlink" title="安装两个APP"></a>安装两个APP</h2><p>RE文件管理器，syslock（用来解system锁）</p>
-<h2 id="获取root权限并赋予权限"><a href="#获取root权限并赋予权限" class="headerlink" title="获取root权限并赋予权限"></a>获取root权限并赋予权限</h2><p>1.开发版直接在安全中心开启root权限<br>2.给这两个APP赋予root权限<br>3.使用syslock解锁system（需要重启） 至此获取了完整的root权限</p>
-<h2 id="替换文件"><a href="#替换文件" class="headerlink" title="替换文件"></a>替换文件</h2><p>1.用《需要替换的app》中的两个apk文件替换 /system/priv-app/settings 和 /system/priv-app/MiuiKeygard 中的两个 App.<br>2.用《需要替换的文件》中的五个文件替换 system/lib64 目录下的五个 so 文件（直接复制进去）</p>
-<h2 id="Reboot-大功告成！"><a href="#Reboot-大功告成！" class="headerlink" title="Reboot 大功告成！"></a>Reboot 大功告成！</h2><p><img src="/images/face_01.png" alt=""><br><img src="/images/face_02.png" alt=""><br>小米五，红米note4.MIX.5s.5sp.部分6.部分红米.5x暂时都可以使用，理论支持miui9所有稳定版，开发板，体验版。</p>
-<div id="163"><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="86" src="//music.163.com/outchain/player?type=2&id=27691911&auto=1&height=66"></iframe><br></div>
+        <script src="\assets\js\APlayer.min.js"> </script><p><center>使用nmcli设置网卡，链路聚合，网桥 <center><br><a id="more"></a></center></center></p>
+<h1 id="给新添加的网卡配置IP地址"><a href="#给新添加的网卡配置IP地址" class="headerlink" title="给新添加的网卡配置IP地址"></a>给新添加的网卡配置IP地址</h1><p>现有新添加的两张网卡eno33554992和eno50332216</p>
+<h2 id="在server1上使用nmcli"><a href="#在server1上使用nmcli" class="headerlink" title="在server1上使用nmcli"></a>在server1上使用nmcli</h2><p><code>[root@server_1 network-scripts]# nmcli connection add con-name eth1 type ethernet ifname eno33554992 ip4 192.168.19.102/24 gw4 192.168.19.1</code><br><strong>Connection ‘eth1’ (8099abb8-2a30-4d11-a3ae-ce4c5c534d8b) successfully added.</strong><br><code>[root@server_1 network-scripts]# nmcli connection add con-name eth2 type ethernet ifname eno50332216 ip4 192.168.19.103/24 gw4 192.168.19.1</code><br><strong>Connection ‘eth2’ (f127ca55-37d3-4913-8b62-1969ceabaacd) successfully added.</strong><br><code>[root@server_1 network-scripts]# ip addr</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>: eno16777736: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc pfifo_fast state UP qlen <span class="number">1000</span></span><br><span class="line">    link/ether <span class="number">00</span>:<span class="number">0</span>c:<span class="number">29</span>:<span class="number">1</span>c:<span class="number">2</span>a:<span class="number">5b</span> brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet <span class="number">192.168</span><span class="number">.19</span><span class="number">.101</span>/<span class="number">24</span> brd <span class="number">192.168</span><span class="number">.19</span><span class="number">.255</span> scope global eno16777736</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::<span class="number">20</span>c:<span class="number">29f</span>f:fe1c:<span class="number">2</span>a5b/<span class="number">64</span> scope link</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line"><span class="number">3</span>: eno33554992: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc pfifo_fast state UP qlen <span class="number">1000</span></span><br><span class="line">    link/ether <span class="number">00</span>:<span class="number">0</span>c:<span class="number">29</span>:<span class="number">1</span>c:<span class="number">2</span>a:<span class="number">65</span> brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet <span class="number">192.168</span><span class="number">.19</span><span class="number">.102</span>/<span class="number">24</span> brd <span class="number">192.168</span><span class="number">.19</span><span class="number">.255</span> scope global eno33554992</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::<span class="number">20</span>c:<span class="number">29f</span>f:fe1c:<span class="number">2</span>a65/<span class="number">64</span> scope link</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line"><span class="number">4</span>: eno50332216: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc pfifo_fast state UP qlen <span class="number">1000</span></span><br><span class="line">    link/ether <span class="number">00</span>:<span class="number">0</span>c:<span class="number">29</span>:<span class="number">1</span>c:<span class="number">2</span>a:<span class="number">6f</span> brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet <span class="number">192.168</span><span class="number">.19</span><span class="number">.103</span>/<span class="number">24</span> brd <span class="number">192.168</span><span class="number">.19</span><span class="number">.255</span> scope global eno50332216</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::<span class="number">20</span>c:<span class="number">29f</span>f:fe1c:<span class="number">2</span>a6f/<span class="number">64</span> scope link</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure></p>
+<p>删除使用<em>nmcli con delete eth1</em></p>
+<h2 id="在server2上手工写配置文件"><a href="#在server2上手工写配置文件" class="headerlink" title="在server2上手工写配置文件"></a>在server2上手工写配置文件</h2><p><code>[root@server_2 ~]# cd /etc/sysconfig/network-scripts/</code><br><code>[root@server_2 network-scripts]# vim ifcfg-eth1</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">NAME=eth1</span><br><span class="line">DEVICE=eno33554992</span><br><span class="line">ONBOOT=yes</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">IPADDR=<span class="number">192.168</span><span class="number">.19</span><span class="number">.202</span></span><br><span class="line">PREFIX=<span class="number">24</span></span><br><span class="line">GATEWAY=<span class="number">192.168</span><span class="number">.19</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></p>
+<p><code>[root@server_2 network-scripts]# vim ifcfg-eth2</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">NAME=eth2</span><br><span class="line">DEVICE=eno50332216</span><br><span class="line">ONBOOT=yes</span><br><span class="line">BOOTPROTO=none</span><br><span class="line">IPADDR=<span class="number">192.168</span><span class="number">.19</span><span class="number">.203</span></span><br><span class="line">PREFIX=<span class="number">24</span></span><br><span class="line">GATEWAY=<span class="number">192.168</span><span class="number">.19</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></p>
+<p><code>[root@server_2 network-scripts]# systemctl restart network</code><br><code>[root@server_2 network-scripts]# ip addr</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>: eno16777736: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc pfifo_fast state UP qlen <span class="number">1000</span></span><br><span class="line">    link/ether <span class="number">00</span>:<span class="number">0</span>c:<span class="number">29</span>:<span class="number">36</span>:ce:<span class="number">06</span> brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet <span class="number">192.168</span><span class="number">.19</span><span class="number">.201</span>/<span class="number">24</span> brd <span class="number">192.168</span><span class="number">.19</span><span class="number">.255</span> scope global eno16777736</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::<span class="number">20</span>c:<span class="number">29f</span>f:fe36:ce06/<span class="number">64</span> scope link</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line"><span class="number">3</span>: eno33554992: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc pfifo_fast state UP qlen <span class="number">1000</span></span><br><span class="line">    link/ether <span class="number">00</span>:<span class="number">0</span>c:<span class="number">29</span>:<span class="number">36</span>:ce:<span class="number">10</span> brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet <span class="number">192.168</span><span class="number">.19</span><span class="number">.202</span>/<span class="number">24</span> brd <span class="number">192.168</span><span class="number">.19</span><span class="number">.255</span> scope global eno33554992</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::<span class="number">20</span>c:<span class="number">29f</span>f:fe36:ce10/<span class="number">64</span> scope link</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line"><span class="number">4</span>: eno50332216: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc pfifo_fast state UP qlen <span class="number">1000</span></span><br><span class="line">    link/ether <span class="number">00</span>:<span class="number">0</span>c:<span class="number">29</span>:<span class="number">36</span>:ce:<span class="number">1</span>a brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet <span class="number">192.168</span><span class="number">.19</span><span class="number">.203</span>/<span class="number">24</span> brd <span class="number">192.168</span><span class="number">.19</span><span class="number">.255</span> scope global eno50332216</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::<span class="number">20</span>c:<span class="number">29f</span>f:fe36:ce1a/<span class="number">64</span> scope link</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure></p>
+<p><code>[root@server_2 network-scripts]# ping 192.168.19.102</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PING <span class="number">192.168</span><span class="number">.19</span><span class="number">.102</span> (<span class="number">192.168</span><span class="number">.19</span><span class="number">.102</span>) <span class="number">56</span>(<span class="number">84</span>) bytes of data.</span><br><span class="line"><span class="number">64</span> bytes from <span class="number">192.168</span><span class="number">.19</span><span class="number">.102</span>: icmp_seq=<span class="number">1</span> ttl=<span class="number">64</span> time=<span class="number">0.665</span> ms</span><br><span class="line"><span class="number">64</span> bytes from <span class="number">192.168</span><span class="number">.19</span><span class="number">.102</span>: icmp_seq=<span class="number">2</span> ttl=<span class="number">64</span> time=<span class="number">0.377</span> ms</span><br><span class="line">^C</span><br><span class="line">--- <span class="number">192.168</span><span class="number">.19</span><span class="number">.102</span> ping statistics ---</span><br><span class="line"><span class="number">2</span> packets transmitted, <span class="number">2</span> received, <span class="number">0</span>% packet loss, time <span class="number">1001</span>ms</span><br><span class="line">rtt min/avg/max/mdev = <span class="number">0.377</span>/<span class="number">0.521</span>/<span class="number">0.665</span>/<span class="number">0.144</span> ms</span><br></pre></td></tr></table></figure></p>
+<h2 id="一张网卡配置多个IP地址"><a href="#一张网卡配置多个IP地址" class="headerlink" title="一张网卡配置多个IP地址"></a>一张网卡配置多个IP地址</h2><p><code>[root@server_1 network-scripts]# nmcli connection modify eth1 +ipv4.addresses 192.168.20.2/24</code><br><code>[root@server_1 network-scripts]# systemctl restart network</code><br><code>[root@server_2 network-scripts]# nmcli connection modify eth1 +ipv4.addresses 192.168.20.4/24</code><br><code>[root@server_2 network-scripts]# systemctl restart network</code><br><code>[root@server_2 network-scripts]# ping 192.168.20.2 -I 192.168.20.4</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PING <span class="number">192.168</span><span class="number">.20</span><span class="number">.2</span> (<span class="number">192.168</span><span class="number">.20</span><span class="number">.2</span>) from <span class="number">192.168</span><span class="number">.20</span><span class="number">.4</span> : <span class="number">56</span>(<span class="number">84</span>) bytes of data.</span><br><span class="line"><span class="number">64</span> bytes from <span class="number">192.168</span><span class="number">.20</span><span class="number">.2</span>: icmp_seq=<span class="number">1</span> ttl=<span class="number">64</span> time=<span class="number">0.577</span> ms</span><br><span class="line"><span class="number">64</span> bytes from <span class="number">192.168</span><span class="number">.20</span><span class="number">.2</span>: icmp_seq=<span class="number">2</span> ttl=<span class="number">64</span> time=<span class="number">0.461</span> ms</span><br><span class="line"><span class="number">64</span> bytes from <span class="number">192.168</span><span class="number">.20</span><span class="number">.2</span>: icmp_seq=<span class="number">3</span> ttl=<span class="number">64</span> time=<span class="number">0.442</span> ms</span><br><span class="line"><span class="number">64</span> bytes from <span class="number">192.168</span><span class="number">.20</span><span class="number">.2</span>: icmp_seq=<span class="number">4</span> ttl=<span class="number">64</span> time=<span class="number">0.463</span> ms</span><br><span class="line">^C</span><br><span class="line">--- <span class="number">192.168</span><span class="number">.20</span><span class="number">.2</span> ping statistics ---</span><br><span class="line"><span class="number">4</span> packets transmitted, <span class="number">4</span> received, <span class="number">0</span>% packet loss, time <span class="number">3001</span>ms</span><br><span class="line">rtt min/avg/max/mdev = <span class="number">0.442</span>/<span class="number">0.485</span>/<span class="number">0.577</span>/<span class="number">0.059</span> ms</span><br></pre></td></tr></table></figure></p>
+<h1 id="链路聚合"><a href="#链路聚合" class="headerlink" title="链路聚合"></a>链路聚合</h1><p>将新的两张网卡聚合为一个team</p>
+<h2 id="server1使用nmcli"><a href="#server1使用nmcli" class="headerlink" title="server1使用nmcli"></a>server1使用nmcli</h2><p>删除之前的配置的两张网卡<br><code>[root@server_1 network-scripts]# nmcli connection delete eth1</code><br><strong>Connection ‘eth1’ (8099abb8-2a30-4d11-a3ae-ce4c5c534d8b) successfully deleted.</strong><br><code>[root@server_1 network-scripts]# nmcli connection delete eth2</code><br><strong>Connection ‘eth2’ (f127ca55-37d3-4913-8b62-1969ceabaacd) successfully deleted.</strong><br><code>[root@server_1 network-scripts]# nmcli connection add con-name team0 ifname team0 type team config &#39;{&quot;runner&quot;: {&quot;name&quot;: &quot;loadbalance&quot;}}&#39;</code><br><strong>Connection ‘team0’ (72a24350-f7fb-4909-b8d9-b0e4d63d4a3b) successfully added.</strong><br><code>[root@server_1 network-scripts]# nmcli connection modify team0 ipv4.addresses 192.168.19.102/24 ipv4.gateway 192.168.19.1 ipv4.method manual</code><br><code>[root@server_1 network-scripts]# nmcli connection add con-name team0-port1 type team-slave ifname eno33554992 master team0</code><br><strong>Connection ‘team0-port1’ (be929ed1-410a-4f40-ac94-1f12b7c0322a) successfully added.</strong><br><code>[root@server_1 network-scripts]# nmcli connection add con-name team0-port2 type team-slave ifname eno50332216 master team0</code><br><strong>Connection ‘team0-port2’ (13972926-e23a-48aa-9e9f-c72e59300942) successfully added.</strong><br><code>[root@server_1 network-scripts]# nmcli connection up team0-port1</code><br><strong>Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/14)</strong><br><code>[root@server_1 network-scripts]# nmcli connection show --active</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NAME         UUID                                  TYPE            DEVICE</span><br><span class="line">team0-port1  be929ed1<span class="number">-410</span>a<span class="number">-4f</span>40-ac94<span class="number">-1f</span>12b7c0322a  <span class="number">802</span><span class="number">-3</span>-ethernet  eno33554992</span><br><span class="line">team0        <span class="number">72</span>a24350-f7fb<span class="number">-4909</span>-b8d9-b0e4d63d4a3b  team            team0</span><br><span class="line">team0-port2  <span class="number">13972926</span>-e23a<span class="number">-48</span>aa<span class="number">-9e9</span>f-c72e59300942  <span class="number">802</span><span class="number">-3</span>-ethernet  eno50332216</span><br></pre></td></tr></table></figure></p>
+<h2 id="server2手工写配置文件"><a href="#server2手工写配置文件" class="headerlink" title="server2手工写配置文件"></a>server2手工写配置文件</h2><p>删除之前的配置的两张网卡<br><code>[root@server_2 network-scripts]# nmcli connection delete eth1</code><br><strong>Connection ‘eth1’ (8099abb8-2a30-4d11-a3ae-ce4c5c534d8b) successfully deleted.</strong><br><code>[root@server_2 network-scripts]# nmcli connection delete eth2</code><br><strong>Connection ‘eth2’ (f127ca55-37d3-4913-8b62-1969ceabaacd) successfully deleted.</strong><br><code>[root@server_2 network-scripts]# vim ifcfg-team0</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=team0</span><br><span class="line">NAME=team0</span><br><span class="line">DEVICETYPE=Team</span><br><span class="line">TEAM_CONFIG=<span class="string">"&#123;\"runner\": &#123;\"name\": \"activebackup\"&#125;&#125;"</span></span><br><span class="line">BOOTPROTO=none</span><br><span class="line">ONBOOT=yes</span><br><span class="line">IPADDR=<span class="number">192.168</span><span class="number">.19</span><span class="number">.202</span></span><br><span class="line">PREFIX=<span class="number">24</span></span><br><span class="line">GATEWAY=<span class="number">192.168</span><span class="number">.19</span><span class="number">.1</span></span><br></pre></td></tr></table></figure></p>
+<p><code>[root@server_2 network-scripts]# vim ifcfg-team0-port1</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NAME=team0-port1</span><br><span class="line">DEVICE=eno33554992</span><br><span class="line">ONBOOT=yes</span><br><span class="line">TEAM_MASTER=team0</span><br><span class="line">DEVICETYPE=TeamPort</span><br></pre></td></tr></table></figure></p>
+<p><code>[root@server_2 network-scripts]# vim ifcfg-team0-port2</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NAME=team0-port2</span><br><span class="line">DEVICE=eno50332216</span><br><span class="line">ONBOOT=yes</span><br><span class="line">TEAM_MASTER=team0</span><br><span class="line">DEVICETYPE=TeamPort</span><br></pre></td></tr></table></figure></p>
+<p><code>[root@server_2 network-scripts]# systemctl restart network</code><br><code>[root@server_2 network-scripts]# ip addr</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">8</span>: team0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc noqueue state UP</span><br><span class="line">    link/ether <span class="number">00</span>:<span class="number">0</span>c:<span class="number">29</span>:<span class="number">36</span>:ce:<span class="number">1</span>a brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet <span class="number">192.168</span><span class="number">.19</span><span class="number">.202</span>/<span class="number">24</span> brd <span class="number">192.168</span><span class="number">.19</span><span class="number">.255</span> scope global team0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::<span class="number">20</span>c:<span class="number">29f</span>f:fe36:ce1a/<span class="number">64</span> scope link</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure></p>
+<p><code>[root@server_2 network-scripts]# nmcli connection show --active</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NAME         UUID                                  TYPE            DEVICE</span><br><span class="line">team0-port2  <span class="number">131891f</span>6-d45a<span class="number">-42f</span>7<span class="number">-0f</span>6d<span class="number">-877668e7</span>a054  <span class="number">802</span><span class="number">-3</span>-ethernet  eno50332216</span><br><span class="line">team0-port1  <span class="number">52</span>c7a66a<span class="number">-0f</span>c6-dec3<span class="number">-3</span>c0f<span class="number">-652871</span>d89b75  <span class="number">802</span><span class="number">-3</span>-ethernet  eno33554992</span><br><span class="line">team0        <span class="number">702</span>de3eb<span class="number">-2e80</span><span class="number">-897</span>c-fd52-cd0494dd8123  team            team0</span><br></pre></td></tr></table></figure></p>
+<p><code>[root@server_2 network-scripts]# ping 192.168.19.102 -I team0</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PING <span class="number">192.168</span><span class="number">.19</span><span class="number">.102</span> (<span class="number">192.168</span><span class="number">.19</span><span class="number">.102</span>) from <span class="number">192.168</span><span class="number">.19</span><span class="number">.202</span> team0: <span class="number">56</span>(<span class="number">84</span>) bytes of data.</span><br><span class="line"><span class="number">64</span> bytes from <span class="number">192.168</span><span class="number">.19</span><span class="number">.102</span>: icmp_seq=<span class="number">10</span> ttl=<span class="number">64</span> time=<span class="number">0.776</span> ms</span><br><span class="line"><span class="number">64</span> bytes from <span class="number">192.168</span><span class="number">.19</span><span class="number">.102</span>: icmp_seq=<span class="number">11</span> ttl=<span class="number">64</span> time=<span class="number">0.413</span> ms</span><br><span class="line"><span class="number">64</span> bytes from <span class="number">192.168</span><span class="number">.19</span><span class="number">.102</span>: icmp_seq=<span class="number">12</span> ttl=<span class="number">64</span> time=<span class="number">0.424</span> ms</span><br><span class="line">^C</span><br><span class="line">--- <span class="number">192.168</span><span class="number">.19</span><span class="number">.102</span> ping statistics ---</span><br><span class="line"><span class="number">12</span> packets transmitted, <span class="number">3</span> received, <span class="number">75</span>% packet loss, time <span class="number">11001</span>ms</span><br><span class="line">rtt min/avg/max/mdev = <span class="number">0.413</span>/<span class="number">0.537</span>/<span class="number">0.776</span>/<span class="number">0.170</span> ms</span><br></pre></td></tr></table></figure></p>
+<h1 id="网桥"><a href="#网桥" class="headerlink" title="网桥"></a>网桥</h1><h2 id="使用nmcli"><a href="#使用nmcli" class="headerlink" title="使用nmcli"></a>使用nmcli</h2><h2 id="手工写配置文件"><a href="#手工写配置文件" class="headerlink" title="手工写配置文件"></a>手工写配置文件</h2><h1 id="综合实验：两张网卡链路聚合，在和第三张网卡组成网桥"><a href="#综合实验：两张网卡链路聚合，在和第三张网卡组成网桥" class="headerlink" title="综合实验：两张网卡链路聚合，在和第三张网卡组成网桥"></a>综合实验：两张网卡链路聚合，在和第三张网卡组成网桥</h1>
       
     </div>
     
@@ -451,7 +454,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://Jiantajiyi.github.io/post/5ea5d52e.html" title="为MIUI添加人脸解锁">http://Jiantajiyi.github.io/post/5ea5d52e.html</a>
+    <a href="http://Jiantajiyi.github.io/post/d2e19130.html" title="使用nmcli设置网络">http://Jiantajiyi.github.io/post/d2e19130.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -466,7 +469,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/教程/" rel="tag"># 教程</a>
+            <a href="/tags/RHCE/" rel="tag"># RHCE</a>
           
         </div>
       
@@ -479,8 +482,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/post/3ffe6d5a.html" rel="next" title="自定义QQ动态图像的教程">
-                <i class="fa fa-chevron-left"></i> 自定义QQ动态图像的教程
+              <a href="/post/3125c0a4.html" rel="next" title="ISCSI服务的搭建">
+                <i class="fa fa-chevron-left"></i> ISCSI服务的搭建
               </a>
             
           </div>
@@ -488,10 +491,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/post/1e20b564.html" rel="prev" title="微信透明头像">
-                微信透明头像 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -653,7 +652,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#玩腻了指纹解锁，试试看人脸识别吧，FaceID-For-MIUI9-MI5"><span class="nav-number">1.</span> <span class="nav-text">玩腻了指纹解锁，试试看人脸识别吧，FaceID For MIUI9_MI5</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#解Bootloader锁"><span class="nav-number">1.1.</span> <span class="nav-text">解Bootloader锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#刷第三方Recovery"><span class="nav-number">1.2.</span> <span class="nav-text">刷第三方Recovery</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进入rec"><span class="nav-number">1.3.</span> <span class="nav-text">进入rec</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#刷入卡刷包"><span class="nav-number">1.4.</span> <span class="nav-text">刷入卡刷包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重启大功告成"><span class="nav-number">1.5.</span> <span class="nav-text">重启大功告成</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不刷第三方rec的方法"><span class="nav-number">2.</span> <span class="nav-text">不刷第三方rec的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#还是解Bootloader锁"><span class="nav-number">2.1.</span> <span class="nav-text">还是解Bootloader锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载资源"><span class="nav-number">2.2.</span> <span class="nav-text">下载资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装两个APP"><span class="nav-number">2.3.</span> <span class="nav-text">安装两个APP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取root权限并赋予权限"><span class="nav-number">2.4.</span> <span class="nav-text">获取root权限并赋予权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#替换文件"><span class="nav-number">2.5.</span> <span class="nav-text">替换文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reboot-大功告成！"><span class="nav-number">2.6.</span> <span class="nav-text">Reboot 大功告成！</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#给新添加的网卡配置IP地址"><span class="nav-number">1.</span> <span class="nav-text">给新添加的网卡配置IP地址</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在server1上使用nmcli"><span class="nav-number">1.1.</span> <span class="nav-text">在server1上使用nmcli</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在server2上手工写配置文件"><span class="nav-number">1.2.</span> <span class="nav-text">在server2上手工写配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一张网卡配置多个IP地址"><span class="nav-number">1.3.</span> <span class="nav-text">一张网卡配置多个IP地址</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#链路聚合"><span class="nav-number">2.</span> <span class="nav-text">链路聚合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#server1使用nmcli"><span class="nav-number">2.1.</span> <span class="nav-text">server1使用nmcli</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#server2手工写配置文件"><span class="nav-number">2.2.</span> <span class="nav-text">server2手工写配置文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网桥"><span class="nav-number">3.</span> <span class="nav-text">网桥</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用nmcli"><span class="nav-number">3.1.</span> <span class="nav-text">使用nmcli</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#手工写配置文件"><span class="nav-number">3.2.</span> <span class="nav-text">手工写配置文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#综合实验：两张网卡链路聚合，在和第三张网卡组成网桥"><span class="nav-number">4.</span> <span class="nav-text">综合实验：两张网卡链路聚合，在和第三张网卡组成网桥</span></a></li></ol></div>
             
 
           </div>
