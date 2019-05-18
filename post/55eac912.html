@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="这里写标签," />
+  <meta name="keywords" content="RHCE," />
 
 
 
@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="这里写介绍">
-<meta name="keywords" content="这里写标签">
+<meta name="description" content="防火墙一些策略">
+<meta name="keywords" content="RHCE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="firewall设置">
 <meta property="og:url" content="http://Jiantajiyi.github.io/post/55eac912.html">
 <meta property="og:site_name" content="践踏记忆">
-<meta property="og:description" content="这里写介绍">
+<meta property="og:description" content="防火墙一些策略">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-18T03:52:21.603Z">
+<meta property="og:updated_time" content="2019-05-18T16:21:00.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="firewall设置">
-<meta name="twitter:description" content="这里写介绍">
+<meta name="twitter:description" content="防火墙一些策略">
 
 
 
@@ -319,8 +319,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-18T11:52:21+08:00">
-                2019-05-18
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-19T00:21:00+08:00">
+                2019-05-19
               </time>
             
           </span>
@@ -338,8 +338,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/这里写分类/" itemprop="url" rel="index">
-                    <span itemprop="name">这里写分类</span>
+                  <a href="/categories/RHCE/" itemprop="url" rel="index">
+                    <span itemprop="name">RHCE</span>
                   </a>
                 </span>
 
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  10
+                  1.1k
                 </span>
               
 
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  6
                 </span>
               
             </div>
@@ -417,8 +417,33 @@
       
 
       
-        <script src="\assets\js\APlayer.min.js"> </script><p><center>这里写介绍<center><br><a id="more"></a></center></center></p>
-<p>这里写文章</p>
+        <script src="\assets\js\APlayer.min.js"> </script><p><center>防火墙一些策略<center><br><a id="more"></a></center></center></p>
+<h1 id="管理firewalld"><a href="#管理firewalld" class="headerlink" title="管理firewalld"></a>管理firewalld</h1><p>要求：server1上使用默认work区域，并且只放行来自server2的https流量<br>查看默认工作区域<br><code>[root@server_1 ~]# firewall-cmd --get-default-zone</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public</span><br></pre></td></tr></table></figure></p>
+<p>查看所有可设置区域<br><code>[root@server_1 ~]# firewall-cmd --get-zones</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">block dmz drop external home internal public trusted work</span><br></pre></td></tr></table></figure></p>
+<p>设置默认工作区域<br><code>[root@server_1 ~]# firewall-cmd --set-default-zone=work</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">success</span><br></pre></td></tr></table></figure></p>
+<p>添加允许work区域的https流量<br><code>[root@server_1 ~]# firewall-cmd --zone=work --add-service=https --per</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">success</span><br></pre></td></tr></table></figure></p>
+<p>添加允许work区域的server2主机<br><code>[root@server_1 ~]# firewall-cmd --zone=work --add-source=192.168.19.201/32 --per</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">success</span><br></pre></td></tr></table></figure></p>
+<p>重启防火墙以生效<br><code>[root@server_1 ~]# systemctl restart firewalld</code><br>查看配置<br><code>[root@server_1 ~]# firewall-cmd --list-all</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">work (default)</span><br><span class="line">  interfaces:</span><br><span class="line">  sources: 192.168.19.201/32</span><br><span class="line">  services: dhcpv6-client https ipp-client ssh</span><br><span class="line">  ports:</span><br><span class="line">  masquerade: no</span><br><span class="line">  forward-ports:</span><br><span class="line">  icmp-blocks:</span><br><span class="line">  rich rules:</span><br></pre></td></tr></table></figure></p>
+<p>测试：结果应为http显示<strong>no route to host</strong>，https显示正常<br><code>[root@server_2 ~]# curl 192.168.19.101</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl: (7) Failed connect to 192.168.19.101:80; No route to host</span><br></pre></td></tr></table></figure></p>
+<p><code>[root@server_2 ~]# curl -k https://192.168.19.101</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this is https test!</span><br></pre></td></tr></table></figure></p>
+<p>结果与预期相符</p>
+<h1 id="富规则"><a href="#富规则" class="headerlink" title="富规则"></a>富规则</h1><h2 id="要求1：拒绝public区域来自server2的br0网桥的所有流量"><a href="#要求1：拒绝public区域来自server2的br0网桥的所有流量" class="headerlink" title="要求1：拒绝public区域来自server2的br0网桥的所有流量"></a>要求1：拒绝public区域来自server2的br0网桥的所有流量</h2><p>默认区域改为public<br><code>[root@server_1 conf.d]# firewall-cmd --set-default-zone=public</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">success</span><br></pre></td></tr></table></figure></p>
+<p>删除之前在work区域的设置，因为一个源只能属于一个zone<br><code>[root@server_1 conf.d]# firewall-cmd --per --zone=work --remove-source=192.168.19.201/32</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">success</span><br></pre></td></tr></table></figure></p>
+<p><code>[root@server_1 conf.d]# systemctl restart firewalld</code><br><code>[root@server_1 conf.d]# firewall-cmd --get-default-zone</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public</span><br></pre></td></tr></table></figure></p>
+<p>添加富规则拒绝server2上br0网桥的流量<br><code>[root@server_1 conf.d]# firewall-cmd --per --zone=public --add-rich-rule &#39;rule family=ipv4 source address=192.168.19.202/32 reject&#39;</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">success</span><br></pre></td></tr></table></figure></p>
+<p>查看配置<br><code>[root@server_1 conf.d]# firewall-cmd --list-all</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public (default)</span><br><span class="line">  interfaces:</span><br><span class="line">  sources:</span><br><span class="line">  services: dhcpv6-client ssh</span><br><span class="line">  ports: </span><br><span class="line">  masquerade: no</span><br><span class="line">  forward-ports:</span><br><span class="line">  icmp-blocks:</span><br><span class="line">  rich rules:</span><br><span class="line">        rule family=&quot;ipv4&quot; source address=&quot;192.168.19.202/32&quot; reject</span><br></pre></td></tr></table></figure></p>
+<p>使用br0测试<br><code>[root@server_2 ~]# ping 192.168.19.101 -I br0</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PING 192.168.19.101 (192.168.19.101) from 192.168.19.202 br0: 56(84) bytes of data.</span><br><span class="line">From 192.168.19.101 icmp_seq=11 Destination Port Unreachable</span><br><span class="line">From 192.168.19.101 icmp_seq=12 Destination Port Unreachable</span><br><span class="line">From 192.168.19.101 icmp_seq=13 Destination Port Unreachable</span><br><span class="line">From 192.168.19.101 icmp_seq=14 Destination Port Unreachable</span><br><span class="line">From 192.168.19.101 icmp_seq=15 Destination Port Unreachable</span><br><span class="line">^C</span><br><span class="line">--- 192.168.19.101 ping statistics ---</span><br><span class="line">15 packets transmitted, 0 received, +5 errors, 100% packet loss, time 14004ms</span><br></pre></td></tr></table></figure></p>
+<p>使用默认网卡测试<br><code>[root@server_2 ~]# ping 192.168.19.101 -I eno16777736</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PING 192.168.19.101 (192.168.19.101) from 192.168.19.201 eno16777736: 56(84) bytes of data.</span><br><span class="line">64 bytes from 192.168.19.101: icmp_seq=1 ttl=64 time=0.405 ms</span><br><span class="line">64 bytes from 192.168.19.101: icmp_seq=2 ttl=64 time=0.417 ms</span><br><span class="line">64 bytes from 192.168.19.101: icmp_seq=3 ttl=64 time=0.483 ms</span><br><span class="line">64 bytes from 192.168.19.101: icmp_seq=4 ttl=64 time=0.511 ms</span><br><span class="line">^C</span><br><span class="line">--- 192.168.19.101 ping statistics ---</span><br><span class="line">4 packets transmitted, 4 received, 0% packet loss, time 3001ms</span><br><span class="line">rtt min/avg/max/mdev = 0.405/0.454/0.511/0.044 ms</span><br></pre></td></tr></table></figure></p>
+<p>结果正确</p>
+<h2 id="要求2：记录http访问日志"><a href="#要求2：记录http访问日志" class="headerlink" title="要求2：记录http访问日志"></a>要求2：记录http访问日志</h2><p>3s记录一次<br><code>[root@server_1 conf.d]# firewall-cmd --per --add-rich-rule &#39;rule family=ipv4 source address=192.168.19.0/24 service name=&quot;http&quot; log level=notice prefix=&quot;NEW HTTP&quot; limit value=&quot;3/s&quot; accept&#39;</code><br>server2上测试<br><code>[root@server_2 ~]# curl 192.168.19.101</code><br>同时在server1上查看<br><code>[root@server_1 conf.d]# tail -f /var/log/messages</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">May 18 23:31:59 server_1 kernel: NEW HTTPIN=eno16777736 OUT= MAC=00:0c:29:1c:2a:5b:00:0c:29:36:ce:06:08:00 SRC=192.168.19.201 DST=192.168.19.101 LEN=60 TOS=0x00 PREC=0x00 TTL=64 ID=25688 DF PROTO=TCP SPT=59424 DPT=80 WINDOW=29200 RES=0x00 SYN URGP=0</span><br></pre></td></tr></table></figure></p>
+<h1 id="伪装和端口转发"><a href="#伪装和端口转发" class="headerlink" title="伪装和端口转发"></a>伪装和端口转发</h1><p>server1设置server2的ssh连接443端口转发为本地22端口<br><code>[root@server_1 conf.d]# firewall-cmd --per --add-rich-rule &#39;rule family=&quot;ipv4&quot; source address=&quot;192.168.19.201/32&quot; forward-port port=&quot;443&quot; protocol=&quot;tcp&quot; to-port=&quot;22&quot;&#39;</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">success</span><br></pre></td></tr></table></figure></p>
+<p>server2上测试<br><code>[root@server_2 ~]# ssh 192.168.19.101 -p 443</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host &apos;192.168.19.101 (192.168.19.101)&apos; can&apos;t be established.</span><br><span class="line">ECDSA key fingerprint is a2:4e:3e:3e:d5:8c:c4:23:3b:67:dd:3c:44:0f:dd:d7.</span><br><span class="line">Are you sure you want to continue connecting (yes/no)?</span><br></pre></td></tr></table></figure></p>
+<p>结果正确</p>
+<h1 id="网络端口的Selinux标记"><a href="#网络端口的Selinux标记" class="headerlink" title="网络端口的Selinux标记"></a>网络端口的Selinux标记</h1><p>要求：在server2上使用8388端口访问server1的web服务<br>修改配置文件<br><code>[root@server_1 conf.d]# vim vhost.conf</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">LISTEN 8388</span><br><span class="line">&lt;VirtualHost 192.168.19.101:8388&gt;</span><br><span class="line">DocumentRoot /www/8388</span><br><span class="line">ServerName 192.168.19.101</span><br><span class="line">ServerAdmin root@localhost</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure></p>
+<p>创建对应目录<br><code>[root@server_1 conf.d]# mkdir /www/8388</code><br>写入内容<br><code>[root@server_1 conf.d]# echo this is port 8388 test! &gt; /www/8388/index.html</code><br>由于之前已对/www目录打过selinux标签，所以这里只需要restore<br><code>[root@server_1 conf.d]# restorecon -vvFR /www/</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">restorecon reset /www/8388 context unconfined_u:object_r:httpd_sys_content_t:s0-&gt;system_u:object_r:httpd_sys_content_t:s0</span><br><span class="line">restorecon reset /www/8388/index.html context unconfined_u:object_r:httpd_sys_content_t:s0-&gt;system_u:object_r:httpd_sys_content_t:s0</span><br></pre></td></tr></table></figure></p>
+<p>同时也要对端口打标签<br><code>[root@server_1 conf.d]# semanage port -a -t http_port_t -p tcp 8388</code><br>最后重启http服务<br><code>[root@server_1 conf.d]# systemctl restart httpd</code><br>防火墙放行8388端口<br><code>[root@server_1 conf.d]# firewall-cmd --add-port=8388/tcp --per</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">success</span><br></pre></td></tr></table></figure></p>
+<p>重启防火墙<br><code>[root@server_1 conf.d]# systemctl restart firewalld</code><br>server2上测试<br><code>[root@server_2 ~]# curl 192.168.19.101:8388</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this is port 8388 test!</span><br></pre></td></tr></table></figure></p>
+<p>结果正确</p>
 
       
     </div>
@@ -454,7 +479,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/这里写标签/" rel="tag"># 这里写标签</a>
+            <a href="/tags/RHCE/" rel="tag"># RHCE</a>
           
         </div>
       
@@ -535,8 +560,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -566,7 +600,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -577,7 +611,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -623,6 +657,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#管理firewalld"><span class="nav-number">1.</span> <span class="nav-text">管理firewalld</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#富规则"><span class="nav-number">2.</span> <span class="nav-text">富规则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#要求1：拒绝public区域来自server2的br0网桥的所有流量"><span class="nav-number">2.1.</span> <span class="nav-text">要求1：拒绝public区域来自server2的br0网桥的所有流量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#要求2：记录http访问日志"><span class="nav-number">2.2.</span> <span class="nav-text">要求2：记录http访问日志</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#伪装和端口转发"><span class="nav-number">3.</span> <span class="nav-text">伪装和端口转发</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络端口的Selinux标记"><span class="nav-number">4.</span> <span class="nav-text">网络端口的Selinux标记</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -659,7 +709,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">20.8k</span>
+    <span title="Site words total count">22k</span>
   
 </div>
 
@@ -679,7 +729,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共20.8k字</span>
+  <span class="post-count">博客全站共22k字</span>
 </div>
         
 
