@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="践踏记忆">
 <meta property="og:description" content="防火墙一些策略">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-18T16:21:00.155Z">
+<meta property="og:updated_time" content="2019-05-19T10:09:46.133Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="firewall设置">
 <meta name="twitter:description" content="防火墙一些策略">
@@ -319,7 +319,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-19T00:21:00+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-19T18:09:46+08:00">
                 2019-05-19
               </time>
             
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.1k
+                  1.3k
                 </span>
               
 
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6
+                  7
                 </span>
               
             </div>
@@ -435,7 +435,13 @@
 <p>使用br0测试<br><code>[root@server_2 ~]# ping 192.168.19.101 -I br0</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PING 192.168.19.101 (192.168.19.101) from 192.168.19.202 br0: 56(84) bytes of data.</span><br><span class="line">From 192.168.19.101 icmp_seq=11 Destination Port Unreachable</span><br><span class="line">From 192.168.19.101 icmp_seq=12 Destination Port Unreachable</span><br><span class="line">From 192.168.19.101 icmp_seq=13 Destination Port Unreachable</span><br><span class="line">From 192.168.19.101 icmp_seq=14 Destination Port Unreachable</span><br><span class="line">From 192.168.19.101 icmp_seq=15 Destination Port Unreachable</span><br><span class="line">^C</span><br><span class="line">--- 192.168.19.101 ping statistics ---</span><br><span class="line">15 packets transmitted, 0 received, +5 errors, 100% packet loss, time 14004ms</span><br></pre></td></tr></table></figure></p>
 <p>使用默认网卡测试<br><code>[root@server_2 ~]# ping 192.168.19.101 -I eno16777736</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PING 192.168.19.101 (192.168.19.101) from 192.168.19.201 eno16777736: 56(84) bytes of data.</span><br><span class="line">64 bytes from 192.168.19.101: icmp_seq=1 ttl=64 time=0.405 ms</span><br><span class="line">64 bytes from 192.168.19.101: icmp_seq=2 ttl=64 time=0.417 ms</span><br><span class="line">64 bytes from 192.168.19.101: icmp_seq=3 ttl=64 time=0.483 ms</span><br><span class="line">64 bytes from 192.168.19.101: icmp_seq=4 ttl=64 time=0.511 ms</span><br><span class="line">^C</span><br><span class="line">--- 192.168.19.101 ping statistics ---</span><br><span class="line">4 packets transmitted, 4 received, 0% packet loss, time 3001ms</span><br><span class="line">rtt min/avg/max/mdev = 0.405/0.454/0.511/0.044 ms</span><br></pre></td></tr></table></figure></p>
 <p>结果正确</p>
-<h2 id="要求2：记录http访问日志"><a href="#要求2：记录http访问日志" class="headerlink" title="要求2：记录http访问日志"></a>要求2：记录http访问日志</h2><p>3s记录一次<br><code>[root@server_1 conf.d]# firewall-cmd --per --add-rich-rule &#39;rule family=ipv4 source address=192.168.19.0/24 service name=&quot;http&quot; log level=notice prefix=&quot;NEW HTTP&quot; limit value=&quot;3/s&quot; accept&#39;</code><br>server2上测试<br><code>[root@server_2 ~]# curl 192.168.19.101</code><br>同时在server1上查看<br><code>[root@server_1 conf.d]# tail -f /var/log/messages</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">May 18 23:31:59 server_1 kernel: NEW HTTPIN=eno16777736 OUT= MAC=00:0c:29:1c:2a:5b:00:0c:29:36:ce:06:08:00 SRC=192.168.19.201 DST=192.168.19.101 LEN=60 TOS=0x00 PREC=0x00 TTL=64 ID=25688 DF PROTO=TCP SPT=59424 DPT=80 WINDOW=29200 RES=0x00 SYN URGP=0</span><br></pre></td></tr></table></figure></p>
+<h2 id="要求2：允许sercer2放问80-tcp的web服务"><a href="#要求2：允许sercer2放问80-tcp的web服务" class="headerlink" title="要求2：允许sercer2放问80/tcp的web服务"></a>要求2：允许sercer2放问80/tcp的web服务</h2><p>未添加富规则之前<br>server1查看配置<br><code>[root@server_1 ~]# firewall-cmd --list-all</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public (default)</span><br><span class="line">  interfaces:</span><br><span class="line">  sources:</span><br><span class="line">  services: dhcpv6-client nfs samba ssh</span><br><span class="line">  ports:  3260/tcp </span><br><span class="line">  masquerade: no</span><br><span class="line">  forward-ports:</span><br><span class="line">  icmp-blocks:</span><br><span class="line">  rich rules:</span><br></pre></td></tr></table></figure></p>
+<p>server2测试<br><code>[root@server_2 ~]# curl 192.168.19.101</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl: (7) Failed connect to 192.168.19.101:80; No route to host</span><br></pre></td></tr></table></figure></p>
+<p>server1添加富规则<br><code>[root@server_1 ~]# firewall-cmd --add-rich-rule &#39;rule family=ipv4 source address=192.168.19.201/32 destination address=192.168.19.101/32 port port=80 protocol=tcp accept&#39; --per</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">success</span><br></pre></td></tr></table></figure></p>
+<p>重启防火墙<br><code>[root@server_1 ~]# systemctl restart firewalld</code><br>重新查看配置<br><code>[root@server_1 ~]# firewall-cmd --list-all</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public (default)</span><br><span class="line">  interfaces:</span><br><span class="line">  sources:</span><br><span class="line">  services: dhcpv6-client nfs samba ssh</span><br><span class="line">  ports: 3260/tcp </span><br><span class="line">  masquerade: no</span><br><span class="line">  forward-ports:</span><br><span class="line">  icmp-blocks:</span><br><span class="line">  rich rules:</span><br><span class="line">        rule family=&quot;ipv4&quot; source address=&quot;192.168.19.201/32&quot; destination address=&quot;192.168.19.101/32&quot; port port=&quot;80&quot; protocol=&quot;tcp&quot; accept</span><br></pre></td></tr></table></figure></p>
+<p>server2测试<br><code>[root@server_2 ~]# curl 192.168.19.101</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this is http test!</span><br></pre></td></tr></table></figure></p>
+<p>结果正确</p>
+<h2 id="要求3：记录http访问日志"><a href="#要求3：记录http访问日志" class="headerlink" title="要求3：记录http访问日志"></a>要求3：记录http访问日志</h2><p>3s记录一次<br><code>[root@server_1 conf.d]# firewall-cmd --per --add-rich-rule &#39;rule family=ipv4 source address=192.168.19.0/24 service name=&quot;http&quot; log level=notice prefix=&quot;NEW HTTP&quot; limit value=&quot;3/s&quot; accept&#39;</code><br>server2上测试<br><code>[root@server_2 ~]# curl 192.168.19.101</code><br>同时在server1上查看<br><code>[root@server_1 conf.d]# tail -f /var/log/messages</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">May 18 23:31:59 server_1 kernel: NEW HTTPIN=eno16777736 OUT= MAC=00:0c:29:1c:2a:5b:00:0c:29:36:ce:06:08:00 SRC=192.168.19.201 DST=192.168.19.101 LEN=60 TOS=0x00 PREC=0x00 TTL=64 ID=25688 DF PROTO=TCP SPT=59424 DPT=80 WINDOW=29200 RES=0x00 SYN URGP=0</span><br></pre></td></tr></table></figure></p>
 <h1 id="伪装和端口转发"><a href="#伪装和端口转发" class="headerlink" title="伪装和端口转发"></a>伪装和端口转发</h1><p>server1设置server2的ssh连接443端口转发为本地22端口<br><code>[root@server_1 conf.d]# firewall-cmd --per --add-rich-rule &#39;rule family=&quot;ipv4&quot; source address=&quot;192.168.19.201/32&quot; forward-port port=&quot;443&quot; protocol=&quot;tcp&quot; to-port=&quot;22&quot;&#39;</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">success</span><br></pre></td></tr></table></figure></p>
 <p>server2上测试<br><code>[root@server_2 ~]# ssh 192.168.19.101 -p 443</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host &apos;192.168.19.101 (192.168.19.101)&apos; can&apos;t be established.</span><br><span class="line">ECDSA key fingerprint is a2:4e:3e:3e:d5:8c:c4:23:3b:67:dd:3c:44:0f:dd:d7.</span><br><span class="line">Are you sure you want to continue connecting (yes/no)?</span><br></pre></td></tr></table></figure></p>
 <p>结果正确</p>
@@ -666,7 +672,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#管理firewalld"><span class="nav-number">1.</span> <span class="nav-text">管理firewalld</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#富规则"><span class="nav-number">2.</span> <span class="nav-text">富规则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#要求1：拒绝public区域来自server2的br0网桥的所有流量"><span class="nav-number">2.1.</span> <span class="nav-text">要求1：拒绝public区域来自server2的br0网桥的所有流量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#要求2：记录http访问日志"><span class="nav-number">2.2.</span> <span class="nav-text">要求2：记录http访问日志</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#伪装和端口转发"><span class="nav-number">3.</span> <span class="nav-text">伪装和端口转发</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络端口的Selinux标记"><span class="nav-number">4.</span> <span class="nav-text">网络端口的Selinux标记</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#管理firewalld"><span class="nav-number">1.</span> <span class="nav-text">管理firewalld</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#富规则"><span class="nav-number">2.</span> <span class="nav-text">富规则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#要求1：拒绝public区域来自server2的br0网桥的所有流量"><span class="nav-number">2.1.</span> <span class="nav-text">要求1：拒绝public区域来自server2的br0网桥的所有流量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#要求2：允许sercer2放问80-tcp的web服务"><span class="nav-number">2.2.</span> <span class="nav-text">要求2：允许sercer2放问80/tcp的web服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#要求3：记录http访问日志"><span class="nav-number">2.3.</span> <span class="nav-text">要求3：记录http访问日志</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#伪装和端口转发"><span class="nav-number">3.</span> <span class="nav-text">伪装和端口转发</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络端口的Selinux标记"><span class="nav-number">4.</span> <span class="nav-text">网络端口的Selinux标记</span></a></li></ol></div>
             
 
           </div>
@@ -709,7 +715,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22k</span>
+    <span title="Site words total count">22.2k</span>
   
 </div>
 
@@ -729,7 +735,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共22k字</span>
+  <span class="post-count">博客全站共22.2k字</span>
 </div>
         
 
