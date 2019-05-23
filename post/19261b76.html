@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="践踏记忆">
 <meta property="og:description" content="自己买服务器搭建ssr">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-23T03:24:38.613Z">
+<meta property="og:updated_time" content="2019-05-23T09:01:14.989Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建ssr">
 <meta name="twitter:description" content="自己买服务器搭建ssr">
@@ -319,7 +319,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-23T11:24:38+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-23T17:01:14+08:00">
                 2019-05-23
               </time>
             
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  227
+                  618
                 </span>
               
 
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  3
                 </span>
               
             </div>
@@ -423,12 +423,47 @@
 <li><a href="https://www.vultr.com/" target="_blank" rel="external">Vultr</a></li>
 </ol>
 <h1 id="安装ssr一键脚本-shadowsocks"><a href="#安装ssr一键脚本-shadowsocks" class="headerlink" title="安装ssr一键脚本(shadowsocks)"></a>安装ssr一键脚本(shadowsocks)</h1><p>脚本1：适用于CentOS 7<br><code>wget --no-check-certificate https://freed.ga/github/shadowsocksR.sh; bash shadowsocksR.sh</code><br>脚本2：建议使用<br><code>wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssrmu.sh &amp;&amp; chmod +x ssrmu.sh &amp;&amp; bash ssrmu.sh</code></p>
-<h1 id="安装锐速-serverSpeeder"><a href="#安装锐速-serverSpeeder" class="headerlink" title="安装锐速(serverSpeeder)"></a>安装锐速(serverSpeeder)</h1><ol>
+<h1 id="安装加速器"><a href="#安装加速器" class="headerlink" title="安装加速器"></a>安装加速器</h1><p>注意锐速和bbr不能共存</p>
+<h2 id="锐速-serverSpeeder"><a href="#锐速-serverSpeeder" class="headerlink" title="锐速(serverSpeeder)"></a>锐速(serverSpeeder)</h2><ol>
 <li>更换内核（centos7 x64）<br><code>wget --no-check-certificate -O rskernel.sh https://raw.githubusercontent.com/uxh/shadowsocks_bash/master/rskernel.sh &amp;&amp; bash rskernel.sh</code></li>
 <li>安装脚本<br><code>yum install net-tools -y &amp;&amp; wget --no-check-certificate -O appex.sh https://raw.githubusercontent.com/0oVicero0/serverSpeeder_Install/master/appex.sh &amp;&amp; bash appex.sh install</code></li>
 </ol>
-<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><p>启动：<code>systemctl restart shadowsocks</code><br>停止：<code>systemctl stop shadowsocks</code><br>状态：<code>systemctl status shadowsocks</code></p>
-<h1 id="多用户"><a href="#多用户" class="headerlink" title="多用户"></a>多用户</h1><p>修改/etc/shadowsocks.json<br>删除server_port和password字段<br>增加如下字段<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;port_password&quot;:&#123;</span><br><span class="line">        &quot;端口1&quot;:&quot;密码1&quot;,</span><br><span class="line">        &quot;端口2&quot;:&quot;密码2&quot;,</span><br><span class="line">        &quot;端口3&quot;:&quot;密码3&quot;,</span><br><span class="line">        &quot;端口4&quot;:&quot;密码4&quot;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure></p>
+<h2 id="谷歌BBR，推荐"><a href="#谷歌BBR，推荐" class="headerlink" title="谷歌BBR，推荐"></a>谷歌BBR，推荐</h2><ol>
+<li><p>开启 BBR 要求 4.10 以上版本 Linux 内核，可使用如下命令查看当前内核版本：<br><code>uname -r</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5.1.4-1.el7.elrepo.x86_64</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>如果当前内核版本低于 4.10，可使用 ELRepo 源更新：</strong>否则跳过此步骤</p>
+<ul>
+<li><code>rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</code></li>
+<li><code>rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm</code></li>
+<li><code>yum --enablerepo=elrepo-kernel install kernel-ml -y</code></li>
+</ul>
+</li>
+<li>修改grub2引导<br>查看内核列表<br><code>egrep ^menuentry /etc/grub2.cfg | cut -f 2 -d \&#39;</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CentOS Linux (5.1.4-1.el7.elrepo.x86_64) 7 (Core)</span><br><span class="line">CentOS Linux (3.10.0-229.1.2.el7.x86_64) 7 (Core)</span><br><span class="line">CentOS Linux (3.10.0-957.12.2.el7.x86_64) 7 (Core)</span><br><span class="line">CentOS Linux (3.10.0-957.5.1.el7.x86_64) 7 (Core)</span><br><span class="line">CentOS Linux (3.10.0-957.el7.x86_64) 7 (Core)</span><br><span class="line">CentOS Linux (0-rescue-20190215172108590907433256076310) 7 (Core)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>设置启动项为0<br><code>grub2-set-default 0</code><br>重启<br><code>reboot</code></p>
+<ol>
+<li>开启bbr<br>编辑/etc/sysctl.conf<br><code>vim /etc/sysctl.conf</code><br>增加如下字段<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net.core.default_qdisc = fq</span><br><span class="line">net.ipv4.tcp_congestion_control = bbr</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>执行<br><code>sysctl -p</code></p>
+<ol>
+<li>查看是否成功<br><code>sysctl net.ipv4.tcp_available_congestion_control</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net.ipv4.tcp_available_congestion_control = reno cubic bbr</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><code>sysctl -n net.ipv4.tcp_congestion_control</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bbr</span><br></pre></td></tr></table></figure></p>
+<p><code>lsmod | grep bbr</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcp_bbr                20480  18</span><br></pre></td></tr></table></figure></p>
+<p>出现如上信息或类似则说明bbr启用成功</p>
+<h1 id="对于使用脚本1时一些操作"><a href="#对于使用脚本1时一些操作" class="headerlink" title="对于使用脚本1时一些操作"></a>对于使用脚本1时一些操作</h1><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p>启动：<code>systemctl restart shadowsocks</code><br>停止：<code>systemctl stop shadowsocks</code><br>状态：<code>systemctl status shadowsocks</code></p>
+<h2 id="添加多用户"><a href="#添加多用户" class="headerlink" title="添加多用户"></a>添加多用户</h2><p>修改/etc/shadowsocks.json<br>删除server_port和password字段<br>增加如下字段<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;port_password&quot;:&#123;</span><br><span class="line">        &quot;端口1&quot;:&quot;密码1&quot;,</span><br><span class="line">        &quot;端口2&quot;:&quot;密码2&quot;,</span><br><span class="line">        &quot;端口3&quot;:&quot;密码3&quot;,</span><br><span class="line">        &quot;端口4&quot;:&quot;密码4&quot;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure></p>
+<h1 id="安装speedtest命令行测试工具"><a href="#安装speedtest命令行测试工具" class="headerlink" title="安装speedtest命令行测试工具"></a>安装speedtest命令行测试工具</h1><ol>
+<li>安装git<br><code>yum install git</code></li>
+<li>安装speedtest<br><code>git clone https://github.com/sivel/speedtest-cli.git</code></li>
+<li>默认安装当前用户家目录的speedtest-cli目录<br><code>cd speedtest-cli/</code></li>
+<li>运行<br><code>python speedtest.py</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Retrieving speedtest.net configuration...</span><br><span class="line">Testing from Alibaba (47.89.244.93)...</span><br><span class="line">Retrieving speedtest.net server list...</span><br><span class="line">Selecting best server based on ping...</span><br><span class="line">Hosted by Unwired (San Francisco, CA) [26.04 km]: 8.594 ms</span><br><span class="line">Testing download speed................................................................................</span><br><span class="line">Download: 111.05 Mbit/s</span><br><span class="line">Testing upload speed................................................................................................</span><br><span class="line">Upload: 99.38 Mbit/s</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 
       
     </div>
@@ -647,7 +682,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#购买境外服务器"><span class="nav-number">1.</span> <span class="nav-text">购买境外服务器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装ssr一键脚本-shadowsocks"><span class="nav-number">2.</span> <span class="nav-text">安装ssr一键脚本(shadowsocks)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装锐速-serverSpeeder"><span class="nav-number">3.</span> <span class="nav-text">安装锐速(serverSpeeder)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用命令"><span class="nav-number">4.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多用户"><span class="nav-number">5.</span> <span class="nav-text">多用户</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#购买境外服务器"><span class="nav-number">1.</span> <span class="nav-text">购买境外服务器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装ssr一键脚本-shadowsocks"><span class="nav-number">2.</span> <span class="nav-text">安装ssr一键脚本(shadowsocks)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装加速器"><span class="nav-number">3.</span> <span class="nav-text">安装加速器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#锐速-serverSpeeder"><span class="nav-number">3.1.</span> <span class="nav-text">锐速(serverSpeeder)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#谷歌BBR，推荐"><span class="nav-number">3.2.</span> <span class="nav-text">谷歌BBR，推荐</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对于使用脚本1时一些操作"><span class="nav-number">4.</span> <span class="nav-text">对于使用脚本1时一些操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">4.1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加多用户"><span class="nav-number">4.2.</span> <span class="nav-text">添加多用户</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装speedtest命令行测试工具"><span class="nav-number">5.</span> <span class="nav-text">安装speedtest命令行测试工具</span></a></li></ol></div>
             
 
           </div>
@@ -690,7 +725,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22.4k</span>
+    <span title="Site words total count">22.8k</span>
   
 </div>
 
@@ -710,7 +745,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共22.4k字</span>
+  <span class="post-count">博客全站共22.8k字</span>
 </div>
         
 
