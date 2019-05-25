@@ -3,34 +3,34 @@
   <entry>
     <title><![CDATA[定时计划-crontab+at]]></title>
     <url>%2Fpost%2F8a4ba22d.html</url>
-    <content type="text"><![CDATA[这里写介绍 这里写文章]]></content>
+    <content type="text"><![CDATA[定时计划 #]]></content>
       <categories>
-        <category>这里写分类</category>
+        <category>RHCE</category>
       </categories>
       <tags>
-        <tag>这里写标签</tag>
+        <tag>RHCE</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[进程管理-ps]]></title>
     <url>%2Fpost%2F34bfb222.html</url>
-    <content type="text"><![CDATA[这里写介绍 这里写文章]]></content>
+    <content type="text"><![CDATA[进程管理-ps #]]></content>
       <categories>
-        <category>这里写分类</category>
+        <category>RHCE</category>
       </categories>
       <tags>
-        <tag>这里写标签</tag>
+        <tag>RHCE</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[DHCP-Server]]></title>
     <url>%2Fpost%2F702b79ee.html</url>
-    <content type="text"><![CDATA[这里写介绍 这里写文章]]></content>
+    <content type="text"><![CDATA[搭建DHCP服务器 单网段配置注意关闭VMware的dhcp服务 服务器配置 安装软件包[root@server_1 ~]# yum install dhcp\* -y 编辑配置文件[root@server_1 ~]# vim /etc/dhcp/dhcpd.conf 1234567891011ddns-update-style interim;ignore client-updates;subnet 192.168.19.0 netmask 255.255.255.0&#123; option routers 192.168.19.1; option subnet-mask 255.255.255.0; option domain-name-servers 114.114.114.114; range dynamic-bootp 192.168.19.10 192.168.19.20; default-lease-time 60; max-lease-time 60;&#125; 重启服务[root@server_1 ~]# systemctl restart dhcpd 客户端测试 设置为自动获取[root@server_2 ~]# nmcli connection modify eno33554960 ipv4.method auto 重启网卡[root@server_2 ~]# ifdown eno33554960[root@server_2 ~]# ifup eno33554960 重新查看[root@server_2 ~]# ifconfig eno33554960 | grep 191inet 192.168.19.14 netmask 255.255.255.0 broadcast 192.168.19.255 结果正确 分配固定IP服务器配置 编辑配置文件，增加如下字段[root@server_1 ~]# vim /etc/dhcp/dhcpd.conf 12345host server_2&#123; hardware ethernet 00:0c:29:69:71:a4; fixed-address 192.168.19.22;&#125; 重启服务[root@server_1 ~]# systemctl restart dhcpd 客户端测试 重启网卡[root@server_2 ~]# ifdown eno33554960[root@server_2 ~]# ifup eno33554960 查看IP地址[root@server_2 ~]# ifconfig eno33554960 | grep 191inet 192.168.19.22 netmask 255.255.255.0 broadcast 192.168.19.255 结果正确]]></content>
       <categories>
-        <category>这里写分类</category>
+        <category>RHCE</category>
       </categories>
       <tags>
-        <tag>这里写标签</tag>
+        <tag>RHCE</tag>
       </tags>
   </entry>
   <entry>
