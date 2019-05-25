@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="CCNP," />
+  <meta name="keywords" content="RHCE," />
 
 
 
@@ -86,26 +86,18 @@
 
 
 
-<meta name="description" content="不是不做，时候未到。">
-<meta name="keywords" content="CCNP">
+<meta name="description" content="搭建DNS服务器">
+<meta name="keywords" content="RHCE">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spanning Tree">
-<meta property="og:url" content="http://Jiantajiyi.github.io/post/a3fe09f4.html">
+<meta property="og:title" content="DNS-Server">
+<meta property="og:url" content="http://Jiantajiyi.github.io/post/fb4bca23.html">
 <meta property="og:site_name" content="践踏记忆">
-<meta property="og:description" content="不是不做，时候未到。">
+<meta property="og:description" content="搭建DNS服务器">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://jiantajiyi.github.io/images/spt/01.png">
-<meta property="og:image" content="http://jiantajiyi.github.io/images/spt/02.png">
-<meta property="og:image" content="http://jiantajiyi.github.io/images/spt/03.png">
-<meta property="og:image" content="http://jiantajiyi.github.io/images/spt/04.png">
-<meta property="og:image" content="http://jiantajiyi.github.io/images/spt/05.png">
-<meta property="og:image" content="http://jiantajiyi.github.io/images/spt/06.png">
-<meta property="og:image" content="http://jiantajiyi.github.io/images/spt/07.png">
-<meta property="og:updated_time" content="2019-03-08T09:52:35.039Z">
+<meta property="og:updated_time" content="2019-05-25T13:08:41.524Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spanning Tree">
-<meta name="twitter:description" content="不是不做，时候未到。">
-<meta name="twitter:image" content="http://jiantajiyi.github.io/images/spt/01.png">
+<meta name="twitter:title" content="DNS-Server">
+<meta name="twitter:description" content="搭建DNS服务器">
 
 
 
@@ -135,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://Jiantajiyi.github.io/post/a3fe09f4.html"/>
+  <link rel="canonical" href="http://Jiantajiyi.github.io/post/fb4bca23.html"/>
 
 
 
 
 
-  <title>Spanning Tree | 践踏记忆</title>
+  <title>DNS-Server | 践踏记忆</title>
   
 
 
@@ -282,7 +274,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://Jiantajiyi.github.io/post/a3fe09f4.html">
+    <link itemprop="mainEntityOfPage" href="http://Jiantajiyi.github.io/post/fb4bca23.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LiRuolin">
@@ -299,7 +291,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Spanning Tree</h1>
+          <h1 class="post-title" itemprop="name headline">DNS-Server</h1>
         
 
         <div class="post-meta">
@@ -311,8 +303,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-02T21:23:04+08:00">
-                2018-12-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-25T16:54:11+08:00">
+                2019-05-25
               </time>
             
 
@@ -327,8 +319,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-08T17:52:35+08:00">
-                2019-03-08
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-25T21:08:41+08:00">
+                2019-05-25
               </time>
             
           </span>
@@ -346,8 +338,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CCNP/" itemprop="url" rel="index">
-                    <span itemprop="name">CCNP</span>
+                  <a href="/categories/RHCE/" itemprop="url" rel="index">
+                    <span itemprop="name">RHCE</span>
                   </a>
                 </span>
 
@@ -363,7 +355,7 @@
 
           
           
-             <span id="/post/a3fe09f4.html" class="leancloud_visitors" data-flag-title="Spanning Tree">
+             <span id="/post/fb4bca23.html" class="leancloud_visitors" data-flag-title="DNS-Server">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -388,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.2k
+                  661
                 </span>
               
 
@@ -404,7 +396,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  8
+                  3
                 </span>
               
             </div>
@@ -425,79 +417,63 @@
       
 
       
-        <script src="\assets\js\APlayer.min.js"> </script><p><center>不是不做，时候未到。<center><br><a id="more"></a></center></center></p>
-<h1 id="Spanning-Tree-生成树"><a href="#Spanning-Tree-生成树" class="headerlink" title="Spanning Tree 生成树"></a>Spanning Tree 生成树</h1><h2 id="目的："><a href="#目的：" class="headerlink" title="目的："></a>目的：</h2><p>交换机之间存在冗余（备份）路径，以及交换机的泛洪机制，导致交换机之间产生 二层交换环路。</p>
-<h2 id="造成影响："><a href="#造成影响：" class="headerlink" title="造成影响："></a>造成影响：</h2><p><img src="/images/spt/01.png" alt=""><br>1.广播风暴（数据在两个或多个交换机之间大量重复传递）<br>2.MAC地址表不稳定 （交换机会将某个主机的mac地址重复删除和学习）<br>3.数据帧的重复拷贝（由于ARP会泛洪和数据的重复传递，导致A主机发送的ARP会被交换机重复发送到B主机）</p>
-<h2 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h2><p>逻辑性阻塞某个接口. 在交换机之间，通过发送比较信息，选择在环路之间应该被阻塞的接口.</p>
-<h2 id="生成树类型："><a href="#生成树类型：" class="headerlink" title="生成树类型："></a>生成树类型：</h2><ul>
-<li>公有生成树：<br>STP（又称为802.1D  标准生成树）<br>RSTP（802.1W 快速生成树）<br>MST（802.1S 多生成树）</li>
-<li>私有生成树：<br>PVST（基于VLAN的标准生成树，每一VLAN都有自己的一套生成树）<br>PVRST+（基于VLAN的快速生成树）</li>
-</ul>
-<h2 id="发送比较信息"><a href="#发送比较信息" class="headerlink" title="发送比较信息"></a>发送比较信息</h2><p>BPDU—网桥协议数据单元<br>配置BPDU：config-BPDU<br>拓扑变更BPDU：TCN-BPDU<br><img src="/images/spt/02.png" alt=""></p>
-<ul>
-<li><strong>Protocol ID</strong>：<br>协议号，代表我是一个BPDU报文</li>
-<li><strong>Version</strong>：<br>表示是哪一种BPDU（802.1D或者802.1W等）</li>
-<li><strong>Message Type</strong>：<br>表示是配置BPDU还是拓扑变更BPDU</li>
-<li><strong>Flags</strong>：<br>802.1D中描述是拓扑变更BPDU还是拓扑变更BPDU确认，占2Bit。802.1W和802.1S中，用于整个生成树的选举，占6Bit。</li>
-<li><strong>Root ID</strong>：<br>根标识符 ，在一棵生成树中表示唯一根.使用最优质的BID表示，即根交换机的RID=BID。</li>
-<li><strong>Cost Of Path</strong>：<br>也称为CoP值，路径开销，描述了本接口到达根的路径开销值之和，数值越小越优<br>10G—–2<br>1G——–4<br>100M—–19<br>10M—–100<br>默认根网桥上所有接口的COP值为0，经过不同的链路增加对应的cost</li>
-<li><strong>Bridge ID </strong>：网桥标识符，用于表示该交换机或网桥在交换网络中的唯一性<br>构成：BID 优先级  +  mac地址<br>注意：<br>PVST、PVRSTP+ 的构成 ：BID优先级+VLAN ID+mac地址<br>MST 的构成 ：BID优先级+ instance ID + mac地址</li>
-</ul>
-<ol>
-<li>BID优先级：<br>默认值为32768，数值范围0-65535（BID优先级数值必须为4096的倍数， 范围也可称为0-61440）,再使用BID优先级时，数值越小越优.</li>
-<li>Mac 地址：<br>本交换机上背板地址池中最小的MAC地址，mac地址越小越优</li>
-<li>Port ID ：端口标识符，用于表示本交换机上接口的唯一性标识<br>构成： PID优先级+port number</li>
-<li>PID优先级：<br>默认为128，数值范围0-255（PID优先级必须为16的倍数，所有范围 0-240）,数值越小越优</li>
-<li>Port number：端口号，表示了本交换机该接口的唯一性，一般为接口的端口号标 识，数值越小越优.</li>
+        <script src="\assets\js\APlayer.min.js"> </script><p><center>搭建DNS服务器<center><br><a id="more"></a></center></center></p>
+<h1 id="安装软件包"><a href="#安装软件包" class="headerlink" title="安装软件包"></a>安装软件包</h1><ol>
+<li>安装软件包<br><code>[root@server_1 ~]# yum install bind\* -y</code></li>
+<li><p>查看包<br><code>[root@server_1 ~]# rpm -qa bind</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind-9.9.4-29.el7.x86_64</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>防火墙放行dns服务<br><code>[root@server_1 ~]# firewall-cmd --add-service=dns --per</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">success</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启防火墙<br><code>[root@server_1 ~]# firewall-cmd --reload</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">success</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<ul>
-<li><strong> Message age</strong> ：<br>消息时间，也称消息的老化时间，实际上等于MAC地址老化时间， 默认300s，即300s不发任何数据就删掉此mac地址，在启用portfast等特性时变为15s</li>
-<li><strong>Max age</strong> ：<br>最大等待时间，默认20s，hello数据包的超时时间以及从blocking进入    listening 状态等待时间</li>
-<li><strong>Hellotime</strong> ：<br>默认2s，配置BPDU的发送间隔</li>
-<li><strong>Forward delay</strong> ：<br>转发延时，默认15s ，在生成树中状态切换间隔<br>Listening进入learning进入forwarding 时间隔</li>
-</ul>
-<h2 id="交换网络中交换机的角色以及端口状态切换"><a href="#交换网络中交换机的角色以及端口状态切换" class="headerlink" title="交换网络中交换机的角色以及端口状态切换"></a>交换网络中交换机的角色以及端口状态切换</h2><p>交换机角色：分为根网桥和非根网桥<br>端口角色：根端口、指定端口、非指定端口（阻塞端口）<br>端口状态切换：</p>
-<ul>
-<li>Blocking ：阻塞状态，不能发送BPDU，接收BPDU，不能发送和接收数据，被动等待 20s进入下一状态</li>
-<li>Listening ：监听状态，可以发送和接收BPDU，不能发送和接收数据，进行STP选举， 被动等待一个 forward delay 15s进入下一状态</li>
-<li>Learning ：学习状态，可以发送和接收BPDU，不能发送和接收数据，可以学习BPDU 中的源MAC地址（MAC地  址学习状态），被动等待一个forward delay 15s进入下一 状态，生成树的选举在此过程中完成。</li>
-<li>Forwarding ：转发状态，可以发送、接收BPDU和数据，mac地址学习和生成树接口 状态切换完成</li>
-</ul>
-<h2 id="生成树选举"><a href="#生成树选举" class="headerlink" title="生成树选举"></a>生成树选举</h2><p><strong>选举顺序</strong>：根网桥-&gt;根端口-&gt;指定端口-&gt;非指定端口(阻塞端口)<br><strong>根网桥选举</strong>：具有最优BID的交换机为根网桥</p>
-<ul>
-<li>根端口：用于接收来自根的BPDU信息，只能存在于非跟网桥之上，并且一个交换机 只能存在一个.</li>
-</ul>
-<p><strong>根端口选举</strong><br>1.最小COP值<br>2.发送方最小的BID<br>3.发送方的PID</p>
-<ul>
-<li>指定端口：用于发送或转发BPDU信息，存在于每条链路中，一条只能存在一个指定 端口，根网桥的所有接口全为指定端口</li>
-</ul>
-<p><strong>指定端口选举</strong><br>1.接口所属交换机上根端口到达根网桥的COP值<br>2.本交换机BID<br>3.本地的PID<br><strong>阻塞端口</strong><br>逻辑上打破接口.</p>
-<h2 id="选举详细过程"><a href="#选举详细过程" class="headerlink" title="选举详细过程"></a>选举详细过程</h2><p><img src="/images/spt/03.png" alt=""><br><strong>根网桥选举</strong> 这里假设sw1 BID优先级最高（bid优先级以此类推），故sw1为根网桥<br><strong>根端口选举</strong></p>
-<ul>
-<li>SW1：无根端口</li>
-<li>SW2：<br>1.最小cop（接口1和2）相同<br>2.发送方都为根网桥，bid相同<br>3.根网桥接口5的pid小，故选出根端口为接口1</li>
-<li>SW3：<br>1.最小cop（接口1和2）相同<br>2.发送方都为根网桥，bid相同<br>3.根网桥接口1的pid小，故选出根端口为接口1</li>
-<li>SW4：<br>1.最小cop（接口1和2）相同<br>2.发送方都为根网桥，bid相同<br>3.根网桥接口3的pid小，故选出根端口为接口1</li>
-<li>SW5：<br>1.最小cop（接口1和2）相同<br>2.发送方sw3的bid小于sw4的bid，故选出根端口为接口1</li>
-<li>SW6：<br>1.最小cop（接口1和2）相同<br>2.发送方sw3的bid小于sw4的bid，故选出根端口为接口1</li>
-</ul>
-<p><strong>根端口选举结果如图</strong><br><img src="/images/spt/04.png" alt=""></p>
-<p><strong>指定端口选举</strong></p>
-<ul>
-<li>SW1：所有接口都为指定端口</li>
-<li>SW2：接口2一定为阻塞端口<br>1.接口3和4与sw2相比， cop相同，接口5与6和sw4相比，cop相同<br>2.本交换机BID优于sw3和sw4，故接口3，4，5，6为指定端口</li>
-<li>SW3：sw5和sw6有唯一的根端口，故接口7和8一定为指定端口，接口2，3，4一定为阻塞端口<br>1.接口5和6与sw4相比cop相同<br>2.本交换机BID优于sw4，故接口5和6为指定端口</li>
-<li>SW4：接口2，3，4一定为阻塞端口<br>1.接口7与sw5相比，cop小于sw5，故接口7为指定端口<br>接口8与sw6相比，cop小于sw6，故接口8为指定端口</li>
-<li>SW5：接口2为阻塞端口</li>
-<li>SW6：接口2为阻塞端口<br><img src="/images/spt/05.png" alt=""></li>
-</ul>
-<h2 id="指定端口选举第三条的特殊情况"><a href="#指定端口选举第三条的特殊情况" class="headerlink" title="指定端口选举第三条的特殊情况"></a>指定端口选举第三条的特殊情况</h2><p><img src="/images/spt/06.png" alt=""><br>假设sw1和sw2的cop相同，sw2的bid优，但sw2的接口1和2不能同时成为指定端口，否则会出环，所以比第三条接口pid，由于sw2的接口1的pid小于接口2的pid，故接口1成为指定端口<br>生成树拓扑结构变化<br>由发生改变的交换机的根端口向根网桥发送拓扑变更BPDU，根网桥收到后以自己为根重新收敛，之后在向之前发送拓扑变更BPDU的根端口发送拓扑变更BPDU确认</p>
-<h2 id="生成树的控制"><a href="#生成树的控制" class="headerlink" title="生成树的控制"></a>生成树的控制</h2><p><img src="/images/spt/07.png" alt=""></p>
-<h3 id="根网桥的控制"><a href="#根网桥的控制" class="headerlink" title="根网桥的控制"></a>根网桥的控制</h3><p><strong>设置BID优先级</strong>，默认为32768，修改sw2的bid为32768-4096=28672<br><code>sw2(config)#spanning-tree vlan 1 priority 28672</code><br><code>This bridge is the root</code><br><strong>设置主根和备份根</strong>，设置sw1为主根，sw2为备份根<br><code>sw1(config)#spanning-tree vlan 1 root primary</code><br><code>sw2(config)#spanning-tree vlan 1 root secondary</code><br>主根的优先级变为32768-2*4096=24576<br><code>Bridge ID  Priority    24577  (priority 24576 sys-id-ext 1)</code><br>备份根的优先级变为32768-4096=28672<br><code>Bridge ID  Priority    28673  (priority 28672 sys-id-ext 1)</code></p>
-<h3 id="控制根端口的位置"><a href="#控制根端口的位置" class="headerlink" title="控制根端口的位置"></a>控制根端口的位置</h3><p><strong>修改链路cost值</strong>：修改sw2的cost为120<br><code>sw2(config-if)#spanning-tree vlan 1 cost 120</code><br>修改前<br><code>Et0/0               Root FWD 100       128.1    Shr</code><br><code>Et0/1               Altn BLK 100       128.2    Shr</code><br>修改后<br><code>Et0/0               Altn BLK 120       128.1    Shr</code><br><code>Et0/1               Root LIS 100       128.2    Shr</code><br><strong>修改发送方BID</strong>：与上述修改根网桥之修改BID优先级方法一致<br><strong>修改发送方PID</strong>：修改sw1的e0/2接口pid为192<br><code>sw1(config-if)#spanning-tree vlan 1 port-priority 192</code><br>修改之后sw1<br><code>Et0/2               Desg FWD 100       192.3    Shr</code><br>修改之前sw3<br><code>Et0/2               Root FWD 100       128.3    Shr</code><br><code>Et0/3               Altn BLK 100       128.4    Shr</code><br>修改之后sw3<br><code>Et0/2               Altn BLK 100       128.3    Shr</code><br><code>Et0/3               Root LIS 100       128.4    Shr</code></p>
-<h2 id="802-1D生成树优缺点"><a href="#802-1D生成树优缺点" class="headerlink" title="802.1D生成树优缺点"></a>802.1D生成树优缺点</h2><p>优点：树少、简单、<br>缺点：生成树收敛速度慢（默认共计收敛时间50s），基于计时器收敛、不能进行负 载分担</p>
-<h2 id="PVST优缺点"><a href="#PVST优缺点" class="headerlink" title="PVST优缺点"></a>PVST优缺点</h2><p>优点：简单、支持负载分担<br>缺点：生成树收敛速度慢，生成树数量较多.</p>
-<h2 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h2><p>1.使用spanning tree 的增强特性  portfast、backbonefast 、uplinkfast<br>2.使用RSTP或MST</p>
+<h1 id="正向解析"><a href="#正向解析" class="headerlink" title="正向解析"></a>正向解析</h1><h2 id="服务器端配置"><a href="#服务器端配置" class="headerlink" title="服务器端配置"></a>服务器端配置</h2><ol>
+<li><p>编辑主配置文件，修改如下字段为any<br><code>[root@server_1 ~]# vim /etc/named.conf</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">options &#123;</span><br><span class="line">        listen-on port 53 &#123; any; &#125;;</span><br><span class="line">        allow-query     &#123; any; &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑从配置文件，增加如下内容<br><code>[root@server_1 ~]# vim /etc/named.rfc1912.zones</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">zone &quot;test.com&quot; IN &#123;</span><br><span class="line">        type master;</span><br><span class="line">        file &quot;named.test.com&quot;;</span><br><span class="line">        allow-update &#123; none; &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑数据库文件<br><code>[root@server_1 ~]# cd /var/named/</code><br><code>[root@server_1 named]# cp named.localhost named.test.com</code><br><code>[root@server_1 named]# vim named.test.com</code></p>
+</li>
+<li><p>修改为如下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$TTL 1D</span><br><span class="line">@       IN SOA  test.com        root.test.com. (</span><br><span class="line">                                        0       ; serial</span><br><span class="line">                                        1D      ; refresh</span><br><span class="line">                                        1H      ; retry</span><br><span class="line">                                        1W      ; expire</span><br><span class="line">                                        3H )    ; minimum</span><br><span class="line">        IN      NS      ns.test.com.</span><br><span class="line">ns      IN      A       192.168.19.101</span><br><span class="line">www     IN      A       192.168.19.101</span><br><span class="line">mail    IN      A       192.168.19.101</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改数据库文件所属组为named组<br><code>[root@server_1 named]# chgrp named named.test.com</code></p>
+</li>
+<li>重启服务<br><code>[root@server_1 named]# systemctl restart named</code></li>
+</ol>
+<h2 id="客户端测试"><a href="#客户端测试" class="headerlink" title="客户端测试"></a>客户端测试</h2><p><code>[root@server_2 ~]# nslookup www.test.com</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Server:         192.168.19.101</span><br><span class="line">Address:        192.168.19.101#53</span><br><span class="line"></span><br><span class="line">Name:   www.test.com</span><br><span class="line">Address: 192.168.19.101</span><br></pre></td></tr></table></figure></p>
+<p><code>[root@server_2 ~]# nslookup mail.test.com</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Server:         192.168.19.101</span><br><span class="line">Address:        192.168.19.101#53</span><br><span class="line"></span><br><span class="line">Name:   mail.test.com</span><br><span class="line">Address: 192.168.19.101</span><br></pre></td></tr></table></figure></p>
+<h1 id="反向解析"><a href="#反向解析" class="headerlink" title="反向解析"></a>反向解析</h1><h2 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h2><ol>
+<li><p>编辑从配置文件<br><code>[root@server_1 named]# vim /etc/named.rfc1912.zones</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">zone &quot;19.168.192.in-addr.arpa&quot; IN &#123;</span><br><span class="line">        type master;</span><br><span class="line">        file &quot;named.19.168.192.in-addr.arpa&quot;;</span><br><span class="line">        allow-update &#123; none; &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑数据库文件<br><code>[root@server_1 named]# cp named.localhost named.19.168.192.in-addr.arpa</code><br><code>[root@server_1 named]# vim named.19.168.192.in-addr.arpa</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$TTL 1D</span><br><span class="line">@       IN SOA  test.com        root.test.com. (</span><br><span class="line">                                        0       ; serial</span><br><span class="line">                                        1D      ; refresh</span><br><span class="line">                                        1H      ; retry</span><br><span class="line">                                        1W      ; expire</span><br><span class="line">                                        3H )    ; minimum</span><br><span class="line">        IN      NS      ns.test.com.</span><br><span class="line">101     IN      PTR     www.test.com.</span><br><span class="line">101     IN      PTR     mail.test.com.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改数据库文件所属组为named组<br><code>[root@server_1 named]# chgrp named named.19.168.192.in-addr.arpa</code></p>
+</li>
+<li>重启服务<br><code>[root@server_1 named]# systemctl restart named</code></li>
+</ol>
+<h2 id="客户端测试-1"><a href="#客户端测试-1" class="headerlink" title="客户端测试"></a>客户端测试</h2><p><code>[root@server_2 ~]# nslookup 192.168.19.101</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Server:         192.168.19.101</span><br><span class="line">Address:        192.168.19.101#53</span><br><span class="line"></span><br><span class="line">101.19.168.192.in-addr.arpa      name = www.test.com.</span><br><span class="line">101.19.168.192.in-addr.arpa      name = mail.test.com.</span><br></pre></td></tr></table></figure></p>
+<h1 id="备用服务器"><a href="#备用服务器" class="headerlink" title="备用服务器"></a>备用服务器</h1><ol>
+<li>安装软件包<br><code>[root@server_2 ~]# yum install bind\* -y</code></li>
+<li><p>编辑从配置文件<br><code>[root@server_2 ~]# vim /etc/named.rfc1912.zones</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">zone &quot;test.com&quot; IN &#123;</span><br><span class="line">        type slave;</span><br><span class="line">        file &quot;slaves/named.test.com&quot;;</span><br><span class="line">        masters &#123;192.168.19.101;&#125;;</span><br><span class="line">&#125;;</span><br><span class="line">zone &quot;19.168.192.in-addr.arpa&quot; IN &#123;</span><br><span class="line">        type slave;</span><br><span class="line">        file &quot;slaves/named.192.168.19&quot;;</span><br><span class="line">        masters &#123;192.168.19.101;&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看同步的文件<br><code>[root@server_2 ~]# ll /var/named/slaves/</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">total 0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启服务<br><code>[root@server_2 ~]# systemctl restart named</code></p>
+</li>
+<li>再次查看<br><code>[root@server_2 ~]# ll /var/named/slaves/</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">total 8</span><br><span class="line">-rw-r--r--. 1 named named 281 May 25 20:59 named.192.168.19</span><br><span class="line">-rw-r--r--. 1 named named 335 May 25 21:00 named.test.com</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>结果正确</strong></p>
 
       
     </div>
@@ -518,7 +494,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://Jiantajiyi.github.io/post/a3fe09f4.html" title="Spanning Tree">http://Jiantajiyi.github.io/post/a3fe09f4.html</a>
+    <a href="http://Jiantajiyi.github.io/post/fb4bca23.html" title="DNS-Server">http://Jiantajiyi.github.io/post/fb4bca23.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -533,7 +509,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/CCNP/" rel="tag"># CCNP</a>
+            <a href="/tags/RHCE/" rel="tag"># RHCE</a>
           
         </div>
       
@@ -546,8 +522,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/post/1e20b564.html" rel="next" title="微信透明头像">
-                <i class="fa fa-chevron-left"></i> 微信透明头像
+              <a href="/post/19261b76.html" rel="next" title="搭建ssr">
+                <i class="fa fa-chevron-left"></i> 搭建ssr
               </a>
             
           </div>
@@ -555,10 +531,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/post/8b042bec.html" rel="prev" title="C++复习重点">
-                C++复习重点 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -720,7 +692,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spanning-Tree-生成树"><span class="nav-number">1.</span> <span class="nav-text">Spanning Tree 生成树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#目的："><span class="nav-number">1.1.</span> <span class="nav-text">目的：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#造成影响："><span class="nav-number">1.2.</span> <span class="nav-text">造成影响：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案："><span class="nav-number">1.3.</span> <span class="nav-text">解决方案：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成树类型："><span class="nav-number">1.4.</span> <span class="nav-text">生成树类型：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发送比较信息"><span class="nav-number">1.5.</span> <span class="nav-text">发送比较信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交换网络中交换机的角色以及端口状态切换"><span class="nav-number">1.6.</span> <span class="nav-text">交换网络中交换机的角色以及端口状态切换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成树选举"><span class="nav-number">1.7.</span> <span class="nav-text">生成树选举</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选举详细过程"><span class="nav-number">1.8.</span> <span class="nav-text">选举详细过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指定端口选举第三条的特殊情况"><span class="nav-number">1.9.</span> <span class="nav-text">指定端口选举第三条的特殊情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成树的控制"><span class="nav-number">1.10.</span> <span class="nav-text">生成树的控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#根网桥的控制"><span class="nav-number">1.10.1.</span> <span class="nav-text">根网桥的控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制根端口的位置"><span class="nav-number">1.10.2.</span> <span class="nav-text">控制根端口的位置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#802-1D生成树优缺点"><span class="nav-number">1.11.</span> <span class="nav-text">802.1D生成树优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PVST优缺点"><span class="nav-number">1.12.</span> <span class="nav-text">PVST优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决办法："><span class="nav-number">1.13.</span> <span class="nav-text">解决办法：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装软件包"><span class="nav-number">1.</span> <span class="nav-text">安装软件包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正向解析"><span class="nav-number">2.</span> <span class="nav-text">正向解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器端配置"><span class="nav-number">2.1.</span> <span class="nav-text">服务器端配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端测试"><span class="nav-number">2.2.</span> <span class="nav-text">客户端测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#反向解析"><span class="nav-number">3.</span> <span class="nav-text">反向解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器配置"><span class="nav-number">3.1.</span> <span class="nav-text">服务器配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端测试-1"><span class="nav-number">3.2.</span> <span class="nav-text">客户端测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#备用服务器"><span class="nav-number">4.</span> <span class="nav-text">备用服务器</span></a></li></ol></div>
             
 
           </div>
