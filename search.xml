@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[定时计划-crontab+at]]></title>
+    <url>%2Fpost%2F8a4ba22d.html</url>
+    <content type="text"><![CDATA[这里写介绍 这里写文章]]></content>
+      <categories>
+        <category>这里写分类</category>
+      </categories>
+      <tags>
+        <tag>这里写标签</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[进程管理-ps]]></title>
+    <url>%2Fpost%2F34bfb222.html</url>
+    <content type="text"><![CDATA[这里写介绍 这里写文章]]></content>
+      <categories>
+        <category>这里写分类</category>
+      </categories>
+      <tags>
+        <tag>这里写标签</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[DHCP-Server]]></title>
+    <url>%2Fpost%2F702b79ee.html</url>
+    <content type="text"><![CDATA[这里写介绍 这里写文章]]></content>
+      <categories>
+        <category>这里写分类</category>
+      </categories>
+      <tags>
+        <tag>这里写标签</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[DNS-Server]]></title>
     <url>%2Fpost%2Ffb4bca23.html</url>
     <content type="text"><![CDATA[搭建DNS服务器 安装软件包 安装软件包[root@server_1 ~]# yum install bind\* -y 查看包[root@server_1 ~]# rpm -qa bind 1bind-9.9.4-29.el7.x86_64 防火墙放行dns服务[root@server_1 ~]# firewall-cmd --add-service=dns --per 1success 重启防火墙[root@server_1 ~]# firewall-cmd --reload 1success 正向解析服务器端配置 编辑主配置文件，修改如下字段为any[root@server_1 ~]# vim /etc/named.conf 1234options &#123; listen-on port 53 &#123; any; &#125;; allow-query &#123; any; &#125;;&#125; 编辑从配置文件，增加如下内容[root@server_1 ~]# vim /etc/named.rfc1912.zones 12345zone &quot;test.com&quot; IN &#123; type master; file &quot;named.test.com&quot;; allow-update &#123; none; &#125;;&#125;; 编辑数据库文件[root@server_1 ~]# cd /var/named/[root@server_1 named]# cp named.localhost named.test.com[root@server_1 named]# vim named.test.com 修改为如下内容 1234567891011$TTL 1D@ IN SOA test.com root.test.com. ( 0 ; serial 1D ; refresh 1H ; retry 1W ; expire 3H ) ; minimum IN NS ns.test.com.ns IN A 192.168.19.101www IN A 192.168.19.101mail IN A 192.168.19.101 修改数据库文件所属组为named组[root@server_1 named]# chgrp named named.test.com 重启服务[root@server_1 named]# systemctl restart named 客户端测试[root@server_2 ~]# nslookup www.test.com12345Server: 192.168.19.101Address: 192.168.19.101#53Name: www.test.comAddress: 192.168.19.101 [root@server_2 ~]# nslookup mail.test.com12345Server: 192.168.19.101Address: 192.168.19.101#53Name: mail.test.comAddress: 192.168.19.101 反向解析服务器配置 编辑从配置文件[root@server_1 named]# vim /etc/named.rfc1912.zones 12345zone &quot;19.168.192.in-addr.arpa&quot; IN &#123; type master; file &quot;named.19.168.192.in-addr.arpa&quot;; allow-update &#123; none; &#125;;&#125;; 编辑数据库文件[root@server_1 named]# cp named.localhost named.19.168.192.in-addr.arpa[root@server_1 named]# vim named.19.168.192.in-addr.arpa 12345678910$TTL 1D@ IN SOA test.com root.test.com. ( 0 ; serial 1D ; refresh 1H ; retry 1W ; expire 3H ) ; minimum IN NS ns.test.com.101 IN PTR www.test.com.101 IN PTR mail.test.com. 修改数据库文件所属组为named组[root@server_1 named]# chgrp named named.19.168.192.in-addr.arpa 重启服务[root@server_1 named]# systemctl restart named 客户端测试[root@server_2 ~]# nslookup 192.168.19.10112345Server: 192.168.19.101Address: 192.168.19.101#53101.19.168.192.in-addr.arpa name = www.test.com.101.19.168.192.in-addr.arpa name = mail.test.com. 备用服务器 安装软件包[root@server_2 ~]# yum install bind\* -y 编辑从配置文件[root@server_2 ~]# vim /etc/named.rfc1912.zones 12345678910zone &quot;test.com&quot; IN &#123; type slave; file &quot;slaves/named.test.com&quot;; masters &#123;192.168.19.101;&#125;;&#125;;zone &quot;19.168.192.in-addr.arpa&quot; IN &#123; type slave; file &quot;slaves/named.192.168.19&quot;; masters &#123;192.168.19.101;&#125;;&#125;; 查看同步的文件[root@server_2 ~]# ll /var/named/slaves/ 1total 0 重启服务[root@server_2 ~]# systemctl restart named 再次查看[root@server_2 ~]# ll /var/named/slaves/123total 8-rw-r--r--. 1 named named 281 May 25 20:59 named.192.168.19-rw-r--r--. 1 named named 335 May 25 21:00 named.test.com 结果正确]]></content>
