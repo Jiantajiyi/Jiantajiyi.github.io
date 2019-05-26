@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[定时计划-crontab+at]]></title>
     <url>%2Fpost%2F8a4ba22d.html</url>
-    <content type="text"><![CDATA[定时计划 #]]></content>
+    <content type="text"><![CDATA[定时计划 at命令服务进程atd 输入at +时间 输入要执行的命令 按CTRL+D结束输入[root@server_1 ~]# at 13:14at&gt; reboot nowat&gt; &lt;EOT&gt;job 3 at Sun May 26 13:14:00 201912[root@server_1 ~]# Connection to 192.168.19.101 closed by remote host.Connection to 192.168.19.101 closed. corntab命令按照预先设置的时间周期（分钟、小时、天……）重复执行用户指定的命令操作，属于周期性计划任务管理cron计划任务编辑计划任务：crontab -e [-u 用户名]查看计划任务：crontab -l [-u 用户名]删除计划任务：crontab -r [-u 用户名]]]></content>
       <categories>
         <category>RHCSA</category>
       </categories>

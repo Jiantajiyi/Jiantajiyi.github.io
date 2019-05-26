@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="践踏记忆">
 <meta property="og:description" content="定时计划">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-26T05:01:03.059Z">
+<meta property="og:updated_time" content="2019-05-26T05:18:44.850Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="定时计划-crontab+at">
 <meta name="twitter:description" content="定时计划">
@@ -319,7 +319,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-26T13:01:03+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-26T13:18:44+08:00">
                 2019-05-26
               </time>
             
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  4
+                  156
                 </span>
               
 
@@ -418,7 +418,14 @@
 
       
         <script src="\assets\js\APlayer.min.js"> </script><p><center>定时计划<center><br><a id="more"></a></center></center></p>
-<p># </p>
+<h1 id="at命令"><a href="#at命令" class="headerlink" title="at命令"></a>at命令</h1><p>服务进程atd</p>
+<ol>
+<li>输入at +时间</li>
+<li>输入要执行的命令</li>
+<li>按CTRL+D结束输入<br><code>[root@server_1 ~]# at 13:14</code><br><code>at&gt; reboot now</code><br><code>at&gt; &lt;EOT&gt;</code><br><em>job 3 at Sun May 26 13:14:00 2019</em><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@server_1 ~]# Connection to 192.168.19.101 closed by remote host.</span><br><span class="line">Connection to 192.168.19.101 closed.</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="corntab命令"><a href="#corntab命令" class="headerlink" title="corntab命令"></a>corntab命令</h1><p>按照预先设置的时间周期（分钟、小时、天……）重复执行用户指定的命令操作，属于周期性计划任务<br>管理cron计划任务<br>编辑计划任务：crontab  -e  [-u  用户名]<br>查看计划任务：crontab  -l  [-u  用户名]<br>删除计划任务：crontab  -r  [-u  用户名]</p>
 
       
     </div>
@@ -531,8 +538,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -619,6 +635,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#at命令"><span class="nav-number">1.</span> <span class="nav-text">at命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#corntab命令"><span class="nav-number">2.</span> <span class="nav-text">corntab命令</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -655,7 +687,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">25.3k</span>
+    <span title="Site words total count">25.4k</span>
   
 </div>
 
@@ -675,7 +707,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共25.3k字</span>
+  <span class="post-count">博客全站共25.4k字</span>
 </div>
         
 
