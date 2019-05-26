@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="RHCE," />
+  <meta name="keywords" content="RHCSA," />
 
 
 
@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="进程管理-ps">
-<meta name="keywords" content="RHCE">
+<meta name="description" content="进程管理-ps,top,grep,kill,nice等等">
+<meta name="keywords" content="RHCSA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="进程管理-ps">
 <meta property="og:url" content="http://Jiantajiyi.github.io/post/34bfb222.html">
 <meta property="og:site_name" content="践踏记忆">
-<meta property="og:description" content="进程管理-ps">
+<meta property="og:description" content="进程管理-ps,top,grep,kill,nice等等">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-25T14:42:53.727Z">
+<meta property="og:updated_time" content="2019-05-26T05:00:51.812Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="进程管理-ps">
-<meta name="twitter:description" content="进程管理-ps">
+<meta name="twitter:description" content="进程管理-ps,top,grep,kill,nice等等">
 
 
 
@@ -319,8 +319,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-25T22:42:53+08:00">
-                2019-05-25
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-26T13:00:51+08:00">
+                2019-05-26
               </time>
             
           </span>
@@ -338,8 +338,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RHCE/" itemprop="url" rel="index">
-                    <span itemprop="name">RHCE</span>
+                  <a href="/categories/RHCSA/" itemprop="url" rel="index">
+                    <span itemprop="name">RHCSA</span>
                   </a>
                 </span>
 
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5
+                  1.6k
                 </span>
               
 
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  7
                 </span>
               
             </div>
@@ -417,8 +417,65 @@
       
 
       
-        <script src="\assets\js\APlayer.min.js"> </script><p><center>进程管理-ps<center><br><a id="more"></a></center></center></p>
-<p># </p>
+        <script src="\assets\js\APlayer.min.js"> </script><p><center>进程管理-ps,top,grep,kill,nice等等<center><br><a id="more"></a></center></center></p>
+<h1 id="ps命令"><a href="#ps命令" class="headerlink" title="ps命令"></a>ps命令</h1><p><strong>用途：查看静态的进程统计信息</strong></p>
+<h2 id="ps-aux"><a href="#ps-aux" class="headerlink" title="ps aux"></a><code>ps aux</code></h2><ol>
+<li><p>查看<br><code>[root@server_1 ~]# ps aux</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</span><br><span class="line">root          1  0.0  0.3 125952  6768 ?        Ss   10:29   0:01 /usr/lib/system</span><br><span class="line">root          2  0.0  0.0      0     0 ?        S    10:29   0:00 [kthreadd]</span><br><span class="line">root          3  0.0  0.0      0     0 ?        S    10:29   0:00 [ksoftirqd/0]</span><br><span class="line">root          7  0.0  0.0      0     0 ?        S    10:29   0:00 [migration/0]</span><br><span class="line">root          8  0.0  0.0      0     0 ?        S    10:29   0:00 [rcu_bh]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>主要输出项说明<br>USER： 用户名。<br>PID：  该进程在系统中的数字ID号，在当前系统中是唯一的；<br>%CPU： 占用CPU 时间与总时间的百分比。<br>%MEM： 占用内存与系统内存总量的百分比。<br>VSZ：  进程占用的虚拟内存空间，单位KB。<br>RSS：  进程占用的内存空间，单位KB。<br>TTY：  进程所在终端的终端号，其中桌面环境的终端窗口表示为pts/0，字符界面的终端号为ttyl-tyy6，“？”表示该进程不占用终端。<br>STAT： 进程的状态。<br>START：进程的开始时间。<br>TIME： 已使用CPU的时间。<br>COMMAND：启动该进程的命令名称。</p>
+</li>
+</ol>
+<h2 id="ps-–elf"><a href="#ps-–elf" class="headerlink" title="ps –elf"></a><code>ps –elf</code></h2><ol>
+<li><p>查看<br><code>[root@server_1 ~]# ps -elf</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">F S UID         PID   PPID  C PRI  NI ADDR SZ WCHAN  STIME TTY          TIME CMD</span><br><span class="line">4 S root          1      0  0  80   0 - 31488 ep_pol 10:29 ?        00:00:01 /usr/lib/systemd/systemd --switched-root --system --deserialize 20</span><br><span class="line">1 S root          2      0  0  80   0 -     0 kthrea 10:29 ?        00:00:00 [kthreadd]</span><br><span class="line">1 S root          3      2  0  80   0 -     0 smpboo 10:29 ?        00:00:00 [ksoftirqd/0]</span><br><span class="line">1 S root          7      2  0 -40   - -     0 smpboo 10:29 ?        00:00:00 [migration/0]</span><br><span class="line">1 S root          8      2  0  80   0 -     0 rcu_gp 10:29 ?        00:00:00 [rcu_bh]</span><br><span class="line">1 S root          9      2  0  80   0 -     0 rcu_no 10:29 ?        00:00:00 [rcuob/0]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>主要输出项说明<br><strong>ps命令结合“-elf”选项使用时，将以长格式显示系统中所有的进程信息</strong><br>S：   进程状态，其中R 表示运行状态；S 表示休眠状态；T 表示暂停或终止状态；Z 表示僵死状态。<br>UID： 进程启动者的用户ID。<br>PID： 进程的ID。<br>PPID：父进程的ID 号。<br>C：   进程最近使用CPU 的估算。<br>PRI： 进程的优先级。<br>NI：  标准UNIX 的优先级。（越小越优先）<br>SZ：  进程占用内存空间的大小，以KB 为单位。<br>TTY： 进程所在终端的终端号，其中桌面环境的终端窗口表示为pts/0，字符界面的终端号为ttyl-tyy6，“？”表示该进程不占用终端。<br>TIME：进程从启动以来占用CPU 的总时间。尽管有的命令(如sh)已经运转了很长时间，但是它们真正使用CPU 的时间往往很短，所以该字段的值通常是00:00:00。<br>CMD： 启动该进程的命令名称。</p>
+</li>
+</ol>
+<h1 id="top命令"><a href="#top命令" class="headerlink" title="top命令"></a>top命令</h1><p><strong>用途：查看动态的进程排名信息</strong></p>
+<ol>
+<li><p>查看<br><code>[root@server_1 ~]# top</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">top - 12:04:46 up  1:35,  3 users,  load average: 0.00, 0.01, 0.05</span><br><span class="line">Tasks: 476 total,   3 running, 473 sleeping,   0 stopped,   0 zombie</span><br><span class="line">%Cpu(s):  0.3 us,  0.0 sy,  0.0 ni, 99.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">KiB Mem :  1868660 total,   897768 free,   531272 used,   439620 buff/cache</span><br><span class="line">KiB Swap:  2047996 total,  2047996 free,        0 used.  1145240 avail Mem</span><br><span class="line"></span><br><span class="line">   PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND</span><br><span class="line">  4698 root      20   0  146452   2444   1420 R  0.3  0.1   0:00.04 top</span><br><span class="line">     1 root      20   0  125952   6768   3912 S  0.0  0.4   0:01.76 systemd</span><br><span class="line">     2 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kthreadd</span><br><span class="line">     3 root      20   0       0      0      0 S  0.0  0.0   0:00.01 ksoftirqd/0</span><br><span class="line">     7 root      rt   0       0      0      0 S  0.0  0.0   0:00.00 migration/0</span><br><span class="line">     8 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcu_bh</span><br><span class="line">     9 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcuob/0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>top选项<br>按P键根据CPU占用情况对进程列表进行排序<br>按M键根据内存占用情况进行排序<br>按N键根据启动时间进行排序<br>按h键可以获得top程序的在线帮助信息<br>按q键可以正常退出top程序<br>按k结束进程（9：强制结束进程）<br>按r修改优先级（NI）<br>使用空格键可以强制更新进程状态显示</p>
+</li>
+</ol>
+<h1 id="pgrep命令"><a href="#pgrep命令" class="headerlink" title="pgrep命令"></a>pgrep命令</h1><p><strong>用途：根据特定条件查询进程PID信息</strong></p>
+<ol>
+<li>查看<br><code>[root@server_1 ~]# pgrep -l log</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">879 systemd-logind</span><br><span class="line">883 abrt-watch-log</span><br><span class="line">885 abrt-watch-log</span><br><span class="line">925 rsyslogd</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="前台启动：用户输入命令，直接执行程序"><a href="#前台启动：用户输入命令，直接执行程序" class="headerlink" title="前台启动：用户输入命令，直接执行程序"></a><strong>前台启动</strong>：用户输入命令，直接执行程序</h2><h2 id="后台启动：在命令行尾加入“-amp-”符号"><a href="#后台启动：在命令行尾加入“-amp-”符号" class="headerlink" title="后台启动：在命令行尾加入“&amp;”符号"></a><strong>后台启动</strong>：在命令行尾加入“&amp;”符号</h2><p><code>[root@server_1 ~]# cp /dev/cdrom mycd.iso &amp;</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[1] 28454</span><br></pre></td></tr></table></figure></p>
+<h2 id="Ctrl-Z-组合键"><a href="#Ctrl-Z-组合键" class="headerlink" title="Ctrl+Z 组合键"></a><strong>Ctrl+Z 组合键</strong></h2><p>将当前进程挂起，即调入后台并停止执行</p>
+<h2 id="jobs命令"><a href="#jobs命令" class="headerlink" title="jobs命令"></a><strong>jobs命令</strong></h2><p>查看处于后台的任务列表<br><code>[root@server_1 ~]# jobs</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1]-   Stopped                 cp /dev/cdrom mycd.iso </span><br><span class="line">[2]+  Stopped                 top</span><br></pre></td></tr></table></figure></p>
+<h2 id="fg命令"><a href="#fg命令" class="headerlink" title="fg命令"></a><strong>fg命令</strong></h2><p>将处于后台的进程恢复到前台运行，需指定任务序号<br><code>[root@server_1 ~]# fg 1</code></p>
+<h2 id="Ctrl-C组合键"><a href="#Ctrl-C组合键" class="headerlink" title="Ctrl+C组合键"></a><strong>Ctrl+C组合键</strong></h2><p>中断正在执行的命令</p>
+<h1 id="kill命令"><a href="#kill命令" class="headerlink" title="kill命令"></a>kill命令</h1><h2 id="kill"><a href="#kill" class="headerlink" title="kill"></a><strong>kill</strong></h2><ol>
+<li>kill用于终止指定PID号的进程</li>
+<li>-9 选项用于强制终止</li>
+<li>用法: kill -9 + 进程pid<br><code>[root@server_1 ~]# pgrep -l &quot;firewalld&quot;</code><br><em>923 firewalld</em><br><code>[root@server_1 ~]# kill -9 923</code></li>
+</ol>
+<h2 id="killall命令"><a href="#killall命令" class="headerlink" title="killall命令"></a><strong>killall命令</strong></h2><ol>
+<li>killall用于终止指定名称的所有进程</li>
+<li>-9 选项用于强制终止</li>
+<li>用法: killall -9 + 进程名称<br><code>[root@server_1 ~]# killall -9 firewalld</code></li>
+</ol>
+<h2 id="pkill"><a href="#pkill" class="headerlink" title="pkill"></a><strong>pkill</strong></h2><ol>
+<li><p>查看<br><code>[root@server_1 ~]# w | grep -v &quot;root&quot;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">14:10:10 up  6:08,  4 users,  load average: 0.00, 0.01, 0.00</span><br><span class="line">USER     TTY      FROM              LOGIN@   IDLE   JCPU   PCPU WHAT</span><br><span class="line">teacher  tty1     -                14:04    5:34   0.16s  0.16s -bash</span><br><span class="line">hackli   pts/1    173.17.17.174    14:05    4:32   0.17s  0.17s -bash</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>踢出登录到系统的可疑用户hackli<br><code>[root@server_1 ~]# pkill -9 -t pts/1</code><br><code>[root@server_1 ~]# w | grep -v &quot;root&quot;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> 14:12:22 up  6:10,  3 users,  load average: 0.00, 0.00, 0.00</span><br><span class="line">USER     TTY      FROM              LOGIN@   IDLE   JCPU   PCPU WHAT</span><br><span class="line">teacher  tty1     -                14:04    7:46   0.16s  0.16s -bash</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="nice命令"><a href="#nice命令" class="headerlink" title="nice命令"></a>nice命令</h1><h2 id="nice"><a href="#nice" class="headerlink" title="nice"></a><strong>nice</strong></h2><ol>
+<li>指定tail命令的优先级为-3<br><code>[root@server_1 ~]# nice -n -3 tail -f /var/log/messages</code></li>
+<li>一般用户是不能够设置优先级为负数的，因为如果允许普通的用户随便提高进程的优先级，势必会妨碍系统上其他重要的操作，因而只有超级用户才能够提高进程的优先级。<br><code>[redhat@server_1 ~]$ nice -n -3 tail -f /var/log/messages</code><br><em>nice: cannot set niceness: Permission denied</em></li>
+</ol>
+<h2 id="renice"><a href="#renice" class="headerlink" title="renice"></a><strong>renice</strong></h2><ol>
+<li>修改运行中tail的优先级为4<br><code>[root@server_1 ~]# ps -elf | grep tail</code><br><em>4 S root       5687   4190  0  77  <strong>-3</strong> - 26983 inotif 12:50 pts/1    00:00:00 tail -f /var/log/messages</em><br><code>[root@server_1 ~]# renice -n 4 5687</code><br><em>5687 (process ID) old priority <strong>-3</strong>, new priority <strong>4</strong></em><br><code>[root@server_1 ~]# ps -elf | grep tail</code><br><em>4 S root       5687   4190  0  84  <strong>4</strong> - 26983 inotif 12:50 pts/1    00:00:00 tail-f /var/log/messages</em></li>
+</ol>
 
       
     </div>
@@ -454,7 +511,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/RHCE/" rel="tag"># RHCE</a>
+            <a href="/tags/RHCSA/" rel="tag"># RHCSA</a>
           
         </div>
       
@@ -535,8 +592,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -623,6 +689,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ps命令"><span class="nav-number">1.</span> <span class="nav-text">ps命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ps-aux"><span class="nav-number">1.1.</span> <span class="nav-text">ps aux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ps-–elf"><span class="nav-number">1.2.</span> <span class="nav-text">ps –elf</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#top命令"><span class="nav-number">2.</span> <span class="nav-text">top命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pgrep命令"><span class="nav-number">3.</span> <span class="nav-text">pgrep命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他"><span class="nav-number">4.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前台启动：用户输入命令，直接执行程序"><span class="nav-number">4.1.</span> <span class="nav-text">前台启动：用户输入命令，直接执行程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后台启动：在命令行尾加入“-amp-”符号"><span class="nav-number">4.2.</span> <span class="nav-text">后台启动：在命令行尾加入“&”符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ctrl-Z-组合键"><span class="nav-number">4.3.</span> <span class="nav-text">Ctrl+Z 组合键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jobs命令"><span class="nav-number">4.4.</span> <span class="nav-text">jobs命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fg命令"><span class="nav-number">4.5.</span> <span class="nav-text">fg命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ctrl-C组合键"><span class="nav-number">4.6.</span> <span class="nav-text">Ctrl+C组合键</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#kill命令"><span class="nav-number">5.</span> <span class="nav-text">kill命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#kill"><span class="nav-number">5.1.</span> <span class="nav-text">kill</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#killall命令"><span class="nav-number">5.2.</span> <span class="nav-text">killall命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pkill"><span class="nav-number">5.3.</span> <span class="nav-text">pkill</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nice命令"><span class="nav-number">6.</span> <span class="nav-text">nice命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#nice"><span class="nav-number">6.1.</span> <span class="nav-text">nice</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#renice"><span class="nav-number">6.2.</span> <span class="nav-text">renice</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -659,7 +741,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">23.7k</span>
+    <span title="Site words total count">25.3k</span>
   
 </div>
 
@@ -679,7 +761,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共23.7k字</span>
+  <span class="post-count">博客全站共25.3k字</span>
 </div>
         
 

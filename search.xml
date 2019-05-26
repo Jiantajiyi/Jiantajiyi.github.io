@@ -5,21 +5,21 @@
     <url>%2Fpost%2F8a4ba22d.html</url>
     <content type="text"><![CDATA[定时计划 #]]></content>
       <categories>
-        <category>RHCE</category>
+        <category>RHCSA</category>
       </categories>
       <tags>
-        <tag>RHCE</tag>
+        <tag>RHCSA</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[进程管理-ps]]></title>
     <url>%2Fpost%2F34bfb222.html</url>
-    <content type="text"><![CDATA[进程管理-ps #]]></content>
+    <content type="text"><![CDATA[进程管理-ps,top,grep,kill,nice等等 ps命令用途：查看静态的进程统计信息 ps aux 查看[root@server_1 ~]# ps aux 123456USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMANDroot 1 0.0 0.3 125952 6768 ? Ss 10:29 0:01 /usr/lib/systemroot 2 0.0 0.0 0 0 ? S 10:29 0:00 [kthreadd]root 3 0.0 0.0 0 0 ? S 10:29 0:00 [ksoftirqd/0]root 7 0.0 0.0 0 0 ? S 10:29 0:00 [migration/0]root 8 0.0 0.0 0 0 ? S 10:29 0:00 [rcu_bh] 主要输出项说明USER： 用户名。PID： 该进程在系统中的数字ID号，在当前系统中是唯一的；%CPU： 占用CPU 时间与总时间的百分比。%MEM： 占用内存与系统内存总量的百分比。VSZ： 进程占用的虚拟内存空间，单位KB。RSS： 进程占用的内存空间，单位KB。TTY： 进程所在终端的终端号，其中桌面环境的终端窗口表示为pts/0，字符界面的终端号为ttyl-tyy6，“？”表示该进程不占用终端。STAT： 进程的状态。START：进程的开始时间。TIME： 已使用CPU的时间。COMMAND：启动该进程的命令名称。 ps –elf 查看[root@server_1 ~]# ps -elf 1234567F S UID PID PPID C PRI NI ADDR SZ WCHAN STIME TTY TIME CMD4 S root 1 0 0 80 0 - 31488 ep_pol 10:29 ? 00:00:01 /usr/lib/systemd/systemd --switched-root --system --deserialize 201 S root 2 0 0 80 0 - 0 kthrea 10:29 ? 00:00:00 [kthreadd]1 S root 3 2 0 80 0 - 0 smpboo 10:29 ? 00:00:00 [ksoftirqd/0]1 S root 7 2 0 -40 - - 0 smpboo 10:29 ? 00:00:00 [migration/0]1 S root 8 2 0 80 0 - 0 rcu_gp 10:29 ? 00:00:00 [rcu_bh]1 S root 9 2 0 80 0 - 0 rcu_no 10:29 ? 00:00:00 [rcuob/0] 主要输出项说明ps命令结合“-elf”选项使用时，将以长格式显示系统中所有的进程信息S： 进程状态，其中R 表示运行状态；S 表示休眠状态；T 表示暂停或终止状态；Z 表示僵死状态。UID： 进程启动者的用户ID。PID： 进程的ID。PPID：父进程的ID 号。C： 进程最近使用CPU 的估算。PRI： 进程的优先级。NI： 标准UNIX 的优先级。（越小越优先）SZ： 进程占用内存空间的大小，以KB 为单位。TTY： 进程所在终端的终端号，其中桌面环境的终端窗口表示为pts/0，字符界面的终端号为ttyl-tyy6，“？”表示该进程不占用终端。TIME：进程从启动以来占用CPU 的总时间。尽管有的命令(如sh)已经运转了很长时间，但是它们真正使用CPU 的时间往往很短，所以该字段的值通常是00:00:00。CMD： 启动该进程的命令名称。 top命令用途：查看动态的进程排名信息 查看[root@server_1 ~]# top 1234567891011121314top - 12:04:46 up 1:35, 3 users, load average: 0.00, 0.01, 0.05Tasks: 476 total, 3 running, 473 sleeping, 0 stopped, 0 zombie%Cpu(s): 0.3 us, 0.0 sy, 0.0 ni, 99.7 id, 0.0 wa, 0.0 hi, 0.0 si, 0.0 stKiB Mem : 1868660 total, 897768 free, 531272 used, 439620 buff/cacheKiB Swap: 2047996 total, 2047996 free, 0 used. 1145240 avail Mem PID USER PR NI VIRT RES SHR S %CPU %MEM TIME+ COMMAND 4698 root 20 0 146452 2444 1420 R 0.3 0.1 0:00.04 top 1 root 20 0 125952 6768 3912 S 0.0 0.4 0:01.76 systemd 2 root 20 0 0 0 0 S 0.0 0.0 0:00.00 kthreadd 3 root 20 0 0 0 0 S 0.0 0.0 0:00.01 ksoftirqd/0 7 root rt 0 0 0 0 S 0.0 0.0 0:00.00 migration/0 8 root 20 0 0 0 0 S 0.0 0.0 0:00.00 rcu_bh 9 root 20 0 0 0 0 S 0.0 0.0 0:00.00 rcuob/0 top选项按P键根据CPU占用情况对进程列表进行排序按M键根据内存占用情况进行排序按N键根据启动时间进行排序按h键可以获得top程序的在线帮助信息按q键可以正常退出top程序按k结束进程（9：强制结束进程）按r修改优先级（NI）使用空格键可以强制更新进程状态显示 pgrep命令用途：根据特定条件查询进程PID信息 查看[root@server_1 ~]# pgrep -l log1234879 systemd-logind883 abrt-watch-log885 abrt-watch-log925 rsyslogd 其他前台启动：用户输入命令，直接执行程序后台启动：在命令行尾加入“&amp;”符号[root@server_1 ~]# cp /dev/cdrom mycd.iso &amp;1[1] 28454 Ctrl+Z 组合键将当前进程挂起，即调入后台并停止执行 jobs命令查看处于后台的任务列表[root@server_1 ~]# jobs12[1]- Stopped cp /dev/cdrom mycd.iso [2]+ Stopped top fg命令将处于后台的进程恢复到前台运行，需指定任务序号[root@server_1 ~]# fg 1 Ctrl+C组合键中断正在执行的命令 kill命令kill kill用于终止指定PID号的进程 -9 选项用于强制终止 用法: kill -9 + 进程pid[root@server_1 ~]# pgrep -l &quot;firewalld&quot;923 firewalld[root@server_1 ~]# kill -9 923 killall命令 killall用于终止指定名称的所有进程 -9 选项用于强制终止 用法: killall -9 + 进程名称[root@server_1 ~]# killall -9 firewalld pkill 查看[root@server_1 ~]# w | grep -v &quot;root&quot; 123414:10:10 up 6:08, 4 users, load average: 0.00, 0.01, 0.00USER TTY FROM LOGIN@ IDLE JCPU PCPU WHATteacher tty1 - 14:04 5:34 0.16s 0.16s -bashhackli pts/1 173.17.17.174 14:05 4:32 0.17s 0.17s -bash 踢出登录到系统的可疑用户hackli[root@server_1 ~]# pkill -9 -t pts/1[root@server_1 ~]# w | grep -v &quot;root&quot; 123 14:12:22 up 6:10, 3 users, load average: 0.00, 0.00, 0.00USER TTY FROM LOGIN@ IDLE JCPU PCPU WHATteacher tty1 - 14:04 7:46 0.16s 0.16s -bash nice命令nice 指定tail命令的优先级为-3[root@server_1 ~]# nice -n -3 tail -f /var/log/messages 一般用户是不能够设置优先级为负数的，因为如果允许普通的用户随便提高进程的优先级，势必会妨碍系统上其他重要的操作，因而只有超级用户才能够提高进程的优先级。[redhat@server_1 ~]$ nice -n -3 tail -f /var/log/messagesnice: cannot set niceness: Permission denied renice 修改运行中tail的优先级为4[root@server_1 ~]# ps -elf | grep tail4 S root 5687 4190 0 77 -3 - 26983 inotif 12:50 pts/1 00:00:00 tail -f /var/log/messages[root@server_1 ~]# renice -n 4 56875687 (process ID) old priority -3, new priority 4[root@server_1 ~]# ps -elf | grep tail4 S root 5687 4190 0 84 4 - 26983 inotif 12:50 pts/1 00:00:00 tail-f /var/log/messages]]></content>
       <categories>
-        <category>RHCE</category>
+        <category>RHCSA</category>
       </categories>
       <tags>
-        <tag>RHCE</tag>
+        <tag>RHCSA</tag>
       </tags>
   </entry>
   <entry>
