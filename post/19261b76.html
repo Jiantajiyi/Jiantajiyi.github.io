@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="践踏记忆">
 <meta property="og:description" content="自己买服务器搭建ssr">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-23T09:43:15.109Z">
+<meta property="og:updated_time" content="2019-05-27T08:46:53.279Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建ssr">
 <meta name="twitter:description" content="自己买服务器搭建ssr">
@@ -319,8 +319,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-23T17:43:15+08:00">
-                2019-05-23
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-27T16:46:53+08:00">
+                2019-05-27
               </time>
             
           </span>
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  619
+                  763
                 </span>
               
 
@@ -466,6 +466,17 @@
 <li>默认安装当前用户家目录的speedtest-cli目录<br><code>cd speedtest-cli/</code></li>
 <li>运行<br><code>python speedtest.py</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Retrieving speedtest.net configuration...</span><br><span class="line">Testing from Alibaba (47.89.244.93)...</span><br><span class="line">Retrieving speedtest.net server list...</span><br><span class="line">Selecting best server based on ping...</span><br><span class="line">Hosted by Unwired (San Francisco, CA) [26.04 km]: 8.594 ms</span><br><span class="line">Testing download speed................................................................................</span><br><span class="line">Download: 111.05 Mbit/s</span><br><span class="line">Testing upload speed................................................................................................</span><br><span class="line">Upload: 99.38 Mbit/s</span><br></pre></td></tr></table></figure>
 </li>
+</ol>
+<h1 id="防止服务器被暴力登录ssh"><a href="#防止服务器被暴力登录ssh" class="headerlink" title="防止服务器被暴力登录ssh"></a>防止服务器被暴力登录ssh</h1><ol>
+<li>查看ssh登录失败日志<br><code>tail /var/log/secure | grep F</code></li>
+<li>查看登录ssh失败的ip以及尝试次数<br><code>cat /var/log/secure | awk &#39;/Failed/{print $(NF-3)}&#39; | sort | uniq -c | awk &#39;{print $2&quot; = &quot;$1;}&#39;</code></li>
+<li>安装软件 fail2ban<br><code>yum install fail2ban -y</code></li>
+<li><p>写配置文件<br><code>vim /etc/fail2ban/jail.local</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[DEFAULT]</span><br><span class="line">ignoreip = 127.0.0.1/8    //忽略的ip	</span><br><span class="line">bantime  = 86400		  //禁止的时间</span><br><span class="line">findtime = 600			  //尝试的时间</span><br><span class="line">maxretry = 5			  //尝试时间内的次数</span><br><span class="line">banaction = firewallcmd-ipset</span><br><span class="line">action = %(action_mwl)s</span><br><span class="line"></span><br><span class="line">[sshd]</span><br><span class="line">enabled = true</span><br><span class="line">filter  = sshd</span><br><span class="line">port    = 22</span><br><span class="line">action = %(action_mwl)s</span><br><span class="line">logpath = /var/log/secure</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启服务<br><code>systemctl restart fail2ban</code></p>
+</li>
+<li>查看历史<br><code>fail2ban-client status sshd</code></li>
 </ol>
 
       
@@ -689,7 +700,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#购买境外服务器"><span class="nav-number">1.</span> <span class="nav-text">购买境外服务器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装ssr一键脚本-shadowsocks"><span class="nav-number">2.</span> <span class="nav-text">安装ssr一键脚本(shadowsocks)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装加速器"><span class="nav-number">3.</span> <span class="nav-text">安装加速器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#锐速-serverSpeeder"><span class="nav-number">3.1.</span> <span class="nav-text">锐速(serverSpeeder)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#谷歌BBR，推荐"><span class="nav-number">3.2.</span> <span class="nav-text">谷歌BBR，推荐</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开启BBR要求4-10以上版本Linux内核，可使用如下命令查看当前内核版本："><span class="nav-number">3.2.1.</span> <span class="nav-text">开启BBR要求4.10以上版本Linux内核，可使用如下命令查看当前内核版本：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果当前内核版本低于-4-10，可使用-ELRepo-源更新：否则跳过此步骤"><span class="nav-number">3.2.2.</span> <span class="nav-text">如果当前内核版本低于 4.10，可使用 ELRepo 源更新：否则跳过此步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改grub2引导"><span class="nav-number">3.2.3.</span> <span class="nav-text">修改grub2引导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启bbr"><span class="nav-number">3.2.4.</span> <span class="nav-text">开启bbr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看是否成功"><span class="nav-number">3.2.5.</span> <span class="nav-text">查看是否成功</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对于使用脚本1时一些操作"><span class="nav-number">4.</span> <span class="nav-text">对于使用脚本1时一些操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">4.1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加多用户"><span class="nav-number">4.2.</span> <span class="nav-text">添加多用户</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装speedtest命令行测试工具"><span class="nav-number">5.</span> <span class="nav-text">安装speedtest命令行测试工具</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#购买境外服务器"><span class="nav-number">1.</span> <span class="nav-text">购买境外服务器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装ssr一键脚本-shadowsocks"><span class="nav-number">2.</span> <span class="nav-text">安装ssr一键脚本(shadowsocks)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装加速器"><span class="nav-number">3.</span> <span class="nav-text">安装加速器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#锐速-serverSpeeder"><span class="nav-number">3.1.</span> <span class="nav-text">锐速(serverSpeeder)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#谷歌BBR，推荐"><span class="nav-number">3.2.</span> <span class="nav-text">谷歌BBR，推荐</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开启BBR要求4-10以上版本Linux内核，可使用如下命令查看当前内核版本："><span class="nav-number">3.2.1.</span> <span class="nav-text">开启BBR要求4.10以上版本Linux内核，可使用如下命令查看当前内核版本：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果当前内核版本低于-4-10，可使用-ELRepo-源更新：否则跳过此步骤"><span class="nav-number">3.2.2.</span> <span class="nav-text">如果当前内核版本低于 4.10，可使用 ELRepo 源更新：否则跳过此步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改grub2引导"><span class="nav-number">3.2.3.</span> <span class="nav-text">修改grub2引导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启bbr"><span class="nav-number">3.2.4.</span> <span class="nav-text">开启bbr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看是否成功"><span class="nav-number">3.2.5.</span> <span class="nav-text">查看是否成功</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对于使用脚本1时一些操作"><span class="nav-number">4.</span> <span class="nav-text">对于使用脚本1时一些操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用命令"><span class="nav-number">4.1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加多用户"><span class="nav-number">4.2.</span> <span class="nav-text">添加多用户</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装speedtest命令行测试工具"><span class="nav-number">5.</span> <span class="nav-text">安装speedtest命令行测试工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#防止服务器被暴力登录ssh"><span class="nav-number">6.</span> <span class="nav-text">防止服务器被暴力登录ssh</span></a></li></ol></div>
             
 
           </div>
@@ -732,7 +743,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">25.8k</span>
+    <span title="Site words total count">25.9k</span>
   
 </div>
 
@@ -752,7 +763,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共25.8k字</span>
+  <span class="post-count">博客全站共25.9k字</span>
 </div>
         
 
