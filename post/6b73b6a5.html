@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="践踏记忆">
 <meta property="og:description" content="NFS服务的搭建">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-27T05:15:00.265Z">
+<meta property="og:updated_time" content="2019-05-30T02:47:36.739Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NFS服务的搭建">
 <meta name="twitter:description" content="NFS服务的搭建">
@@ -319,8 +319,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-27T13:15:00+08:00">
-                2019-04-27
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-30T10:47:36+08:00">
+                2019-05-30
               </time>
             
           </span>
@@ -418,7 +418,7 @@
 
       
         <script src="\assets\js\APlayer.min.js"> </script><p><center>NFS服务的搭建<center><br><a id="more"></a></center></center></p>
-<h1 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h1><p>共享/public和/protected两个目录<br>要求public目录任何人都可以访问且只有ro权限<br>要求protected目录只有192.168.19.0网段可以访问且拥有rw权限<br><code>[root@server_1 /]# mkdir /public/ /protected/</code><br><code>[root@server_1 /]# echo this is nfs test &gt; /public/test</code><br>测试结果应该为  客户端挂载到的public目录只可以查看test文件而不能touch文件<br>客户端挂载到的protected目录可以touch文件</p>
+<h1 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h1><p>共享/public和/protected两个目录<br>要求public目录任何人都可以访问且只有ro权限<br>要求protected目录只有192.168.19.0网段可以访问且拥有rw权限<br><code>[root@server_1 /]# mkdir /public/ /protected/</code><br><code>[root@server_1 /]# echo this is nfs test &gt; /public/test</code><br>测试结果应该为:<br>客户端挂载到的public目录只可以查看test文件而不能touch文件<br>客户端挂载到的protected目录可以touch文件</p>
 <h1 id="安装软件包"><a href="#安装软件包" class="headerlink" title="安装软件包"></a>安装软件包</h1><p><code>[root@server_1 /]# yum install nfs\* -y</code></p>
 <h1 id="编辑配置文件"><a href="#编辑配置文件" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h1><p><code>[root@server_1 /]# vim /etc/exports</code><br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/<span class="keyword">public</span>         *(ro)     <span class="comment">//允许所有用户只有只读权限</span></span><br><span class="line">/<span class="keyword">protected</span>      <span class="number">192.168</span><span class="number">.19</span><span class="number">.0</span>/<span class="number">24</span>(rw,no_root_squash,sync)</span><br></pre></td></tr></table></figure></p>
 <p><code>[root@server_1 /]# exprotfs -r</code> //每次修改配置文件或添加共享文件都要执行<br><code>[root@test_1 ~]# showmount -e localhost</code>//查看配置<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Export <span class="built_in">list</span> <span class="keyword">for</span> localhost:</span><br><span class="line">/<span class="keyword">public</span>    *</span><br><span class="line">/<span class="keyword">protected</span> <span class="number">192.168</span><span class="number">.19</span><span class="number">.0</span>/<span class="number">24</span></span><br></pre></td></tr></table></figure></p>
@@ -690,7 +690,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">26.2k</span>
+    <span title="Site words total count">26.4k</span>
   
 </div>
 
@@ -710,7 +710,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共26.2k字</span>
+  <span class="post-count">博客全站共26.4k字</span>
 </div>
         
 
