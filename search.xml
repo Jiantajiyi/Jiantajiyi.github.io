@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[AutoFs]]></title>
+    <url>%2Fpost%2F8c0d6406.html</url>
+    <content type="text"><![CDATA[使用autofs服务实现自动挂载 autofs自动挂载分区##准备一块sdb1硬盘[root@server_1 ~]# lsblk | grep sdb12sdb 8:16 0 40G 0 disk└─sdb1 8:17 0 10G 0 part 装包[root@server_1 ~]# yum install autofs\* -y 编辑配置文件，增加如下内容[root@server_1 ~]# vim /etc/auto.misc1sdb1 -fstype=ext4 :/dev/sdb1 查看配置[root@server_1 sdb1]# grep -v &#39;^#&#39; /etc/auto.misc12cd -fstype=iso9660,ro,nosuid,nodev :/dev/cdromsdb1 -fstype=ext4 :/dev/sdb1 重启服务[root@server_1 ~]# systemctl restart autofs 切换到sdb1目录[root@server_1 ~]# cd /misc/sdb1[root@server_1 sdb1]# lslost+found出现了lost+found说明结果正确 再次查看[root@server_1 sdb1]# mount | grep sdb/dev/sdb1 on /misc/sdb1 type ext4 (rw,relatime,seclabel,data=ordered)结果正确 autofs自动挂载nfsserver2做简单的nfs-server 装包-nfs[root@server_2 ~]# yum install nfs\* -y 编辑配置文件[root@server_2 ~]# vim /etc/exports/test 192.168.19.0/24(rw,no_root_squash,sync)[root@server_2 ~]# mkdir /test 设置防火墙[root@server_2 ~]# firewall-cmd --add-service=nfs --persuccess[root@server_2 ~]# systemctl restart firewalld 关闭selinux[root@server_2 ~]# setenforce 0[root@server_2 ~]# getenforcePermissive 重启服务[root@server_2 ~]# exportfs -r[root@server_2 ~]# systemctl restart nfs[root@server_2 ~]# showmount -e localhost 12Export list for localhost:/test 192.168.19.0/24 新建测试文件[root@server_2 test]# touch /test/test.txt server1做autofs 编辑配置文件[root@server_1 ~]# vim /etc/auto.misc 1test -fstype=nfs,rw 192.168.19.201:/test 重启服务[root@server_1 ~]# systemctl restart autofs[root@server_1 ~]# cd /misc/testroot@server_1 test]# lstest.txt结果正确]]></content>
+      <categories>
+        <category>RHCE</category>
+      </categories>
+      <tags>
+        <tag>RHCE</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[定时计划-crontab+at]]></title>
     <url>%2Fpost%2F8a4ba22d.html</url>
     <content type="text"><![CDATA[定时计划 at命令在指定的日期、时间点自动执行预先设置的一些命令操作，属于一次性计划任务服务脚本名称：/etc/init.d/atd设置格式：at [HH:MM] [yyyy-mm-dd] 小时分钟，年月日服务进程atd 输入at + 时间 输入要执行的命令 按CTRL+D结束输入[root@server_1 ~]# at 13:14at&gt; reboot nowat&gt; &lt;EOT&gt;job 3 at Sun May 26 13:14:00 201912[root@server_1 ~]# Connection to 192.168.19.101 closed by remote host.Connection to 192.168.19.101 closed. corntab命令 按照预先设置的时间周期（分钟、小时、天……）重复执行用户指定的命令操作，属于周期性计划任务 root用户可以管理指定用户的计划任务,普通用户只能管理自己的计划任务 管理cron计划任务 123编辑计划任务：crontab -e [-u 用户名]查看计划任务：crontab -l [-u 用户名]删除计划任务：crontab -r [-u 用户名] 时间格式 12 * * * * * run_command分钟 小时 日期 月份 星期 运行的命令 时间数值的特殊表示方法 1234* 表示该范围内的任意时间, 表示间隔的多个不连续时间点- 表示一个连续的时间范围/ 指定间隔的时间频率 应用示例 12340 17 * * 1-5 周一到周五每天17:00 30 8 * * 1,3,5 每周一、三、五的8点30分0 8-18/2 * * * 8点到18点之间每隔2小时0 * */3 * * 每隔3天 示例1注意命令要写完整路径 编辑[root@server_1 ~]# crontab -e 103 21 * * * /bin/date &gt;&gt; /tmp/date.txt 到时间后查看[root@server_1 ~]# cat /tmp/date.txt 1Sun May 26 21:03:01 CST 2019 示例2 编辑[root@server_1 ~]# crontab -l 108 21 * * * /sbin/reboot 到时间后自动重启 12[root@server_1 ~]# Connection to 192.168.19.101 closed by remote host.Connection to 192.168.19.101 closed.]]></content>
