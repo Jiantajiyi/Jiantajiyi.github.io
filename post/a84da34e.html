@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="搭建DNS服务器">
+<meta name="description" content="ftp服务器的搭建">
 <meta name="keywords" content="RHCE">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DNS-Server">
-<meta property="og:url" content="http://Jiantajiyi.github.io/post/fb4bca23.html">
+<meta property="og:title" content="ftp">
+<meta property="og:url" content="http://Jiantajiyi.github.io/post/a84da34e.html">
 <meta property="og:site_name" content="践踏记忆">
-<meta property="og:description" content="搭建DNS服务器">
+<meta property="og:description" content="ftp服务器的搭建">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-25T13:11:29.062Z">
+<meta property="og:updated_time" content="2019-06-03T18:12:52.619Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DNS-Server">
-<meta name="twitter:description" content="搭建DNS服务器">
+<meta name="twitter:title" content="ftp">
+<meta name="twitter:description" content="ftp服务器的搭建">
 
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://Jiantajiyi.github.io/post/fb4bca23.html"/>
+  <link rel="canonical" href="http://Jiantajiyi.github.io/post/a84da34e.html"/>
 
 
 
 
 
-  <title>DNS-Server | 践踏记忆</title>
+  <title>ftp | 践踏记忆</title>
   
 
 
@@ -274,7 +274,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://Jiantajiyi.github.io/post/fb4bca23.html">
+    <link itemprop="mainEntityOfPage" href="http://Jiantajiyi.github.io/post/a84da34e.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LiRuolin">
@@ -291,7 +291,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">DNS-Server</h1>
+          <h1 class="post-title" itemprop="name headline">ftp</h1>
         
 
         <div class="post-meta">
@@ -303,8 +303,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-25T16:54:11+08:00">
-                2019-05-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-03T22:57:52+08:00">
+                2019-06-03
               </time>
             
 
@@ -319,8 +319,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-05-25T21:11:29+08:00">
-                2019-05-25
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-04T02:12:52+08:00">
+                2019-06-04
               </time>
             
           </span>
@@ -355,7 +355,7 @@
 
           
           
-             <span id="/post/fb4bca23.html" class="leancloud_visitors" data-flag-title="DNS-Server">
+             <span id="/post/a84da34e.html" class="leancloud_visitors" data-flag-title="ftp">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  661
+                  1.5k
                 </span>
               
 
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  8
                 </span>
               
             </div>
@@ -417,63 +417,133 @@
       
 
       
-        <script src="\assets\js\APlayer.min.js"> </script><p><center>搭建DNS服务器<center><br><a id="more"></a></center></center></p>
-<h1 id="安装软件包"><a href="#安装软件包" class="headerlink" title="安装软件包"></a>安装软件包</h1><ol>
-<li>安装软件包<br><code>[root@server_1 ~]# yum install bind\* -y</code></li>
-<li><p>查看包<br><code>[root@server_1 ~]# rpm -qa bind</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind-9.9.4-29.el7.x86_64</span><br></pre></td></tr></table></figure>
+        <script src="\assets\js\APlayer.min.js"> </script><p><center>ftp服务器的搭建<center><br><a id="more"></a></center></center></p>
+<h1 id="搭建匿名访问的FTP服务器"><a href="#搭建匿名访问的FTP服务器" class="headerlink" title="搭建匿名访问的FTP服务器"></a>搭建匿名访问的FTP服务器</h1><h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><ol>
+<li>装包<br><code>[root@server_1 ~]# yum install vsftpd\* -y</code></li>
+<li>关闭selinux<br><code>[root@server_1 ~]# setenforce 0</code></li>
+<li>防火墙放行ftp服务<br><code>[root@server_1 ~]# firewall-cmd --add-service=ftp --per</code><br><strong>success</strong><br><code>[root@server_1 ~]# firewall-cmd --reload</code><br><strong>success</strong></li>
+<li>新建测试文件<br><code>[root@server_1 ~]# echo this is ftp test! &gt; /var/ftp/pub/test.txt</code></li>
+<li>重启服务<br><code>[root@server_1 ~]# systemctl restart vsftpd</code></li>
+</ol>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><h3 id="装包"><a href="#装包" class="headerlink" title="装包"></a>装包</h3><p><code>[root@server_2 ~]# yum install ftp\* -y</code></p>
+<h3 id="登录ftp"><a href="#登录ftp" class="headerlink" title="登录ftp"></a>登录ftp</h3><ol>
+<li><p>打开ftp客户端<br><code>[root@server_2 ~]# ftp</code><br><code>ftp&gt; open 192.168.19.101</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Connected to 192.168.19.101 (192.168.19.101).</span><br><span class="line">220 (vsFTPd 3.0.2)</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>防火墙放行dns服务<br><code>[root@server_1 ~]# firewall-cmd --add-service=dns --per</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">success</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重启防火墙<br><code>[root@server_1 ~]# firewall-cmd --reload</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">success</span><br></pre></td></tr></table></figure>
+<li><p>输入ftp用户名和空密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Name (192.168.19.101:root): ftp</span><br><span class="line">331 Please specify the password.</span><br><span class="line">Password:</span><br><span class="line">230 Login successful.</span><br><span class="line">Remote system type is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h1 id="正向解析"><a href="#正向解析" class="headerlink" title="正向解析"></a>正向解析</h1><h2 id="服务器端配置"><a href="#服务器端配置" class="headerlink" title="服务器端配置"></a>服务器端配置</h2><ol>
-<li><p>编辑主配置文件，修改如下字段为any<br><code>[root@server_1 ~]# vim /etc/named.conf</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">options &#123;</span><br><span class="line">        listen-on port 53 &#123; any; &#125;;</span><br><span class="line">        allow-query     &#123; any; &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="下载测试文件"><a href="#下载测试文件" class="headerlink" title="下载测试文件"></a>下载测试文件</h3><ol>
+<li><p>切换目录<br><code>ftp&gt; cd pub</code><br><strong>250 Directory successfully changed.</strong><br><code>ftp&gt; ls</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">227 Entering Passive Mode (192,168,19,101,153,218).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">-rw-r--r--    1 0        0              18 Jun 03 15:13 test.txt</span><br><span class="line">226 Directory send OK.</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>编辑从配置文件，增加如下内容<br><code>[root@server_1 ~]# vim /etc/named.rfc1912.zones</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">zone &quot;test.com&quot; IN &#123;</span><br><span class="line">        type master;</span><br><span class="line">        file &quot;named.test.com&quot;;</span><br><span class="line">        allow-update &#123; none; &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<li><p>下载<br><code>ftp&gt; get test.txt</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">local: test.txt remote: test.txt</span><br><span class="line">227 Entering Passive Mode (192,168,19,101,26,219).</span><br><span class="line">150 Opening BINARY mode data connection for test.txt (18 bytes).</span><br><span class="line">226 Transfer complete.</span><br><span class="line">18 bytes received in 2.4e-05 secs (750.00 Kbytes/sec)</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>编辑数据库文件<br><code>[root@server_1 ~]# cd /var/named/</code><br><code>[root@server_1 named]# cp named.localhost named.test.com</code><br><code>[root@server_1 named]# vim named.test.com</code></p>
-</li>
-<li><p>修改为如下内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$TTL 1D</span><br><span class="line">@       IN SOA  test.com        root.test.com. (</span><br><span class="line">                                        0       ; serial</span><br><span class="line">                                        1D      ; refresh</span><br><span class="line">                                        1H      ; retry</span><br><span class="line">                                        1W      ; expire</span><br><span class="line">                                        3H )    ; minimum</span><br><span class="line">        IN      NS      ns.test.com.</span><br><span class="line">ns      IN      A       192.168.19.101</span><br><span class="line">www     IN      A       192.168.19.101</span><br><span class="line">mail    IN      A       192.168.19.101</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改数据库文件所属组为named组<br><code>[root@server_1 named]# chgrp named named.test.com</code></p>
-</li>
-<li>重启服务<br><code>[root@server_1 named]# systemctl restart named</code></li>
-</ol>
-<h2 id="客户端测试"><a href="#客户端测试" class="headerlink" title="客户端测试"></a>客户端测试</h2><p><code>[root@server_2 ~]# nslookup www.test.com</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Server:         192.168.19.101</span><br><span class="line">Address:        192.168.19.101#53</span><br><span class="line"></span><br><span class="line">Name:   www.test.com</span><br><span class="line">Address: 192.168.19.101</span><br></pre></td></tr></table></figure></p>
-<p><code>[root@server_2 ~]# nslookup mail.test.com</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Server:         192.168.19.101</span><br><span class="line">Address:        192.168.19.101#53</span><br><span class="line"></span><br><span class="line">Name:   mail.test.com</span><br><span class="line">Address: 192.168.19.101</span><br></pre></td></tr></table></figure></p>
-<h1 id="反向解析"><a href="#反向解析" class="headerlink" title="反向解析"></a>反向解析</h1><h2 id="服务器配置"><a href="#服务器配置" class="headerlink" title="服务器配置"></a>服务器配置</h2><ol>
-<li><p>编辑从配置文件<br><code>[root@server_1 named]# vim /etc/named.rfc1912.zones</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">zone &quot;19.168.192.in-addr.arpa&quot; IN &#123;</span><br><span class="line">        type master;</span><br><span class="line">        file &quot;named.19.168.192.in-addr.arpa&quot;;</span><br><span class="line">        allow-update &#123; none; &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编辑数据库文件<br><code>[root@server_1 named]# cp named.localhost named.19.168.192.in-addr.arpa</code><br><code>[root@server_1 named]# vim named.19.168.192.in-addr.arpa</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$TTL 1D</span><br><span class="line">@       IN SOA  test.com        root.test.com. (</span><br><span class="line">                                        0       ; serial</span><br><span class="line">                                        1D      ; refresh</span><br><span class="line">                                        1H      ; retry</span><br><span class="line">                                        1W      ; expire</span><br><span class="line">                                        3H )    ; minimum</span><br><span class="line">        IN      NS      ns.test.com.</span><br><span class="line">101     IN      PTR     www.test.com.</span><br><span class="line">101     IN      PTR     mail.test.com.</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改数据库文件所属组为named组<br><code>[root@server_1 named]# chgrp named named.19.168.192.in-addr.arpa</code></p>
-</li>
-<li>重启服务<br><code>[root@server_1 named]# systemctl restart named</code></li>
-</ol>
-<h2 id="客户端测试-1"><a href="#客户端测试-1" class="headerlink" title="客户端测试"></a>客户端测试</h2><p><code>[root@server_2 ~]# nslookup 192.168.19.101</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Server:         192.168.19.101</span><br><span class="line">Address:        192.168.19.101#53</span><br><span class="line"></span><br><span class="line">101.19.168.192.in-addr.arpa      name = www.test.com.</span><br><span class="line">101.19.168.192.in-addr.arpa      name = mail.test.com.</span><br></pre></td></tr></table></figure></p>
-<h1 id="备用服务器"><a href="#备用服务器" class="headerlink" title="备用服务器"></a>备用服务器</h1><ol>
-<li>安装软件包<br><code>[root@server_2 ~]# yum install bind\* -y</code></li>
-<li><p>编辑从配置文件<br><code>[root@server_2 ~]# vim /etc/named.rfc1912.zones</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">zone &quot;test.com&quot; IN &#123;</span><br><span class="line">        type slave;</span><br><span class="line">        file &quot;slaves/named.test.com&quot;;</span><br><span class="line">        masters &#123;192.168.19.101;&#125;;</span><br><span class="line">&#125;;</span><br><span class="line">zone &quot;19.168.192.in-addr.arpa&quot; IN &#123;</span><br><span class="line">        type slave;</span><br><span class="line">        file &quot;slaves/named.192.168.19&quot;;</span><br><span class="line">        masters &#123;192.168.19.101;&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看同步的文件<br><code>[root@server_2 ~]# ll /var/named/slaves/</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">total 0</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重启服务<br><code>[root@server_2 ~]# systemctl restart named</code></p>
-</li>
-<li>再次查看<br><code>[root@server_2 ~]# ll /var/named/slaves/</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">total 8</span><br><span class="line">-rw-r--r--. 1 named named 281 May 25 20:59 named.192.168.19</span><br><span class="line">-rw-r--r--. 1 named named 335 May 25 21:00 named.test.com</span><br></pre></td></tr></table></figure>
+<li><p>退出<br><code>ftp&gt; exit</code><br><strong>221 Goodbye.</strong></p>
 </li>
 </ol>
-<p><strong>结果正确</strong></p>
+<h3 id="查看测试文件"><a href="#查看测试文件" class="headerlink" title="查看测试文件"></a>查看测试文件</h3><p><code>[root@server_2 ~]# cat test.txt</code><br><strong>this is ftp test!</strong></p>
+<h1 id="搭建配置系统用户的FTP服务器"><a href="#搭建配置系统用户的FTP服务器" class="headerlink" title="搭建配置系统用户的FTP服务器"></a>搭建配置系统用户的FTP服务器</h1><h2 id="服务端-1"><a href="#服务端-1" class="headerlink" title="服务端"></a>服务端</h2><ol>
+<li>关闭匿名访问<br><code>[root@server_1 ~]# vim /etc/vsftpd/vsftpd.conf</code><br><strong>anonymous_enable=NO</strong></li>
+<li>创建要添加用户的家目录<br><code>[root@server_1 ~]# mkdir -p /var/test1</code></li>
+<li>添加用户指定为root组，指定家目录，不允许登录<br><code>[root@server_1 ~]# useradd -g root -M -d /var/test1/ -s /sbin/nologin test1</code></li>
+<li>更改权限<br><code>[root@server_1 ~]# chown  -R test1:root /var/test1/</code></li>
+<li>给用户添加密码<br><code>[root@server_1 ~]# echo redhat | passwd --stdin test1</code><br><strong>Changing password for user test1.</strong><br><strong>passwd: all authentication tokens updated successfully.</strong></li>
+<li>新建测试文件<br><code>[root@server_1 ~]# echo this is ftp test ! &gt; /var/test1/test.txt</code></li>
+<li>重启服务<br><code>[root@server_1 ~]# systemctl restart vsftpd</code></li>
+</ol>
+<h2 id="客户端-1"><a href="#客户端-1" class="headerlink" title="客户端"></a>客户端</h2><ol>
+<li><p>登录ftp<br><code>[root@server_2 ~]# ftp</code><br><code>ftp&gt; open 192.168.19.101</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Connected to 192.168.19.101 (192.168.19.101).</span><br><span class="line">220 (vsFTPd 3.0.2)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输入用户名test1和密码redhat</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Name (192.168.19.101:root): test1</span><br><span class="line">331 Please specify the password.</span><br><span class="line">Password:</span><br><span class="line">230 Login successful.</span><br><span class="line">Remote system type is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看文件<br><code>ftp&gt; ls</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">227 Entering Passive Mode (192,168,19,101,85,137).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">-rw-r--r--    1 0        0              19 Jun 03 15:33 test.txt</span><br><span class="line">226 Directory send OK.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载文件<br><code>ftp&gt; get test.txt</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">local: test.txt remote: test.txt</span><br><span class="line">227 Entering Passive Mode (192,168,19,101,180,3).</span><br><span class="line">150 Opening BINARY mode data connection for test.txt (19 bytes).</span><br><span class="line">226 Transfer complete.</span><br><span class="line">19 bytes received in 0.00015 secs (126.67 Kbytes/sec)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>退出<br><code>ftp&gt; exit</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">221 Goodbye.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看测试文件<br><code>[root@server_2 ~]# cat test.txt</code><br><strong>this is ftp test !</strong></p>
+</li>
+</ol>
+<h1 id="搭建配置虚拟用户的FTP服务器"><a href="#搭建配置虚拟用户的FTP服务器" class="headerlink" title="搭建配置虚拟用户的FTP服务器"></a>搭建配置虚拟用户的FTP服务器</h1><h2 id="服务端-2"><a href="#服务端-2" class="headerlink" title="服务端"></a>服务端</h2><ol>
+<li>创建两个虚拟用户的家目录<br><code>[root@server_1 ~]# mkdir -p /home/vsftpd/ftp1 /home/vsftpd/ftp2</code></li>
+<li><p>加入两个用户admin和user，密码均为redhat<br><code>[root@server_1 ~]# vim /etc/vsftpd/loginuser.txt</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">admin</span><br><span class="line">redhat</span><br><span class="line">user</span><br><span class="line">redhat</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建虚拟用户的数据库<br><code>[root@server_1 ~]# db_load -T -t hash -f /etc/vsftpd/loginuser.txt /etc/vsftpd/login.db</code></p>
+</li>
+<li>设置数据库访问权限<br><code>[root@server_1 ~]# chmod 600 /etc/vsftpd/login.db</code></li>
+<li><p>修改配置文件，允许PAM验证<br><code>[root@server_1 ~]# vim /etc/pam.d/vsftpd</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#%PAM-1.0</span><br><span class="line">auth            sufficient /lib64/security/pam_userdb.so db=/etc/vsftpd/login</span><br><span class="line">account         sufficient /lib64/security/pam_userdb.so db=/etc/vsftpd/login</span><br><span class="line">#session    optional     pam_keyinit.so    force revoke</span><br><span class="line">#auth       required    pam_listfile.so item=user sense=deny file=/etc/vsftpd/ftpusers onerr=succeed</span><br><span class="line">#auth       required    pam_shells.so</span><br><span class="line">#auth       include     password-auth</span><br><span class="line">#account    include     password-auth</span><br><span class="line">#session    required     pam_loginuid.so</span><br><span class="line">#session    include     password-auth</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建系统用户vsftpd，不允许登录，指定家目录<br><code>[root@server_1 ~]# useradd -d /home/vsftpd/ -s /bin/false vsftpd</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd: warning: the home directory already exists.</span><br><span class="line">Not copying any file from skel directory into it.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更改权限<br><code>[root@server_1 ~]# chown -R vsftpd:vsftpd /home/vsftpd/</code></p>
+</li>
+<li><p>修改vsftpd.conf<br><code>[root@server_1 ~]# grep -v &#39;^#&#39; /etc/vsftpd/vsftpd.conf</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">anonymous_enable=NO</span><br><span class="line">local_enable=YES</span><br><span class="line">write_enable=YES</span><br><span class="line">local_umask=022</span><br><span class="line">dirmessage_enable=YES</span><br><span class="line">xferlog_enable=YES</span><br><span class="line">connect_from_port_20=YES</span><br><span class="line">xferlog_std_format=YES</span><br><span class="line">chroot_local_user=YES</span><br><span class="line">chroot_list_enable=YES</span><br><span class="line">chroot_list_file=/etc/vsftpd/chroot_list</span><br><span class="line">listen=YES</span><br><span class="line">listen_ipv6=NO</span><br><span class="line">pam_service_name=vsftpd</span><br><span class="line">userlist_enable=YES</span><br><span class="line">tcp_wrappers=YES</span><br><span class="line">guest_enable=YES</span><br><span class="line">guest_username=vsftpd</span><br><span class="line">user_config_dir=/etc/vsftpd/user_conf</span><br><span class="line">virtual_use_local_privs=YES</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建用户配置文件夹user_conf<br><code>[root@server_1 ~]# mkdir /etc/vsftpd/user_conf</code></p>
+</li>
+<li>为每个用户创建配置文件<br><code>[root@server_1 ~]# cd /etc/vsftpd/user_conf/</code><br><code>[root@server_1 user_conf]# touch admin user</code></li>
+<li><p>编辑admin的配置文件，读写权限<br><code>[root@server_1 user_conf]# vim admin</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">local_root=/home/vsftpd/ftp1</span><br><span class="line">allow_writeable_chroot=YES</span><br><span class="line">anon_umask=077</span><br><span class="line">anon_upload_enable=YES</span><br><span class="line">anon_world_readable_only=NO</span><br><span class="line">anon_mkdir_write_enable=YES</span><br><span class="line">anon_other_write_enable=YES</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将admin添加到允许用户列表中去<br><code>[root@server_1 user_conf]# vim /etc/vsftpd/chroot_list</code><br><strong>admin</strong></p>
+</li>
+<li><p>编辑user的配置文件，只读权限<br><code>[root@server_1 user_conf]# vim user</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">local_root=/home/vsftpd/ftp2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>给ftp1目录所有权限,ftp2目录去除写权限<br><code>[root@server_1 user_conf]# chmod 777 /home/vsftpd/ftp1</code><br><code>[root@server_1 user_conf]# chmod a-w /home/vsftpd/ftp2</code></p>
+</li>
+<li>新建测试文件<br><code>[root@server_1 vsftpd]# echo this is test &gt; /home/vsftpd/ftp1/test.txt</code><br><code>[root@server_1 vsftpd]# echo this is ftp2 test &gt; /home/vsftpd/ftp2/test.txt</code></li>
+<li>重启服务<br><code>[root@server_1 user_conf]# systemctl restart vsftpd</code></li>
+</ol>
+<h2 id="客户端-2"><a href="#客户端-2" class="headerlink" title="客户端"></a>客户端</h2><h3 id="以admin用户登录，有读写权限和切换到上级目录的权限"><a href="#以admin用户登录，有读写权限和切换到上级目录的权限" class="headerlink" title="以admin用户登录，有读写权限和切换到上级目录的权限"></a>以admin用户登录，有读写权限和切换到上级目录的权限</h3><ol>
+<li><p>登录ftp<br><code>[root@server_2 ~]# ftp</code><br><code>ftp&gt; open 192.168.19.101</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Connected to 192.168.19.101 (192.168.19.101).</span><br><span class="line">220 (vsFTPd 3.0.2)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输入用户名admin和密码redhat</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Name (192.168.19.101:root): admin</span><br><span class="line">331 Please specify the password.</span><br><span class="line">Password:</span><br><span class="line">230 Login successful.</span><br><span class="line">Remote system type is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看<br><code>ftp&gt; ls</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">227 Entering Passive Mode (192,168,19,101,203,71).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">-rw-r--r--    1 0        0              13 Jun 03 16:38 test.txt</span><br><span class="line">226 Directory send OK.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载测试文件<br><code>ftp&gt; get test.txt</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">local: test.txt remote: test.txt</span><br><span class="line">227 Entering Passive Mode (192,168,19,101,199,196).</span><br><span class="line">150 Opening BINARY mode data connection for test.txt (13 bytes).</span><br><span class="line">226 Transfer complete.</span><br><span class="line">13 bytes received in 0.00021 secs (61.90 Kbytes/sec)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>尝试删除文件<br><code>ftp&gt; delete test.txt</code><br><strong>250 Delete operation successful.</strong></p>
+</li>
+<li>尝试创建文件夹<br><code>ftp&gt; mkdir test</code><br><strong>257 “/home/vsftpd/ftp1/test” created</strong></li>
+<li><p>切换到上一目录<br><code>ftp&gt; cd ..</code><br><strong>250 Directory successfully changed.</strong><br><code>ftp&gt; ls</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">227 Entering Passive Mode (192,168,19,101,71,86).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">drwxrwxrwx    2 1006     1006           21 Jun 03 16:38 ftp1</span><br><span class="line">drwxrwxrwx    2 1006     1006           21 Jun 03 16:56 ftp2</span><br><span class="line">226 Directory send OK.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>退出<br><code>ftp&gt; exit</code><br><strong>221 Goodbye.</strong></p>
+</li>
+<li>查看<br><code>[root@server_2 ~]# cat test.txt</code><br><strong>this is test</strong></li>
+</ol>
+<h3 id="以user用户登录，只有读的权限，没有切换到上级目录的权限"><a href="#以user用户登录，只有读的权限，没有切换到上级目录的权限" class="headerlink" title="以user用户登录，只有读的权限，没有切换到上级目录的权限"></a>以user用户登录，只有读的权限，没有切换到上级目录的权限</h3><ol>
+<li><p>切换目录成功但只能显示当前目录下的测试文件<br><code>ftp&gt; cd /</code><br><strong>250 Directory successfully changed.</strong><br><code>ftp&gt; ls</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">227 Entering Passive Mode (192,168,19,101,255,16).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">-rw-r--r--    1 0        0              18 Jun 03 16:56 test.txt</span><br><span class="line">226 Directory send OK.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载测试文件<br><code>ftp&gt; get test.txt</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">local: test.txt remote: test.txt</span><br><span class="line">227 Entering Passive Mode (192,168,19,101,53,135).</span><br><span class="line">150 Opening BINARY mode data connection for test.txt (18 bytes).</span><br><span class="line">226 Transfer complete.</span><br><span class="line">18 bytes received in 0.00017 secs (105.88 Kbytes/sec)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>尝试删除文件但错误<br><code>ftp&gt; delete test.txt</code><br><strong>550 Delete operation failed.</strong></p>
+</li>
+<li>尝试创建文件夹但错误<br><code>ftp&gt; mkdir test</code><br><strong>550 Create directory operation failed.</strong></li>
+<li>退出<br><code>ftp&gt; exit</code><br><strong>221 Goodbye.</strong></li>
+<li>查看测试文件<br><code>[root@server_2 ~]# cat test.txt</code><br><strong>this is ftp2 test</strong></li>
+</ol>
 
       
     </div>
@@ -494,7 +564,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://Jiantajiyi.github.io/post/fb4bca23.html" title="DNS-Server">http://Jiantajiyi.github.io/post/fb4bca23.html</a>
+    <a href="http://Jiantajiyi.github.io/post/a84da34e.html" title="ftp">http://Jiantajiyi.github.io/post/a84da34e.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -522,8 +592,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/post/19261b76.html" rel="next" title="搭建ssr">
-                <i class="fa fa-chevron-left"></i> 搭建ssr
+              <a href="/post/8c0d6406.html" rel="next" title="AutoFs">
+                <i class="fa fa-chevron-left"></i> AutoFs
               </a>
             
           </div>
@@ -531,10 +601,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/post/702b79ee.html" rel="prev" title="DHCP-Server">
-                DHCP-Server <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -696,7 +762,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装软件包"><span class="nav-number">1.</span> <span class="nav-text">安装软件包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正向解析"><span class="nav-number">2.</span> <span class="nav-text">正向解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器端配置"><span class="nav-number">2.1.</span> <span class="nav-text">服务器端配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端测试"><span class="nav-number">2.2.</span> <span class="nav-text">客户端测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#反向解析"><span class="nav-number">3.</span> <span class="nav-text">反向解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器配置"><span class="nav-number">3.1.</span> <span class="nav-text">服务器配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端测试-1"><span class="nav-number">3.2.</span> <span class="nav-text">客户端测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#备用服务器"><span class="nav-number">4.</span> <span class="nav-text">备用服务器</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建匿名访问的FTP服务器"><span class="nav-number">1.</span> <span class="nav-text">搭建匿名访问的FTP服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端"><span class="nav-number">1.1.</span> <span class="nav-text">服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端"><span class="nav-number">1.2.</span> <span class="nav-text">客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#装包"><span class="nav-number">1.2.1.</span> <span class="nav-text">装包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登录ftp"><span class="nav-number">1.2.2.</span> <span class="nav-text">登录ftp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载测试文件"><span class="nav-number">1.2.3.</span> <span class="nav-text">下载测试文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看测试文件"><span class="nav-number">1.2.4.</span> <span class="nav-text">查看测试文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建配置系统用户的FTP服务器"><span class="nav-number">2.</span> <span class="nav-text">搭建配置系统用户的FTP服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端-1"><span class="nav-number">2.1.</span> <span class="nav-text">服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端-1"><span class="nav-number">2.2.</span> <span class="nav-text">客户端</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建配置虚拟用户的FTP服务器"><span class="nav-number">3.</span> <span class="nav-text">搭建配置虚拟用户的FTP服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端-2"><span class="nav-number">3.1.</span> <span class="nav-text">服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端-2"><span class="nav-number">3.2.</span> <span class="nav-text">客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#以admin用户登录，有读写权限和切换到上级目录的权限"><span class="nav-number">3.2.1.</span> <span class="nav-text">以admin用户登录，有读写权限和切换到上级目录的权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以user用户登录，只有读的权限，没有切换到上级目录的权限"><span class="nav-number">3.2.2.</span> <span class="nav-text">以user用户登录，只有读的权限，没有切换到上级目录的权限</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
