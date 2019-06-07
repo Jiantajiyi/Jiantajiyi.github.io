@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="践踏记忆">
 <meta property="og:description" content="mariadb的基本操作">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-07T07:09:24.982Z">
+<meta property="og:updated_time" content="2019-06-07T08:06:33.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mariadb">
 <meta name="twitter:description" content="mariadb的基本操作">
@@ -319,7 +319,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-07T15:09:24+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-06-07T16:06:33+08:00">
                 2019-06-07
               </time>
             
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  783
+                  1.4k
                 </span>
               
 
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  7
                 </span>
               
             </div>
@@ -428,14 +428,10 @@
 <li><p>防火墙添加允许<br><code>[root@server_1 ~]# firewall-cmd --add-service=mysql --per</code><br><strong>success</strong><br><code>[root@server_1 ~]# firewall-cmd --reload</code><br><strong>success</strong></p>
 </li>
 </ol>
-<h1 id="数据库的使用"><a href="#数据库的使用" class="headerlink" title="数据库的使用"></a>数据库的使用</h1><h2 id="第一层，整个数据库"><a href="#第一层，整个数据库" class="headerlink" title="第一层，整个数据库"></a>第一层，整个数据库</h2><h3 id="登录数据库"><a href="#登录数据库" class="headerlink" title="登录数据库"></a>登录数据库</h3><p><code>[root@server_1 ~]# mysql -u root -h localhost -p</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Enter password:</span><br><span class="line">Welcome to the MariaDB monitor.  Commands end with ; or \g.</span><br><span class="line">Your MariaDB connection id is 9</span><br><span class="line">Server version: 5.5.44-MariaDB MariaDB Server</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.</span><br><span class="line"></span><br><span class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt;</span><br></pre></td></tr></table></figure></p>
-<h3 id="查询数据库"><a href="#查询数据库" class="headerlink" title="查询数据库"></a>查询数据库</h3><ol>
-<li>查看系统有多少数据库<br><code>MariaDB [(none)]&gt; show databases;</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">+--------------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="退出数据库"><a href="#退出数据库" class="headerlink" title="退出数据库"></a>退出数据库</h3><ol>
-<li>退出数据库系统<br><code>MariaDB [(none)]&gt; quit</code><br><code>MariaDB [(none)]&gt; exit</code></li>
-</ol>
+<h1 id="数据库的使用"><a href="#数据库的使用" class="headerlink" title="数据库的使用"></a>数据库的使用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">						  - 数据1</span><br><span class="line">					- 表1</span><br><span class="line">						  - 数据2</span><br><span class="line">			-数据库1</span><br><span class="line">						  - 数据1</span><br><span class="line">					- 表2 </span><br><span class="line">						  - 数据2</span><br><span class="line"></span><br><span class="line">mysql数据库	</span><br><span class="line"></span><br><span class="line">						  - 数据1</span><br><span class="line">					- 表1</span><br><span class="line">						  - 数据2</span><br><span class="line">			-数据库2</span><br><span class="line">						  - 数据1</span><br><span class="line">					- 表2</span><br><span class="line">						  - 数据2</span><br></pre></td></tr></table></figure>
+<h2 id="第一层，整个数据库"><a href="#第一层，整个数据库" class="headerlink" title="第一层，整个数据库"></a>第一层，整个数据库</h2><h3 id="登录数据库"><a href="#登录数据库" class="headerlink" title="登录数据库"></a>登录数据库</h3><p>以root身份登录，这里的root是指数据库的root用户，而不是系统的root用户<br><code>[root@server_1 ~]# mysql -u root -h localhost -p</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Enter password:</span><br><span class="line">Welcome to the MariaDB monitor.  Commands end with ; or \g.</span><br><span class="line">Your MariaDB connection id is 9</span><br><span class="line">Server version: 5.5.44-MariaDB MariaDB Server</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.</span><br><span class="line"></span><br><span class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="查询数据库"><a href="#查询数据库" class="headerlink" title="查询数据库"></a>查询数据库</h3><p>查看系统有多少数据库<br><code>MariaDB [(none)]&gt; show databases;</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">+--------------------+</span><br><span class="line">3 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure></p>
+<h3 id="退出数据库"><a href="#退出数据库" class="headerlink" title="退出数据库"></a>退出数据库</h3><p>退出数据库系统<br><code>MariaDB [(none)]&gt; quit</code><br><code>MariaDB [(none)]&gt; exit</code></p>
 <h2 id="第二层，某一个数据库"><a href="#第二层，某一个数据库" class="headerlink" title="第二层，某一个数据库"></a>第二层，某一个数据库</h2><h3 id="创建一个数据库"><a href="#创建一个数据库" class="headerlink" title="创建一个数据库"></a>创建一个数据库</h3><ol>
 <li>创建一个数据库luntan<br><code>MariaDB [(none)]&gt; create database luntan;</code><br><strong>Query OK, 1 row affected (0.00 sec)</strong></li>
 </ol>
@@ -466,6 +462,46 @@
 </li>
 <li>更新表中的数据<br><code>MariaDB [mysql]&gt; update person set name=&quot;haha&quot; where number=3;</code><br><strong>Query OK, 1 row affected (0.00 sec)</strong><br><strong>Rows matched: 1  Changed: 1  Warnings: 0</strong></li>
 <li>重新查询表中的数据<br><code>MariaDB [mysql]&gt; select * from person;</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+--------+------+------------+</span><br><span class="line">| NUMBER | NAME | BIRTHDAY   |</span><br><span class="line">+--------+------+------------+</span><br><span class="line">|      3 | haha | 1999-06-09 |</span><br><span class="line">+--------+------+------------+</span><br><span class="line">1 row in set (0.00 sec</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="数据库用户的管理和访问权限的控制"><a href="#数据库用户的管理和访问权限的控制" class="headerlink" title="数据库用户的管理和访问权限的控制"></a>数据库用户的管理和访问权限的控制</h1><ol>
+<li><p>查看当前使用哪个用户登录<br><code>MariaDB [(none)]&gt; select user();</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+----------------+</span><br><span class="line">| user()         |</span><br><span class="line">+----------------+</span><br><span class="line">| root@localhost |</span><br><span class="line">+----------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看当前使用哪个数据库<br><code>MariaDB [(none)]&gt; select database();</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+------------+</span><br><span class="line">| database() |</span><br><span class="line">+------------+</span><br><span class="line">| NULL       |</span><br><span class="line">+------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建数据库用户test1，密码为redhat<br><code>MariaDB [mysql]&gt; create user test1@localhost identified by &#39;redhat&#39;;</code><br><strong>Query OK, 0 rows affected (0.00 sec)</strong></p>
+</li>
+<li><p>使用test1用户登录，则test1用户没有任何权限<br><code>MariaDB [(none)]&gt; select user();</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-----------------+</span><br><span class="line">| user()          |</span><br><span class="line">+-----------------+</span><br><span class="line">| test1@localhost |</span><br><span class="line">+-----------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>没有权限<br><code>MariaDB [(none)]&gt; use mysql;</code><br><strong>ERROR 1044 (42000): Access denied for user ‘test1’@’localhost’ to database ‘mysql’</strong></p>
+</li>
+<li>使用root用户登录，给与test1用户person表增，删，查，改的权限<br><code>MariaDB [(none)]&gt; grant select,update,insert,delete on mysql.person to test1@localhost;</code><br><strong>Query OK, 0 rows affected (0.00 sec)</strong></li>
+<li><p>重新使用test1登录，查询<br><code>MariaDB [mysql]&gt; select * from person;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+--------+----------+------------+</span><br><span class="line">| NUMBER | NAME     | BIRTHDAY   |</span><br><span class="line">+--------+----------+------------+</span><br><span class="line">|      3 | haha     | 1999-06-09 |</span><br><span class="line">|      2 | xiaohei  | 1998-06-08 |</span><br><span class="line">+--------+----------+------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>增加<br><code>MariaDB [mysql]&gt; insert into person(number,name,birthday) values(1,&#39;xiaohong&#39;,19990505);</code><br><strong>Query OK, 1 row affected (0.00 sec)</strong></p>
+</li>
+<li>删除<br><code>MariaDB [mysql]&gt; delete from person where name=&quot;xiaohei&quot;;</code><br><strong>Query OK, 1 row affected (0.00 sec)</strong></li>
+<li>更新<br><code>MariaDB [mysql]&gt; update person set name=&quot;xiaobai&quot; where number=3;</code><br><strong>Query OK, 1 row affected (0.00 sec)</strong><br><strong>Rows matched: 1  Changed: 1  Warnings: 0</strong></li>
+<li><p>重新查询<br><code>MariaDB [mysql]&gt; select * from person;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+--------+----------+------------+</span><br><span class="line">| NUMBER | NAME     | BIRTHDAY   |</span><br><span class="line">+--------+----------+------------+</span><br><span class="line">|      1 | xiaohong | 1999-05-05 |</span><br><span class="line">|      3 | xiaobai  | 1998-06-09 |</span><br><span class="line">+--------+----------+------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用root用户登录，禁止test1用户查询的权限<br><code>MariaDB [mysql]&gt; revoke select on mysql.person from test1@localhost;</code><br><strong>Query OK, 0 rows affected (0.00 sec)</strong></p>
+</li>
+<li>重新使用test1用户登录，则没有查询权限<br><code>MariaDB [mysql]&gt; select * from person;</code><br><strong>ERROR 1142 (42000): SELECT command denied to user ‘test1’@’localhost’ for table ‘person’</strong></li>
+</ol>
+<h1 id="数据库的备份和还原"><a href="#数据库的备份和还原" class="headerlink" title="数据库的备份和还原"></a>数据库的备份和还原</h1><ol>
+<li>备份mysql这个数据库<br><code>[root@server_1 ~]# mysqldump -u root -p mysql &gt; /mysql_backup.dump</code><br><strong>Enter password:</strong></li>
+<li><p>查询person表<br><code>MariaDB [mysql]&gt; select * from person;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+--------+----------+------------+</span><br><span class="line">| NUMBER | NAME     | BIRTHDAY   |</span><br><span class="line">+--------+----------+------------+</span><br><span class="line">|      3 | xiaobai  | 1999-06-09 |</span><br><span class="line">|      1 | xiaohong | 1998-05-05 |</span><br><span class="line">+--------+----------+------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除person表<br><code>MariaDB [mysql]&gt; drop table person;</code><br><strong>Query OK, 0 rows affected (0.00 sec)</strong><br><code>MariaDB [mysql]&gt; select * from person;</code><br><strong>ERROR 1146 (42S02): Table ‘mysql.person’ doesn’t exist</strong></p>
+</li>
+<li>还原mysql这个数据库<br><code>[root@server_1 ~]# mysql -u root -p mysql &lt; /mysql_backup.dump</code><br><strong>Enter password:</strong></li>
+<li>再次查询person表<br><code>MariaDB [mysql]&gt; select * from person;</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+--------+----------+------------+</span><br><span class="line">| NUMBER | NAME     | BIRTHDAY   |</span><br><span class="line">+--------+----------+------------+</span><br><span class="line">|      3 | xiaobai  | 1999-06-09 |</span><br><span class="line">|      1 | xiaohong | 1998-05-05 |</span><br><span class="line">+--------+----------+------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 
@@ -686,7 +722,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装部署"><span class="nav-number">1.</span> <span class="nav-text">安装部署</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库的使用"><span class="nav-number">2.</span> <span class="nav-text">数据库的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一层，整个数据库"><span class="nav-number">2.1.</span> <span class="nav-text">第一层，整个数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#登录数据库"><span class="nav-number">2.1.1.</span> <span class="nav-text">登录数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询数据库"><span class="nav-number">2.1.2.</span> <span class="nav-text">查询数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#退出数据库"><span class="nav-number">2.1.3.</span> <span class="nav-text">退出数据库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二层，某一个数据库"><span class="nav-number">2.2.</span> <span class="nav-text">第二层，某一个数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个数据库"><span class="nav-number">2.2.1.</span> <span class="nav-text">创建一个数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询某个数据库的内容"><span class="nav-number">2.2.2.</span> <span class="nav-text">查询某个数据库的内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三层，某一个数据库下的某张表"><span class="nav-number">2.3.</span> <span class="nav-text">第三层，某一个数据库下的某张表</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装部署"><span class="nav-number">1.</span> <span class="nav-text">安装部署</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库的使用"><span class="nav-number">2.</span> <span class="nav-text">数据库的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一层，整个数据库"><span class="nav-number">2.1.</span> <span class="nav-text">第一层，整个数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#登录数据库"><span class="nav-number">2.1.1.</span> <span class="nav-text">登录数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询数据库"><span class="nav-number">2.1.2.</span> <span class="nav-text">查询数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#退出数据库"><span class="nav-number">2.1.3.</span> <span class="nav-text">退出数据库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二层，某一个数据库"><span class="nav-number">2.2.</span> <span class="nav-text">第二层，某一个数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个数据库"><span class="nav-number">2.2.1.</span> <span class="nav-text">创建一个数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询某个数据库的内容"><span class="nav-number">2.2.2.</span> <span class="nav-text">查询某个数据库的内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三层，某一个数据库下的某张表"><span class="nav-number">2.3.</span> <span class="nav-text">第三层，某一个数据库下的某张表</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库用户的管理和访问权限的控制"><span class="nav-number">3.</span> <span class="nav-text">数据库用户的管理和访问权限的控制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库的备份和还原"><span class="nav-number">4.</span> <span class="nav-text">数据库的备份和还原</span></a></li></ol></div>
             
 
           </div>
@@ -729,7 +765,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">28.7k</span>
+    <span title="Site words total count">29.4k</span>
   
 </div>
 
@@ -749,7 +785,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共28.7k字</span>
+  <span class="post-count">博客全站共29.4k字</span>
 </div>
         
 
